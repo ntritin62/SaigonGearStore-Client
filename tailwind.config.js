@@ -1,0 +1,47 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  darkMode: 'class',
+  theme: {
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      black: '#000',
+      text: '#1a162e',
+      icon: 'brightness(0) saturate(100%) invert(8%) sepia(8%) saturate(4852%) hue-rotate(212deg) brightness(95%) contrast(96%)',
+      'body-bg': '#f6f6f6',
+      'header-bg': '#eee',
+      'top-act-group': '#fff',
+      'top-act-group-shadow': '#ededf6',
+      'top-act-group-separate': '#EDEDF6',
+      'header-shadow': 'rgba(237, 237, 246, 0.2)',
+      'dropdown-bg': '#fff',
+      'dropdown-shadow': 'rgba(200, 200, 200, 0.4)',
+      'top-menu-border': '#d2d1d6',
+      'dark-text': '#fff',
+      'dark-icon':
+        'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(235deg) brightness(104%) contrast(105%)',
+      'dark-body-bg': '#292e39',
+      'dark-header-bg': '#171c28',
+      'dark-top-act-group': '#292e39',
+      'dark-top-act-group-shadow': 'rgba(0, 0, 0, 0.2)',
+      'dark-top-act-group-separate': '#ededf6',
+      'dark-header-shadow': '#2d3441',
+      'dark-dropdown-bg': '#2d3441',
+      'dark-dropdown-shadow': 'rgba(23, 28, 40, 0.4))',
+      'dark-top-menu-border': '#171c28',
+    },
+    screens: {
+      sm: { max: '576px' },
+      md: { max: '768px' },
+      lg: { max: '992px' },
+      xl: { max: '1200px' },
+      xxl: { max: '1400px' },
+    },
+    container: {
+      center: true,
+      padding: '3rem',
+    },
+  },
+  plugins: [],
+};
