@@ -31,7 +31,7 @@ const Header = () => {
 
         <nav
           className={
-            'transition-transform duration-500 translate-x-[-100%] ml-[129px] lg:fixed sm:right-[50px] lg:right-1/2 lg:top-0 lg:bottom-0 lg:left-0 lg:ml-0 lg:bg-dropdown dark:bg-dark-dropdown-bg lg:z-20 lg:p-[20px]' +
+            'lg:transition-transform lg:duration-500 lg:translate-x-[-100%] ml-[129px] lg:fixed sm:right-[50px] lg:right-1/2 lg:top-0 lg:bottom-0 lg:left-0 lg:ml-0 lg:bg-dropdown dark:bg-dark-dropdown-bg lg:z-20 lg:p-[20px]' +
             (sideBarIsVisible ? ' translate-x-0' : '')
           }
         >
@@ -39,12 +39,9 @@ const Header = () => {
             onClick={() => {
               setSideBarIsVisible(false);
             }}
+            className="icon hidden lg:block"
           >
-            <img
-              src="./icon/arrow-left.svg"
-              alt=""
-              className="icon hidden lg:block"
-            />
+            <img src="./icon/arrow-left.svg" alt="" />
           </button>
           <ul className="flex items-center font-medium text-2xl lg:flex-col lg:items-start lg:mt-[20px]">
             <li className="flex h-[50px] px-[15px] items-center gap-[6px] cursor-pointer lg:px-0">
