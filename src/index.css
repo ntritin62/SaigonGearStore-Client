@@ -143,6 +143,10 @@ input {
   background: transparent;
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 a,
 img,
 button,
