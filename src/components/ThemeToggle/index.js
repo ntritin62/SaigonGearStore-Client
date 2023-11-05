@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './assets/style.css';
 import { ReactComponent as MoonIcon } from './assets/moon.svg';
 import { ReactComponent as SunIcon } from './assets/sun.svg';
 const updateTheme = (isDarkEnabled) => {
-  // Get CSS variables for background/foreground
   const styles = getComputedStyle(document.body);
   const black = styles.getPropertyValue('--black');
   const white = styles.getPropertyValue('--white');
@@ -19,9 +18,7 @@ const updateTheme = (isDarkEnabled) => {
     document.querySelector('html').classList.remove('dark');
   }
 };
-export default function ThemeToggle() {
-  const [isEnabled, setIsEnabled] = useState(false);
-
+export default function ThemeToggle({ className, isEnabled, setIsEnabled }) {
   useEffect(() => {
     updateTheme(isEnabled);
   }, [isEnabled]);
@@ -31,23 +28,25 @@ export default function ThemeToggle() {
   };
 
   return (
-    <label className="toggle-wrapper sm:hidden" htmlFor="toggle">
-      <div className={`toggle ${isEnabled ? 'enabled' : 'disabled'}`}>
-        <span className="hidden">
-          {isEnabled ? 'Enable Light Mode' : 'Enable Dark Mode'}
-        </span>
-        <div className="icons">
-          <SunIcon />
-          <MoonIcon />
+    <div className="flex justify-center">
+      <label className={'toggle-wrapper ' + className} htmlFor="toggle">
+        <div className={`toggle ${isEnabled ? 'enabled' : 'disabled'}`}>
+          <span className="hidden">
+            {isEnabled ? 'Enable Light Mode' : 'Enable Dark Mode'}
+          </span>
+          <div className="icons">
+            <SunIcon />
+            <MoonIcon />
+          </div>
+          <input
+            id="toggle"
+            name="toggle"
+            type="checkbox"
+            checked={isEnabled}
+            onClick={toggleState}
+          />
         </div>
-        <input
-          id="toggle"
-          name="toggle"
-          type="checkbox"
-          checked={isEnabled}
-          onClick={toggleState}
-        />
-      </div>
-    </label>
+      </label>
+    </div>
   );
 }
