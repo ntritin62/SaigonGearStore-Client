@@ -1,12 +1,13 @@
 import React from 'react';
 import ThemeToggle from '../../../components/ThemeToggle';
+import Dropdown from '../../../components/Dropdown';
 import { useState } from 'react';
 
 const Header = () => {
   const [searchIsVisible, setSearchIsVisible] = useState(false);
   return (
-    <header className="bg-header-bg dark:bg-dark-header-bg">
-      <div className="container flex items-center py-[30px] ">
+    <header className=" bg-header-bg dark:bg-dark-header-bg">
+      <div className="relative container flex items-center py-[30px] ">
         <figure className="flex items-center gap-6">
           <img
             className="w-[32px] h-[32px] lg:w-[24px] lg:h-[24px]"
@@ -19,11 +20,14 @@ const Header = () => {
           <ul className="flex items-center font-medium text-2xl">
             <li className="flex px-[15px] items-center gap-[6px] cursor-pointer">
               <a href="#!">Coffee</a>
-              <img src="./icon/arrow-down.svg" alt="" className="icon" />
             </li>
             <li className="flex px-[15px] items-center gap-[6px] cursor-pointer">
               <a href="#!">Tea</a>
+            </li>
+            <li className="group flex px-[15px] items-center gap-[6px] cursor-pointer">
+              <a href="#!">Menu</a>
               <img src="./icon/arrow-down.svg" alt="" className="icon" />
+              <Dropdown />
             </li>
           </ul>
         </nav>

@@ -110,6 +110,8 @@ html.dark {
     hue-rotate(235deg) brightness(104%) contrast(105%);
   --body-bg: #292e39;
   --text-color: #fff;
+  --dropdown-arrow-color: brightness(0) saturate(100%) invert(19%) sepia(24%)
+    saturate(451%) hue-rotate(180deg) brightness(95%) contrast(96%);
 }
 
 *,
@@ -154,4 +156,8 @@ select {
 
 .icon {
   filter: var(--icon-color);
+}
+
+.dropdown-arrow {
+  filter: var(--dropdown-arrow-color);
 }

@@ -7,9 +7,8 @@
 }
 
 .toggle-wrapper {
-  width: 100px;
   display: block;
-  margin: auto; /* Centering for demo */
+  margin-left: auto;
 }
 
 .toggle {
