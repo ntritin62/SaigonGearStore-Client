@@ -31,7 +31,7 @@ export default function ThemeToggle() {
   };
 
   return (
-    <label className="toggle-wrapper" htmlFor="toggle">
+    <label className="toggle-wrapper sm:hidden" htmlFor="toggle">
       <div className={`toggle ${isEnabled ? 'enabled' : 'disabled'}`}>
         <span className="hidden">
           {isEnabled ? 'Enable Light Mode' : 'Enable Dark Mode'}
