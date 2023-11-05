@@ -31,11 +31,11 @@ module.exports = {
       'dark-top-menu-border': '#171c28',
     },
     screens: {
-      sm: { max: '576px' },
-      md: { max: '768px' },
-      lg: { max: '992px' },
-      xl: { max: '1200px' },
       xxl: { max: '1400px' },
+      xl: { max: '1200px' },
+      lg: { max: '992px' },
+      md: { max: '768px' },
+      sm: { max: '576px' },
     },
     container: {
       center: true,
