@@ -31,8 +31,8 @@ const Header = () => {
 
         <nav
           className={
-            'lg:transition-transform lg:duration-500 lg:translate-x-[-100%] ml-[129px] lg:fixed sm:right-[50px] lg:right-1/2 lg:top-0 lg:bottom-0 lg:left-0 lg:ml-0 lg:bg-dropdown dark:bg-dark-dropdown-bg lg:z-20 lg:p-[20px]' +
-            (sideBarIsVisible ? ' translate-x-0' : '')
+            'transition-transform duration-500 lg:translate-x-[-100%] ml-[129px] lg:fixed sm:right-[50px] lg:right-1/2 lg:top-0 lg:bottom-0 lg:left-0 lg:ml-0 lg:bg-dropdown lg:dark:bg-dark-dropdown-bg lg:z-20 lg:p-[20px]' +
+            (sideBarIsVisible ? ' lg:translate-x-0' : '')
           }
         >
           <button
