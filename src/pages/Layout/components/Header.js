@@ -10,10 +10,10 @@ const Header = () => {
   const [isEnabled, setIsEnabled] = useState(docEl.classList.contains('dark'));
   return (
     <header className=" bg-header-bg dark:bg-dark-header-bg">
-      <div className="relative container flex items-center py-[30px] sm:justify-between lg:py-[16px]">
+      <div className="relative container flex items-center py-[30px] md:justify-between lg:py-[16px]">
         {/* More */}
         <button
-          className="icon hidden lg:block mr-[30px] sm:mr-0"
+          className="icon hidden lg:block mr-[30px] md:mr-0"
           onClick={() => {
             setSideBarIsVisible(true);
           }}
@@ -32,12 +32,12 @@ const Header = () => {
         {/* Navbar */}
         <nav
           className={
-            'lg:overflow-auto transition-transform duration-500  ml-[129px] lg:fixed sm:right-[50px] lg:right-1/2 lg:top-0 lg:bottom-0 lg:left-0 lg:ml-0 lg:bg-dropdown lg:dark:bg-dark-dropdown-bg lg:z-20 lg:p-[20px]' +
+            'lg:overflow-auto transition-transform duration-500  ml-[129px] lg:fixed md:right-[50px] md:right-1/2 lg:top-0 lg:bottom-0 lg:left-0 lg:ml-0 lg:bg-dropdown lg:dark:bg-dark-dropdown-bg lg:z-20 lg:p-[20px]' +
             (sideBarIsVisible ? ' lg:translate-x-0' : ' lg:translate-x-[-100%]')
           }
         >
           <ThemeToggle
-            className="hidden sm:inline-block sm:mx-auto"
+            className="hidden md:inline-block md:mx-auto"
             isEnabled={isEnabled}
             setIsEnabled={setIsEnabled}
           />
@@ -87,8 +87,8 @@ const Header = () => {
           }
         ></div>
 
-        <div className="ml-auto flex items-center gap-[20px] sm:ml-0 sm:gap-0 ">
-          <div className="flex items-center cursor-pointer bg-top-act-group dark:bg-dark-top-act-group p-[13px]  rounded-lg text-2xl font-medium shadow-[0px_20px_60px_10px_rgba(237,237,246,0.20)] dark:shadow-[0px_20px_60px_10px_rgba(0,0,0,0.20)] sm:hidden">
+        <div className="ml-auto flex items-center gap-[20px] md:ml-0 md:gap-0 ">
+          <div className="flex items-center cursor-pointer bg-top-act-group dark:bg-dark-top-act-group p-[13px]  rounded-lg text-2xl font-medium shadow-[0px_20px_60px_10px_rgba(237,237,246,0.20)] dark:shadow-[0px_20px_60px_10px_rgba(0,0,0,0.20)] md:hidden">
             {searchIsVisible && (
               <div className="lg:max-w-[140px]">
                 <input type="text" />
@@ -103,7 +103,7 @@ const Header = () => {
               }}
             />
           </div>
-          <div className="flex items-center  gap-[20px] bg-top-act-group dark:bg-dark-top-act-group px-[20px] py-[10px] rounded-lg text-2xl font-medium shadow-[0px_20px_60px_10px_rgba(237,237,246,0.20)] dark:shadow-[0px_20px_60px_10px_rgba(0,0,0,0.20)] sm:hidden">
+          <div className="flex items-center  gap-[20px] bg-top-act-group dark:bg-dark-top-act-group px-[20px] py-[10px] rounded-lg text-2xl font-medium shadow-[0px_20px_60px_10px_rgba(237,237,246,0.20)] dark:shadow-[0px_20px_60px_10px_rgba(0,0,0,0.20)] md:hidden">
             <div className="flex items-center gap-[10px] cursor-pointer">
               <img src="./icon/heart.svg" alt="" className="icon" />
               <p className="mt-[3px]">03</p>
@@ -122,7 +122,7 @@ const Header = () => {
             />
           </figure>
           <ThemeToggle
-            className="block sm:hidden"
+            className="block md:hidden"
             isEnabled={isEnabled}
             setIsEnabled={setIsEnabled}
           />
