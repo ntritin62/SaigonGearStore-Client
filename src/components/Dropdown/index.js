@@ -9,7 +9,7 @@ const Dropdown = () => {
           alt=""
           className="dropdown-arrow absolute top-[-10px] left-[470px] lg:hidden"
         />
-        <ul className="grid grid-cols-4 lg:grid-cols-1 lg:gap-10">
+        <ul className="grid grid-cols-3 lg:grid-cols-1 lg:gap-10">
           <li className="flex gap-[14px]">
             <img
               src="./icon/coffee.svg"
@@ -49,30 +49,6 @@ const Dropdown = () => {
             <ul className="flex flex-col gap-[14px] text-2xl font-normal">
               <h2 className="text-[1.6rem] font-bold">
                 <a href="#!">Tea</a>
-              </h2>
-              <li>
-                <a href="#!" className="hover:text-[#0071dc] hover:font-medium">
-                  Trà trái cây
-                </a>
-              </li>
-              <li>
-                <a href="#!" className="hover:text-[#0071dc] hover:font-medium">
-                  Trà sữa Macchiato
-                </a>
-              </li>
-            </ul>
-          </li>
-
-          <li className="flex gap-[14px]">
-            <img
-              src="./icon/ice-blended.svg"
-              alt=""
-              className="icon w-[30px] h-[30px] items-start"
-            />
-
-            <ul className="flex flex-col gap-[14px] text-2xl font-normal">
-              <h2 className="text-[1.6rem] font-bold">
-                <a href="#!">Ice Blended</a>
               </h2>
               <li>
                 <a href="#!" className="hover:text-[#0071dc] hover:font-medium">

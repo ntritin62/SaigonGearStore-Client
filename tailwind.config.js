@@ -7,7 +7,6 @@ module.exports = {
       transparent: 'transparent',
       current: 'currentColor',
       black: '#000',
-      text: '#1a162e',
 
       'body-bg': '#f6f6f6',
       'header-bg': '#eee',
@@ -18,7 +17,8 @@ module.exports = {
       dropdown: '#fff',
       'dropdown-shadow': 'rgba(200, 200, 200, 0.4)',
       'top-menu-border': '#d2d1d6',
-      'dark-text': '#fff',
+      'menu-card': '#fff',
+      'item-card': '#fff',
 
       'dark-body-bg': '#292e39',
       'dark-header-bg': '#171c28',
@@ -29,6 +29,8 @@ module.exports = {
       'dark-dropdown-bg': '#2d3441',
       'dark-dropdown-shadow': 'rgba(23, 28, 40, 0.4))',
       'dark-top-menu-border': '#171c28',
+      'dark-menu-card': '#292e39',
+      'dark-item-card': '#171c28',
     },
     screens: {
       xxl: { max: '1400px' },
