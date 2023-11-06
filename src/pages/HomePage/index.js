@@ -122,7 +122,9 @@ const HomePage = () => {
               <li>
                 <a href="#!">
                   <ItemCard
+                    key={coffee.title}
                     img={coffee.img}
+                    isLiked={true}
                     title={coffee.title}
                     price={coffee.price}
                     stars={coffee.stars}

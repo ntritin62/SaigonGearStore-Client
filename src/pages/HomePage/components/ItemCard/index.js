@@ -1,10 +1,18 @@
 import React from 'react';
 
-const ItemCard = ({ img, title, price, stars }) => {
+const ItemCard = ({ img, title, price, stars, isLiked }) => {
+  console.log(isLiked);
   return (
-    <section className="p-[16px] rounded-[20px] bg-item-card dark:bg-dark-item-card">
-      <div className="max-w-[280px] max-h-[284px] mx-auto">
+    <section className="p-[16px] rounded-[20px] bg-item-card dark:bg-dark-item-card shadow-[0px_20px_60px_10px_rgba(237,237,246,0.20)] dark:shadow-[0px_20px_60px_10px_rgba(0,0,0,0.20)]">
+      <div className="relative max-w-[280px] max-h-[284px] mx-auto">
         <img src={img} alt="" className="object-cover" />
+        <span className="absolute w-[50px] h-[50px] right-0 bottom-0 flex items-center justify-center bg-body-bg dark:bg-dark-body-bg rounded-[50%]">
+          {isLiked ? (
+            <img src="./icon/red-heart.svg" alt="" className="mt-[8px]" />
+          ) : (
+            <img src="./icon/heart.svg" alt="" className="icon" />
+          )}
+        </span>
       </div>
       <h2 className="text-2xl font-medium mt-[16px]">{title}</h2>
       <div className="flex justify-between mt-[16px] text-2xl font-medium">
