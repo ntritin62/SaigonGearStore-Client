@@ -3,7 +3,7 @@ import React from 'react';
 const ItemCard = ({ img, title, price, stars }) => {
   return (
     <section className="p-[16px] rounded-[20px] bg-item-card dark:bg-dark-item-card">
-      <div className="w-[280px] h-[284px]">
+      <div className="max-w-[280px] max-h-[284px] mx-auto">
         <img src={img} alt="" className="object-cover" />
       </div>
       <h2 className="text-2xl font-medium mt-[16px]">{title}</h2>
