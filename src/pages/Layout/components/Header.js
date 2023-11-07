@@ -18,13 +18,13 @@ const Header = () => {
             setSideBarIsVisible(true);
           }}
         >
-          <img src="./icon/more.svg" alt="" />
+          <img src="/icon/more.svg" alt="" />
         </button>
         {/* Logo */}
         <figure className="flex items-center gap-6">
           <img
             className="w-[32px] h-[32px] lg:w-[24px] lg:h-[24px]"
-            src="./image/logo.svg"
+            src="/image/logo.svg"
             alt=""
           />
           <span className="text-4xl  font-bold lg:text-2xl">grocerymart</span>
@@ -32,7 +32,7 @@ const Header = () => {
         {/* Navbar */}
         <nav
           className={
-            'lg:overflow-auto transition-transform duration-500  ml-[129px] lg:fixed md:right-[50px] lg:right-1/2 lg:top-0 lg:bottom-0 lg:left-0 lg:ml-0 lg:bg-dropdown lg:dark:bg-dark-dropdown-bg lg:z-20 lg:p-[20px]' +
+            'lg:overflow-auto transition-transform duration-500  ml-[129px] lg:fixed md:right-1/2 lg:right-1/2 lg:top-0 lg:bottom-0 lg:left-0 lg:ml-0 lg:bg-dropdown lg:dark:bg-dark-dropdown-bg lg:z-20 lg:p-[20px]' +
             (sideBarIsVisible ? ' lg:translate-x-0' : ' lg:translate-x-[-100%]')
           }
         >
@@ -47,7 +47,7 @@ const Header = () => {
             }}
             className="icon hidden lg:block"
           >
-            <img src="./icon/arrow-left.svg" alt="" />
+            <img src="/icon/arrow-left.svg" alt="" />
           </button>
 
           <ul className="flex items-center font-medium text-2xl lg:flex-col lg:items-start lg:mt-[20px]">
@@ -60,7 +60,7 @@ const Header = () => {
             </li>
             <li className="hidden lg:flex h-[50px] px-[15px] items-center gap-[6px] cursor-pointer lg:px-0 justify-between w-full">
               <div className="flex items-center gap-[16px]">
-                <img src="./icon/heart.svg" alt="" className="icon" />
+                <img src="/icon/heart.svg" alt="" className="icon" />
                 <a href="#!">Favorite</a>
               </div>
               <span>03</span>
@@ -74,7 +74,7 @@ const Header = () => {
             <li className="group flex px-[15px] cursor-pointer lg:px-0 lg:flex lg:flex-col lg:w-full lg:gap-10">
               <div className="flex h-[50px] items-center lg:w-full lg:justify-between gap-[6px] lg:">
                 <a href="#!">Menu</a>
-                <img src="./icon/arrow-down.svg" alt="" className="icon" />
+                <img src="/icon/arrow-down.svg" alt="" className="icon" />
               </div>
               <Dropdown />
             </li>
@@ -95,7 +95,7 @@ const Header = () => {
               </div>
             )}
             <img
-              src="./icon/search.svg"
+              src="/icon/search.svg"
               alt=""
               className="icon "
               onClick={() => {
@@ -105,18 +105,18 @@ const Header = () => {
           </div>
           <div className="flex items-center  gap-[20px] bg-top-act-group dark:bg-dark-top-act-group px-[20px] py-[10px] rounded-lg text-2xl font-medium shadow-[0px_20px_60px_10px_rgba(237,237,246,0.20)] dark:shadow-[0px_20px_60px_10px_rgba(0,0,0,0.20)] md:hidden">
             <div className="flex items-center gap-[10px] cursor-pointer">
-              <img src="./icon/heart.svg" alt="" className="icon" />
+              <img src="/icon/heart.svg" alt="" className="icon" />
               <p className="mt-[3px]">03</p>
             </div>
             <div className="w-[1px] h-[30px] bg-top-act-group-separate"></div>
             <div className="flex items-center gap-[10px] cursor-pointer">
-              <img src="./icon/cart.svg" alt="" className="icon" />
+              <img src="/icon/cart.svg" alt="" className="icon" />
               <p className="mt-[3px]">$65.42</p>
             </div>
           </div>
           <figure>
             <img
-              src="./image/avatar.jpg"
+              src="/image/avatar.jpg"
               alt=""
               className="w-[50px] h-[50px] shadow-[0px_4px_14px_2px_rgba(0,0,0,0.08)] rounded-[8px]"
             />

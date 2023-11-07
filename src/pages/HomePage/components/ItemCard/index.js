@@ -1,7 +1,6 @@
 import React from 'react';
 
 const ItemCard = ({ img, title, price, stars, isLiked }) => {
-  console.log(isLiked);
   return (
     <section className="p-[16px] rounded-[20px] bg-item-card dark:bg-dark-item-card shadow-[0px_20px_60px_10px_rgba(237,237,246,0.20)] dark:shadow-[0px_20px_60px_10px_rgba(0,0,0,0.20)]">
       <div className="relative max-w-[280px] max-h-[284px] mx-auto">

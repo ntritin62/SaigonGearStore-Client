@@ -19,6 +19,8 @@ module.exports = {
       'top-menu-border': '#d2d1d6',
       'menu-card': '#fff',
       'item-card': '#fff',
+      'active-sidebar': '#77DAE6',
+      sidebar: '#eee',
 
       'dark-body-bg': '#292e39',
       'dark-header-bg': '#171c28',
@@ -31,6 +33,7 @@ module.exports = {
       'dark-top-menu-border': '#171c28',
       'dark-menu-card': '#292e39',
       'dark-item-card': '#171c28',
+      'dark-sidebar': '#171c28',
     },
     screens: {
       xxl: { max: '1400px' },

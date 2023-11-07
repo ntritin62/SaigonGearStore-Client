@@ -1,8 +1,7 @@
 import React from 'react';
 import MenuCard from './components/MenuCard';
 import ItemCard from './components/ItemCard';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
+import { Link } from 'react-router-dom';
 
 const coffees = [
   {
@@ -43,24 +42,24 @@ const HomePage = () => {
     <div className="container mt-[40px] pb-[40px]">
       <section className="flex flex-col gap-[40px]">
         <div>
-          <h2 className="text-4xl font-bold ">
+          <h2 className="text-4xl font-bold mb-[20px]">
             <a href="">Browse Menu</a>
           </h2>
           <ul className="w-full grid grid-cols-3 gap-[51px] md:grid-cols-1 md:gap-[20px]">
             <li>
-              <a href="#!">
-                <MenuCard img="./image/coffee.png" title="Coffee" />
-              </a>
+              <Link to="./coffee">
+                <MenuCard img="/image/coffee.png" title="Coffee" />
+              </Link>
             </li>
             <li>
-              <a href="#!">
+              <Link to="./tea">
                 <MenuCard img="./image/tea.png" title="Tea" />
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#!">
+              <Link to="./food">
                 <MenuCard img="./image/food.png" title="Snacks" />
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
