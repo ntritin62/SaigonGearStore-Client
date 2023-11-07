@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@media screen and (max-width: 767px) {
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+}
+
 @layer base {
   .container {
     @apply max-w-[1370px] xl:max-w-[1140px] lg:max-w-[960px] md:max-w-[720px] sm:max-w-[540px];
