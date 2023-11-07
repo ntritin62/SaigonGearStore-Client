@@ -12,11 +12,16 @@ const Sidebar = () => {
             to={`./${item}`}
             className={({ isActive }) =>
               isActive
-                ? 'flex items-center rounded-[10px] justify-between pl-[20px] font-bold h-[60px] bg-active-sidebar dark:bg-dark-sidebar w-full'
+                ? 'flex items-center rounded-[10px] justify-between pl-[20px] font-bold h-[60px] bg-active-sidebar w-full'
                 : 'flex items-center rounded-[10px] justify-between pl-[20px] font-bold h-[60px] dark:bg-dark-sidebar bg-sidebar w-full'
             }
           >
             {item}
+            <img
+              src="/image/sidebar-img.png"
+              alt=""
+              className="w-[70px] h-[60px] ob"
+            />
           </NavLink>
         ))}
       </nav>
