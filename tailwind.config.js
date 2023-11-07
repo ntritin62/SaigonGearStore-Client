@@ -7,7 +7,7 @@ module.exports = {
       transparent: 'transparent',
       current: 'currentColor',
       black: '#000',
-
+      text: '#1a162e',
       'body-bg': '#f6f6f6',
       'header-bg': '#eee',
       'top-act-group': '#fff',
@@ -22,6 +22,7 @@ module.exports = {
       'active-sidebar': '#77DAE6',
       sidebar: '#eee',
 
+      'dark-text': '#fff',
       'dark-body-bg': '#292e39',
       'dark-header-bg': '#171c28',
       'dark-top-act-group': '#292e39',
