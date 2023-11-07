@@ -5,7 +5,9 @@ const Sidebar = () => {
   // const NavData = useLoaderData();
   return (
     <div className="max-w-[230px] w-full md:max-w-full ">
-      <h2 className="text-4xl font-bold">Categories</h2>
+      <h2 className="text-4xl font-bold sm:text-3xl sm:font-medium">
+        Categories
+      </h2>
       <nav className="flex flex-col gap-[16px] mt-[20px] md:flex-row md:overflow-x-auto">
         {data.map((item) => (
           <NavLink
@@ -20,7 +22,7 @@ const Sidebar = () => {
             <img
               src="/image/sidebar-img.png"
               alt=""
-              className="w-[70px] h-[60px] object-cover md:w-[44px] md:h-[30px]"
+              className="w-[70px] h-[50px] object-cover md:w-[44px] md:h-[30px]"
             />
           </NavLink>
         ))}

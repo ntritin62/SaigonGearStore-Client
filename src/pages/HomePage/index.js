@@ -1,6 +1,6 @@
 import React from 'react';
 import MenuCard from './components/MenuCard';
-import ItemCard from './components/ItemCard';
+import ItemCard from '../../components/ItemCard';
 import { Link } from 'react-router-dom';
 
 const coffees = [
