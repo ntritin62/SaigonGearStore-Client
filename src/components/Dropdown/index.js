@@ -2,7 +2,7 @@ import React from 'react';
 
 const Dropdown = () => {
   return (
-    <div className="hidden absolute lg:relative  group-hover:block container pt-[54px] left-0 top-[72px] lg:pt-0 lg:top-0">
+    <div className="hidden absolute lg:relative  group-hover:block container pt-[54px] left-0 top-[72px] lg:pt-0 lg:top-0 z-30">
       <div className="relative p-[30px] lg:p-0 max-h-[582px] rounded-[20px] shadow-[0px_40px_90px_20px_rgba(200,200,200,0.40)] bg-dropdown dark:bg-dark-dropdown-bg dark:shadow-[0px_40px_90px_20px_rgba(23,28,40,0.40)] lg:bg-transparent lg:shadow-none lg:dark:shadow-none lg:rounded-none">
         <img
           src="/icon/arrow-top.svg"

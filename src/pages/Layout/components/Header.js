@@ -53,7 +53,7 @@ const Header = () => {
           <ul className="flex items-center font-medium text-2xl lg:flex-col lg:items-start lg:mt-[20px]">
             <li className="hidden lg:flex h-[50px] px-[15px] items-center gap-[6px] cursor-pointer lg:px-0 justify-between w-full">
               <div className="flex items-center gap-[16px]">
-                <img src="./icon/cart.svg" alt="" className="icon" />
+                <img src="/icon/cart.svg" alt="" className="icon" />
                 <a href="#!">Cart</a>
               </div>
               <span>03</span>
