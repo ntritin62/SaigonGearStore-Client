@@ -32,7 +32,7 @@ const Header = () => {
         {/* Navbar */}
         <nav
           className={
-            'lg:overflow-auto transition-transform duration-500  ml-[129px] lg:fixed md:right-1/2 lg:right-1/2 lg:top-0 lg:bottom-0 lg:left-0 lg:ml-0 lg:bg-dropdown lg:dark:bg-dark-dropdown-bg lg:z-20 lg:p-[20px]' +
+            'lg:overflow-auto transition-transform duration-500  ml-[129px] lg:fixed md:right-1/2 lg:right-1/2 lg:top-0 lg:bottom-0 lg:left-0 lg:ml-0 lg:bg-dropdown lg:dark:bg-dark-dropdown-bg lg:z-30 lg:p-[20px]' +
             (sideBarIsVisible ? ' lg:translate-x-0' : ' lg:translate-x-[-100%]')
           }
         >
@@ -82,7 +82,7 @@ const Header = () => {
         </nav>
         <div
           className={
-            'opacity-0 invisible transition-opacity transition-visibility duration-500 lg:fixed inset-0 lg:bg-[rgba(0,0,0,0.4)] lg:z-10' +
+            'opacity-0 invisible transition-opacity transition-visibility duration-500 lg:fixed inset-0 lg:bg-[rgba(0,0,0,0.4)] lg:z-20' +
             (sideBarIsVisible ? ' lg:opacity-100 lg:visible' : '')
           }
         ></div>
