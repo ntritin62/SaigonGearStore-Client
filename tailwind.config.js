@@ -7,6 +7,7 @@ module.exports = {
       transparent: 'transparent',
       current: 'currentColor',
       black: '#000',
+      white: '#fff',
       text: '#1a162e',
       'body-bg': '#f6f6f6',
       'header-bg': '#eee',

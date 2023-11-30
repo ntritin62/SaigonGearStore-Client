@@ -4,6 +4,7 @@ import Layout from './pages/Layout';
 import HomePage from './pages/HomePage';
 import ProductsPageLayout from './pages/ProductsPageLayout';
 import ProductsMain from './pages/ProductsPageLayout/components/ProductsMain';
+import ProductDetail from './pages/ProductDetailPage';
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
+      },
+      {
+        path: `${ROUTES.PRODUCTDETAIL}`,
+        element: <ProductDetail />,
       },
       {
         path: ':products',

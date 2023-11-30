@@ -1,0 +1,110 @@
+import React from 'react';
+
+const ProductDetail = () => {
+  return (
+    <div className="container mt-[60px]">
+      <div className="grid grid-cols-12 ">
+        <figure className="col-span-5 ">
+          <img src="/image/cafe-i1.png" alt="" className="w-full" />
+        </figure>
+        <section className="col-span-7 bg-white dark:bg-dark-header-bg p-[60px]">
+          <h1 className="text-4xl font-medium">
+            Coffee Beans - Espresso Arabica and Robusta Beans
+          </h1>
+          <div className="flex gap-[60px] mt-[30px]">
+            <div>
+              <span className="flex gap-[16px] items-center">
+                <img src="/icon/star.svg" alt="" />
+                <p className="text-2xl font-medium">(3.5) 1100 reviews</p>
+              </span>
+              <div className="mt-[30px]">
+                <p className="text-4xl font-medium">Size</p>
+                <div className="flex gap-[20px] mt-[20px]">
+                  <input
+                    type="radio"
+                    name="size"
+                    id="small"
+                    value="small"
+                    hidden
+                  />
+                  <label
+                    htmlFor="small"
+                    className="bg-top-act-group-shadow px-[12px] py-[6px] rounded-[6px] text-[#9E9DA8] cursor-pointer dark:bg-dark-top-act-group-shadow font-medium"
+                  >
+                    Small
+                  </label>
+                  <input
+                    type="radio"
+                    name="size"
+                    id="medium"
+                    value="medium"
+                    hidden
+                  />
+                  <label
+                    htmlFor="medium"
+                    className="bg-top-act-group-shadow px-[12px] py-[6px] rounded-[6px] text-[#9E9DA8] cursor-pointer dark:bg-dark-top-act-group-shadow font-medium"
+                  >
+                    Medium
+                  </label>
+                  <input
+                    type="radio"
+                    name="size"
+                    id="large"
+                    value="large"
+                    hidden
+                  />
+                  <label
+                    htmlFor="large"
+                    className="bg-top-act-group-shadow px-[12px] py-[6px] rounded-[6px] text-[#9E9DA8] cursor-pointer dark:bg-dark-top-act-group-shadow font-medium"
+                  >
+                    Large
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <ul className="flex flex-col gap-[27px] grow">
+              <li className="flex gap-x-[20px]">
+                <img src="/icon/document.svg" alt="" className="icon" />
+                <p className="text-2xl font-medium">Compare</p>
+              </li>
+              <li className="flex gap-x-[20px]">
+                <img src="/icon/cart.svg" alt="" className="icon" />
+                <span>
+                  <p className="text-2xl font-medium">Delivery</p>
+                  <p className=" ">From $6 for 1-3 days</p>
+                </span>
+              </li>
+              <li className="flex gap-[20px]">
+                <img src="/icon/bag.svg" alt="" className="icon" />
+                <span>
+                  <p className="text-2xl font-medium">Pickup</p>
+                  <p>Out of 2 store, today</p>
+                </span>
+              </li>
+              <li className="p-[20px] border-[1px] border-solid border-[#B9BABE] rounded-md mx-auto">
+                <span className="flex items-center gap-[10px]">
+                  <p className="text-2xl font-medium">$500.00</p>
+                  <p className="text-2xl text-[#67B044] py-[2px] px-[8px] bg-[#e0eeda]">
+                    10%
+                  </p>
+                </span>
+                <p className="text-4xl font-medium mt-[20px]">$540.00</p>
+                <div className="mt-[20px] flex gap-[20px]">
+                  <button className="text-3xl font-medium rounded-md bg-[#FFB700] px-[50px] py-[10px]">
+                    Add to cart
+                  </button>
+                  <button className="border-[1px] border-solid border-[#B9BABE] p-[11px] rounded-md">
+                    <img src="/icon/heart.svg" alt="" className="icon" />
+                  </button>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+};
+
+export default ProductDetail;
