@@ -116,8 +116,8 @@ html.dark {
     hue-rotate(235deg) brightness(104%) contrast(105%);
   --body-bg: #292e39;
   --text-color: #fff;
-  --dropdown-arrow-color: brightness(0) saturate(100%) invert(19%) sepia(24%)
-    saturate(451%) hue-rotate(180deg) brightness(95%) contrast(96%);
+  --dropdown-arrow-color: brightness(0) saturate(100%) invert(18%) sepia(11%)
+    saturate(1195%) hue-rotate(181deg) brightness(87%) contrast(88%);
 }
 
 *,

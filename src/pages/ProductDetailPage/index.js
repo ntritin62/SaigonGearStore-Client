@@ -1,17 +1,26 @@
+import { useState } from 'react';
 import React from 'react';
 
 const ProductDetail = () => {
+  const [size, setSize] = useState('');
+  const sizeHandler = (e) => {
+    setSize(e.target.value);
+  };
   return (
     <div className="container mt-[60px]">
-      <div className="grid grid-cols-12 ">
-        <figure className="col-span-5 ">
-          <img src="/image/cafe-i1.png" alt="" className="w-full" />
+      <div className="grid grid-cols-12 lg:flex lg:flex-col">
+        <figure className="col-span-5 max-h-[507px] lg:bg-white lg:dark:bg-dark-header-bg">
+          <img
+            src="/image/cafe-i1.png"
+            alt=""
+            className="w-full h-full object-contain"
+          />
         </figure>
-        <section className="col-span-7 bg-white dark:bg-dark-header-bg p-[60px]">
+        <section className="col-span-7 bg-white dark:bg-dark-header-bg p-[60px] md:p-[16px]">
           <h1 className="text-4xl font-medium">
             Coffee Beans - Espresso Arabica and Robusta Beans
           </h1>
-          <div className="flex gap-[60px] mt-[30px]">
+          <div className="flex gap-[60px] mt-[30px] sm:flex-col">
             <div>
               <span className="flex gap-[16px] items-center">
                 <img src="/icon/star.svg" alt="" />
@@ -26,10 +35,13 @@ const ProductDetail = () => {
                     id="small"
                     value="small"
                     hidden
+                    onChange={sizeHandler}
                   />
                   <label
                     htmlFor="small"
-                    className="bg-top-act-group-shadow px-[12px] py-[6px] rounded-[6px] text-[#9E9DA8] cursor-pointer dark:bg-dark-top-act-group-shadow font-medium"
+                    className={`bg-top-act-group-shadow px-[12px] py-[6px] rounded-[6px] text-[#9E9DA8] cursor-pointer dark:bg-dark-top-act-group-shadow font-medium ${
+                      size === 'small' ? 'text-text dark:text-dark-text' : ''
+                    }`}
                   >
                     Small
                   </label>
@@ -39,10 +51,13 @@ const ProductDetail = () => {
                     id="medium"
                     value="medium"
                     hidden
+                    onChange={sizeHandler}
                   />
                   <label
                     htmlFor="medium"
-                    className="bg-top-act-group-shadow px-[12px] py-[6px] rounded-[6px] text-[#9E9DA8] cursor-pointer dark:bg-dark-top-act-group-shadow font-medium"
+                    className={`bg-top-act-group-shadow px-[12px] py-[6px] rounded-[6px] text-[#9E9DA8] cursor-pointer dark:bg-dark-top-act-group-shadow font-medium ${
+                      size === 'medium' ? 'text-text dark:text-dark-text' : ''
+                    }`}
                   >
                     Medium
                   </label>
@@ -52,10 +67,13 @@ const ProductDetail = () => {
                     id="large"
                     value="large"
                     hidden
+                    onChange={sizeHandler}
                   />
                   <label
                     htmlFor="large"
-                    className="bg-top-act-group-shadow px-[12px] py-[6px] rounded-[6px] text-[#9E9DA8] cursor-pointer dark:bg-dark-top-act-group-shadow font-medium"
+                    className={`bg-top-act-group-shadow px-[12px] py-[6px] rounded-[6px] text-[#9E9DA8] cursor-pointer dark:bg-dark-top-act-group-shadow font-medium ${
+                      size === 'large' ? 'text-text dark:text-dark-text' : ''
+                    }`}
                   >
                     Large
                   </label>

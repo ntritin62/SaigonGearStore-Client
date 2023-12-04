@@ -1,6 +1,7 @@
 import React from 'react';
 import ThemeToggle from '../../../components/ThemeToggle';
 import Dropdown from '../../../components/Dropdown';
+import ActionDropdown from './ActionDropdown';
 import { useState } from 'react';
 
 const Header = () => {
@@ -103,16 +104,12 @@ const Header = () => {
               }}
             />
           </div>
-          <div className="flex items-center  gap-[20px] bg-top-act-group dark:bg-dark-top-act-group px-[20px] py-[10px] rounded-lg text-2xl font-medium shadow-[0px_20px_60px_10px_rgba(237,237,246,0.20)] dark:shadow-[0px_20px_60px_10px_rgba(0,0,0,0.20)] md:hidden">
-            <div className="flex items-center gap-[10px] cursor-pointer">
-              <img src="/icon/heart.svg" alt="" className="icon" />
-              <p className="mt-[3px]">03</p>
-            </div>
-            <div className="w-[1px] h-[30px] bg-top-act-group-separate"></div>
+          <div className="relative group flex items-center  gap-[20px] bg-top-act-group dark:bg-dark-top-act-group px-[20px] py-[10px] rounded-lg text-2xl font-medium shadow-[0px_20px_60px_10px_rgba(237,237,246,0.20)] dark:shadow-[0px_20px_60px_10px_rgba(0,0,0,0.20)] md:hidden">
             <div className="flex items-center gap-[10px] cursor-pointer">
               <img src="/icon/cart.svg" alt="" className="icon" />
               <p className="mt-[3px]">$65.42</p>
             </div>
+            <ActionDropdown />
           </div>
           <figure>
             <img
