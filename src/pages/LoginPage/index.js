@@ -68,9 +68,11 @@ const LoginPage = () => {
                 placeholder="Password"
               />
               <img
-                src="/icon/eye.svg"
+                src={
+                  passwordIsShowed ? '/icon/closed-eye.svg' : '/icon/eye.svg'
+                }
                 alt=""
-                className="icon absolute right-[10px] top-[25%]"
+                className="icon absolute w-[24px] h-[24px] right-[10px] top-[25%]"
                 onClick={showPassword}
               />
               {errors.email && (
