@@ -22,6 +22,11 @@ module.exports = {
       'item-card': '#fff',
       'active-sidebar': '#77DAE6',
       sidebar: '#eee',
+      'left-login': '#FAFAFD',
+      'right-login': '#fff',
+      'login-text': '#B9BABE',
+      'login-btn': '#FFB700',
+      'rose-900': 'rgb(225 29 72)',
 
       'dark-text': '#fff',
       'dark-body-bg': '#292e39',
@@ -36,6 +41,8 @@ module.exports = {
       'dark-menu-card': '#292e39',
       'dark-item-card': '#171c28',
       'dark-sidebar': '#171c28',
+      'dark-left-login': '#171c28',
+      'dark-right-login': '#292e39',
     },
     screens: {
       xxl: { max: '1400px' },

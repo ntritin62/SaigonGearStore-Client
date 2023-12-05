@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import ProductsPageLayout from './pages/ProductsPageLayout';
 import ProductsMain from './pages/ProductsPageLayout/components/ProductsMain';
 import ProductDetail from './pages/ProductDetailPage';
+import LoginPage from './pages/LoginPage';
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
+      },
+      {
+        path: `${ROUTES.LOGIN}`,
+        element: <LoginPage />,
       },
       {
         path: `${ROUTES.PRODUCTDETAIL}`,
