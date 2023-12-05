@@ -4,8 +4,11 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 
-const LoginPage = () => {
-  const [passwordIsShowed, setPasswordIsShowed] = useState(false);
+const SignUpPage = () => {
+  const [passwordIsShowed, setPasswordIsShowed] = useState({
+    password: false,
+    confirmPassword: false,
+  });
 
   const {
     register,
@@ -16,9 +19,7 @@ const LoginPage = () => {
   const submitHandler = (data) => {
     console.log(data);
   };
-  const showPassword = () => {
-    setPasswordIsShowed((prevState) => !prevState);
-  };
+
   return (
     <main className="grid grid-cols-2">
       <div className="bg-left-login dark:bg-dark-left-login">123</div>
@@ -32,10 +33,9 @@ const LoginPage = () => {
             <p className="text-3xl font-bold">grocerymart</p>
           </div>
           <div className="flex flex-col gap-[10px]">
-            <h1 className="text-4xl font-medium text-center">Login</h1>
+            <h1 className="text-4xl font-medium text-center">Sign Up</h1>
             <p className="text-login-text text-2xl text-center">
-              Welcome back to sign in. As a returning customer, you have access
-              to your previously saved all information.
+              Let’s create your account and Shop like a pro and save money.
             </p>
           </div>
           <div className="flex flex-col gap-[20px]">
@@ -65,41 +65,82 @@ const LoginPage = () => {
             <div className="relative mt-[10px]">
               <input
                 {...register('password', { required: true, minLength: 6 })}
-                type={!passwordIsShowed ? 'password' : 'text'}
+                type={!passwordIsShowed.password ? 'password' : 'text'}
                 className="p-[12px] rounded-3xl text-2xl font-medium w-full border-[1px] border-solid border-login-text"
                 placeholder="Password"
                 autoComplete="off"
               />
               <img
                 src={
-                  passwordIsShowed ? '/icon/closed-eye.svg' : '/icon/eye.svg'
+                  passwordIsShowed.password
+                    ? '/icon/closed-eye.svg'
+                    : '/icon/eye.svg'
                 }
                 alt=""
                 className="icon absolute w-[24px] h-[24px] right-[10px] top-[25%]"
-                onClick={showPassword}
+                onClick={() => {
+                  setPasswordIsShowed((prevState) => {
+                    return {
+                      password: !prevState.password,
+                      confirmPassword: prevState.confirmPassword,
+                    };
+                  });
+                }}
               />
               {errors.password && (
                 <p className="absolute bottom-[-25px] text-2xl font-medium text-rose-900">
-                  Invalid password
+                  Password needs to be 6 characters
                 </p>
               )}
             </div>
 
-            <a href="#!" className="text-[#0071DC] text-right font-medium">
-              Recovery Password
-            </a>
+            <div className="relative mt-[10px]">
+              <input
+                {...register('confirmPassword', {
+                  required: true,
+                  validate: (value, formValues) =>
+                    value === formValues.password,
+                })}
+                type={!passwordIsShowed.confirmPassword ? 'password' : 'text'}
+                className="p-[12px] rounded-3xl text-2xl font-medium w-full border-[1px] border-solid border-login-text"
+                placeholder="Confirm password"
+                autoComplete="off"
+              />
+              <img
+                src={
+                  passwordIsShowed.confirmPassword
+                    ? '/icon/closed-eye.svg'
+                    : '/icon/eye.svg'
+                }
+                alt=""
+                className="icon absolute w-[24px] h-[24px] right-[10px] top-[25%]"
+                onClick={() => {
+                  setPasswordIsShowed((prevState) => {
+                    return {
+                      password: prevState.password,
+                      confirmPassword: !prevState.confirmPassword,
+                    };
+                  });
+                }}
+              />
+              {errors.confirmPassword && (
+                <p className="absolute bottom-[-25px] text-2xl font-medium text-rose-900">
+                  Confirm password doesn't match
+                </p>
+              )}
+            </div>
           </div>
 
           <button
             type="submit"
             className="rounded-[10px] bg-login-btn text-text py-[12px] text-3xl font-medium"
           >
-            Login
+            Sign Up
           </button>
           <p className="font-normal text-2xl text-login-text text-center mt-[70px]">
-            Don’t have an account yet?{' '}
-            <Link to={ROUTES.SIGNUP} className="text-[#0071DC] font-medium ">
-              Sign Up
+            You have an account yet?{' '}
+            <Link to={ROUTES.LOGIN} className="text-[#0071DC] font-medium ">
+              Log In
             </Link>
           </p>
         </form>
@@ -108,4 +149,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignUpPage;
