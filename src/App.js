@@ -7,6 +7,7 @@ import ProductsMain from './pages/ProductsPageLayout/components/ProductsMain';
 import ProductDetail from './pages/ProductDetailPage';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
+import ProfilePage from './pages/ProfilePage';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: `${ROUTES.SIGNUP}`,
         element: <SignUpPage />,
+      },
+      {
+        path: `${ROUTES.PROFILE}`,
+        element: <ProfilePage />,
       },
       {
         path: `${ROUTES.PRODUCTDETAIL}`,
