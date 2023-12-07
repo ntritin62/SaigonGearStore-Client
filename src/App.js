@@ -8,7 +8,9 @@ import ProductDetail from './pages/ProductDetailPage';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import ProfilePage from './pages/ProfilePage';
-
+import ProfileRight from './pages/ProfilePage/components/ProfileRight';
+import AddCard from './pages/ProfilePage/components/ProfileRight/components/AddCard';
+import EditInfo from './pages/ProfilePage/components/ProfileRight/components/AddCard';
 const router = createBrowserRouter([
   {
     path: `${ROUTES.HOME}`,
@@ -29,6 +31,20 @@ const router = createBrowserRouter([
       {
         path: `${ROUTES.PROFILE}`,
         element: <ProfilePage />,
+        children: [
+          {
+            index: true,
+            element: <ProfileRight />,
+          },
+          {
+            path: './add-card',
+            element: <AddCard />,
+          },
+          {
+            path: './edit-info',
+            element: <EditInfo />,
+          },
+        ],
       },
       {
         path: `${ROUTES.PRODUCTDETAIL}`,

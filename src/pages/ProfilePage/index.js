@@ -5,7 +5,7 @@ import ProfileRight from './components/ProfileRight';
 
 const ProfilePage = () => {
   return (
-    <main className=" container grid grid-cols-11 mt-[30px] md:flex md:flex-col">
+    <main className="dark:text-dark-profile-text container grid grid-cols-11 mt-[30px] md:flex md:flex-col gap-[30px]">
       <ProfileLeft />
       <ProfileRight />
     </main>
