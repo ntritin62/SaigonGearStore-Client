@@ -10,7 +10,7 @@ import SignUpPage from './pages/SignUpPage';
 import ProfilePage from './pages/ProfilePage';
 import ProfileRight from './pages/ProfilePage/components/ProfileRight';
 import AddCard from './pages/ProfilePage/components/ProfileRight/components/AddCard';
-import EditInfo from './pages/ProfilePage/components/ProfileRight/components/AddCard';
+import EditInfo from './pages/ProfilePage/components/ProfileRight/components/EditInfo';
 const router = createBrowserRouter([
   {
     path: `${ROUTES.HOME}`,
@@ -37,12 +37,12 @@ const router = createBrowserRouter([
             element: <ProfileRight />,
           },
           {
-            path: './add-card',
-            element: <AddCard />,
+            path: 'edit-info',
+            element: <EditInfo />,
           },
           {
-            path: './edit-info',
-            element: <EditInfo />,
+            path: 'add-card',
+            element: <AddCard />,
           },
         ],
       },

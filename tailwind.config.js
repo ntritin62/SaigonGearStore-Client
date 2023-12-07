@@ -26,6 +26,7 @@ module.exports = {
         'left-login': '#FAFAFD',
         'right-login': '#fff',
         'login-text': '#B9BABE',
+        'profile-right': '#fff',
 
         'login-btn': '#FFB700',
         'rose-900': 'rgb(225 29 72)',
@@ -48,6 +49,7 @@ module.exports = {
         'dark-right-login': '#292e39',
         'dark-profile-text': '#B9BABE',
         'dark-profile-card': '#292E39',
+        'dark-profile-right': '#171c28',
       },
       screens: {
         xxl: { max: '1400px' },
