@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as ROUTES from '../../../../../../constants/routes';
 import { Link } from 'react-router-dom';
+import { useSubmit, useNavigation } from 'react-router-dom';
 
 const EditInfo = () => {
   const {
@@ -10,9 +11,18 @@ const EditInfo = () => {
     watch,
     formState: { errors },
   } = useForm();
+  const navigation = useNavigation();
+  const submit = useSubmit();
+
+  const text =
+    navigation.state === 'submitting'
+      ? 'Saving...'
+      : navigation.state === 'loading'
+      ? 'Saved!'
+      : 'Save Card';
 
   const submitHandler = (data) => {
-    console.log(data);
+    submit(data, { method: 'post' });
   };
 
   return (
@@ -74,7 +84,8 @@ const EditInfo = () => {
               placeholder="Phone number"
               {...register('phoneNumber', {
                 required: true,
-                pattern: /(84|0[3|5|7|8|9])+([0-9]{8})\b/g,
+                pattern:
+                  /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/gm,
               })}
             />
             {errors.phoneNumber && (
@@ -109,7 +120,7 @@ const EditInfo = () => {
             type="submit"
             className="text-2xl font-medium py-[10px] px-[20px] rounded-[30px] bg-[#FFB700] text-[#1A162E]"
           >
-            Save Edit
+            {text}
           </button>
         </div>
       </form>

@@ -20,7 +20,7 @@ const AddCard = () => {
       ? 'Saving...'
       : navigation.state === 'loading'
       ? 'Saved!'
-      : 'Go';
+      : 'Save Card';
 
   const submitHandler = (data) => {
     submit(data, { method: 'post' });
