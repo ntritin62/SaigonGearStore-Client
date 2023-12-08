@@ -1,9 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import * as ROUTES from '../../../../../constants/routes';
+import * as ROUTES from '../../../../../../constants/routes';
 import { useForm } from 'react-hook-form';
+import { Form, useNavigation } from 'react-router-dom';
+import { useSubmit } from 'react-router-dom';
 
 const AddCard = () => {
+  const submit = useSubmit();
+  const navigation = useNavigation();
   const {
     register,
     handleSubmit,
@@ -11,8 +15,15 @@ const AddCard = () => {
     formState: { errors },
   } = useForm();
 
+  const text =
+    navigation.state === 'submitting'
+      ? 'Saving...'
+      : navigation.state === 'loading'
+      ? 'Saved!'
+      : 'Go';
+
   const submitHandler = (data) => {
-    console.log(data);
+    submit(data, { method: 'post' });
   };
   return (
     <section className="col-span-8 p-[30px] bg-profile-right dark:bg-dark-profile-right rounded-[20px]">
@@ -22,7 +33,7 @@ const AddCard = () => {
         </Link>
         <h2 className="text-3xl font-medium">Add credit or debit card</h2>
       </div>
-      <form onSubmit={handleSubmit(submitHandler)} className="mt-[30px]">
+      <Form onSubmit={handleSubmit(submitHandler)} className="mt-[30px]">
         <div className="grid grid-cols-2 gap-[30px] sm:grid-cols-1">
           <div className="flex flex-col gap-[20px] relative">
             <label htmlFor="firstName" className="text-3xl font-medium">
@@ -31,6 +42,7 @@ const AddCard = () => {
             <input
               type="text"
               id="firstName"
+              name="firstName"
               className="p-[12px] border-[1px] border-solid border-[#D2D1D6] rounded-[10px] placeholder:text-[#D2D1D6]"
               placeholder="First Name"
               {...register('firstName', { required: true })}
@@ -48,6 +60,7 @@ const AddCard = () => {
             <input
               type="text"
               id="lastName"
+              name="lastName"
               className="p-[12px] border-[1px] border-solid border-[#D2D1D6] rounded-[10px] placeholder:text-[#D2D1D6]"
               placeholder="Last Name"
               {...register('lastName', { required: true })}
@@ -65,6 +78,7 @@ const AddCard = () => {
             <input
               type="text"
               id="cardNumber"
+              name="cardNumber"
               className="p-[12px] border-[1px] border-solid border-[#D2D1D6] rounded-[10px] placeholder:text-[#D2D1D6]"
               placeholder="Card Number"
               {...register('cardNumber', {
@@ -101,6 +115,7 @@ const AddCard = () => {
             <input
               type="text"
               id="expDate"
+              name="expDate"
               className="p-[12px] border-[1px] border-solid border-[#D2D1D6] rounded-[10px] placeholder:text-[#D2D1D6]"
               placeholder="MM/YY"
               {...register('expDate', {
@@ -121,6 +136,7 @@ const AddCard = () => {
             <input
               type="text"
               id="cvv"
+              name="cvv"
               className="p-[12px] border-[1px] border-solid border-[#D2D1D6] rounded-[10px] placeholder:text-[#D2D1D6]"
               placeholder="123"
               {...register('cvv', {
@@ -141,6 +157,7 @@ const AddCard = () => {
             <input
               type="text"
               id="phoneNumber"
+              name="phoneNumber"
               className="p-[12px] border-[1px] border-solid border-[#D2D1D6] rounded-[10px] placeholder:text-[#D2D1D6]"
               placeholder="123"
               {...register('phoneNumber', {
@@ -164,10 +181,10 @@ const AddCard = () => {
             type="submit"
             className="text-2xl font-medium py-[10px] px-[20px] rounded-[30px] bg-[#FFB700] text-[#1A162E]"
           >
-            Save Card
+            {text}
           </button>
         </div>
-      </form>
+      </Form>
     </section>
   );
 };

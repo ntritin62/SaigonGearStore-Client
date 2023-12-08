@@ -11,6 +11,8 @@ import ProfilePage from './pages/ProfilePage';
 import ProfileRight from './pages/ProfilePage/components/ProfileRight';
 import AddCard from './pages/ProfilePage/components/ProfileRight/components/AddCard';
 import EditInfo from './pages/ProfilePage/components/ProfileRight/components/EditInfo';
+import AddCardAction from './pages/ProfilePage/components/ProfileRight/components/AddCard/action';
+
 const router = createBrowserRouter([
   {
     path: `${ROUTES.HOME}`,
@@ -43,6 +45,7 @@ const router = createBrowserRouter([
           {
             path: 'add-card',
             element: <AddCard />,
+            action: AddCardAction,
           },
         ],
       },
