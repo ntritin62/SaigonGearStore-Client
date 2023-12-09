@@ -13,6 +13,8 @@ import AddCard from './pages/ProfilePage/components/ProfileRight/components/AddC
 import EditInfo from './pages/ProfilePage/components/ProfileRight/components/EditInfo';
 import AddCardAction from './pages/ProfilePage/components/ProfileRight/components/AddCard/action';
 import EditInfoAction from './pages/ProfilePage/components/ProfileRight/components/EditInfo/action';
+import CheckoutPage from './pages/CheckoutPage';
+
 const router = createBrowserRouter([
   {
     path: `${ROUTES.HOME}`,
@@ -49,6 +51,10 @@ const router = createBrowserRouter([
             action: AddCardAction,
           },
         ],
+      },
+      {
+        path: `${ROUTES.CART}`,
+        element: <CheckoutPage />,
       },
       {
         path: `${ROUTES.PRODUCTDETAIL}`,

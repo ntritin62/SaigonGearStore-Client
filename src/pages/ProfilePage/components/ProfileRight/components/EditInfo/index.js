@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as ROUTES from '../../../../../../constants/routes';
 import { Link } from 'react-router-dom';
-import { useSubmit, useNavigation } from 'react-router-dom';
+import { useSubmit, useNavigation, useActionData } from 'react-router-dom';
 
 const EditInfo = () => {
   const {
@@ -13,7 +13,7 @@ const EditInfo = () => {
   } = useForm();
   const navigation = useNavigation();
   const submit = useSubmit();
-
+  const data = useActionData();
   const text =
     navigation.state === 'submitting'
       ? 'Saving...'

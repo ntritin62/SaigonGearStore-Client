@@ -31,6 +31,7 @@ module.exports = {
         'login-btn': '#FFB700',
         'rose-900': 'rgb(225 29 72)',
         'profile-card': '#F6F6F6',
+        'checkout-text': '#9E9DA8',
 
         'dark-text': '#fff',
         'dark-body-bg': '#292e39',
