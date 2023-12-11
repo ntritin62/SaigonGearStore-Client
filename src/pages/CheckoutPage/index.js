@@ -1,7 +1,7 @@
 import React from 'react';
-import CardItem from './components/CardItem';
+import CardItem from '../../components/CardItem';
 import { Link } from 'react-router-dom';
-import CartBox from './components/Cart';
+import CartBox from '../../components/Cart';
 
 const CheckoutPage = () => {
   return (

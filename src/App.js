@@ -14,6 +14,7 @@ import EditInfo from './pages/ProfilePage/components/ProfileRight/components/Edi
 import AddCardAction from './pages/ProfilePage/components/ProfileRight/components/AddCard/action';
 import EditInfoAction from './pages/ProfilePage/components/ProfileRight/components/EditInfo/action';
 import CheckoutPage from './pages/CheckoutPage';
+import ShippingPage from './pages/ShippingPage';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,20 @@ const router = createBrowserRouter([
         path: `${ROUTES.SIGNUP}`,
         element: <SignUpPage />,
       },
+      {
+        path: `${ROUTES.CART}`,
+        children: [
+          {
+            index: true,
+            element: <CheckoutPage />,
+          },
+          {
+            path: 'shipping',
+            element: <ShippingPage />,
+          },
+        ],
+      },
+
       {
         path: `${ROUTES.PROFILE}`,
         element: <ProfilePage />,
@@ -52,10 +67,7 @@ const router = createBrowserRouter([
           },
         ],
       },
-      {
-        path: `${ROUTES.CART}`,
-        element: <CheckoutPage />,
-      },
+
       {
         path: `${ROUTES.PRODUCTDETAIL}`,
         element: <ProductDetail />,
