@@ -3,6 +3,7 @@ import ThemeToggle from '../../../components/ThemeToggle';
 import Dropdown from '../../../components/Dropdown';
 import ActionDropdown from './ActionDropdown';
 import { useState } from 'react';
+import * as ROUTES from '../../../constants/routes';
 
 const Header = () => {
   const [searchIsVisible, setSearchIsVisible] = useState(false);
@@ -23,12 +24,17 @@ const Header = () => {
         </button>
         {/* Logo */}
         <figure className="flex items-center gap-6">
-          <img
-            className="w-[32px] h-[32px] lg:w-[24px] lg:h-[24px]"
-            src="/image/logo.svg"
-            alt=""
-          />
-          <span className="text-4xl  font-bold lg:text-2xl">grocerymart</span>
+          <a
+            href={ROUTES.HOME}
+            className="inline-block flex items-center justify-between"
+          >
+            <img
+              className="w-[32px] h-[32px] lg:w-[24px] lg:h-[24px]"
+              src="/image/logo.svg"
+              alt=""
+            />
+            <span className="text-4xl  font-bold lg:text-2xl">grocerymart</span>
+          </a>
         </figure>
         {/* Navbar */}
         <nav

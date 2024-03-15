@@ -130,7 +130,7 @@ const ShippingPage = () => {
             </div>
           </div>
         </div>
-        <CartBox />
+        <CartBox path="shipping" />
       </div>
     </>
   );

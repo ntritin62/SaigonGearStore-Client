@@ -15,6 +15,7 @@ import AddCardAction from './pages/ProfilePage/components/ProfileRight/component
 import EditInfoAction from './pages/ProfilePage/components/ProfileRight/components/EditInfo/action';
 import CheckoutPage from './pages/CheckoutPage';
 import ShippingPage from './pages/ShippingPage';
+import PaymentPage from './pages/PaymentPage';
 
 const router = createBrowserRouter([
   {
@@ -41,12 +42,15 @@ const router = createBrowserRouter([
             element: <CheckoutPage />,
           },
           {
-            path: 'shipping',
+            path: `${ROUTES.SHIPPING}`,
             element: <ShippingPage />,
+          },
+          {
+            path: `${ROUTES.PAYMENTMETHOD}`,
+            element: <PaymentPage />,
           },
         ],
       },
-
       {
         path: `${ROUTES.PROFILE}`,
         element: <ProfilePage />,

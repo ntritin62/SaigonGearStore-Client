@@ -1,4 +1,6 @@
 import React from 'react';
+import * as ROUTES from '../../../constants/routes';
+import { Link } from 'react-router-dom';
 
 const ActionDropdown = () => {
   return (
@@ -11,9 +13,12 @@ const ActionDropdown = () => {
         />
         <div className="flex justify-between">
           <p className="text-3xl font-medium">You have 3 item</p>
-          <a href="#!" className="text-3xl text-[#0071DC] font-normal">
+          <Link
+            to={ROUTES.CART}
+            className="text-3xl text-[#0071DC] font-normal"
+          >
             See All
-          </a>
+          </Link>
         </div>
         <ul className="grid grid-cols-3 my-[30px]">
           <li>
