@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import React from 'react';
+import ImageSlider from './components/ImageSlider';
 
 const ProductDetail = () => {
   const [size, setSize] = useState('');
@@ -8,24 +9,16 @@ const ProductDetail = () => {
   };
   return (
     <div className="container mt-[60px]">
-      <div className="grid grid-cols-12 lg:flex lg:flex-col">
-        <figure className="col-span-5 max-h-[507px] lg:bg-white lg:dark:bg-dark-header-bg">
-          <img
-            src="/image/cafe-i1.png"
-            alt=""
-            className="w-full h-full object-contain"
-          />
+      <div className="grid grid-cols-12 lg:flex lg:flex-col gap-[30px]">
+        <figure className="col-span-4  flex flex-col items-center gap-[20px]">
+          <ImageSlider />
         </figure>
-        <section className="col-span-7 bg-white dark:bg-dark-header-bg p-[60px] md:p-[16px]">
+        <section className="col-span-8 bg-white dark:bg-dark-header-bg p-[60px] md:p-[16px]">
           <h1 className="text-4xl font-medium">
             Coffee Beans - Espresso Arabica and Robusta Beans
           </h1>
           <div className="flex gap-[60px] mt-[30px] sm:flex-col">
             <div>
-              <span className="flex gap-[16px] items-center">
-                <img src="/icon/star.svg" alt="" />
-                <p className="text-2xl font-medium">(3.5) 1100 reviews</p>
-              </span>
               <div className="mt-[30px]">
                 <p className="text-4xl font-medium">Size</p>
                 <div className="flex gap-[20px] mt-[20px]">
