@@ -48,17 +48,17 @@ const HomePage = () => {
           <ul className="w-full grid grid-cols-3 gap-[51px] md:grid-cols-1 md:gap-[20px]">
             <li>
               <Link to="./coffee">
-                <MenuCard img="/image/laptop.jpg" title="Laptop" />
+                <MenuCard img="/image/laptop.png" title="Laptop" />
               </Link>
             </li>
             <li>
               <Link to="./tea">
-                <MenuCard img="./image/phone.jpg" title="Phone" />
+                <MenuCard img="./image/phone.png" title="Phone" />
               </Link>
             </li>
             <li>
               <Link to="./food">
-                <MenuCard img="./image/ipad.jpg" title="Tablet" />
+                <MenuCard img="./image/ipad.png" title="Tablet" />
               </Link>
             </li>
           </ul>

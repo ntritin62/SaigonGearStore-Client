@@ -4,6 +4,7 @@ import Dropdown from '../../../components/Dropdown';
 import ActionDropdown from './ActionDropdown';
 import { useState } from 'react';
 import * as ROUTES from '../../../constants/routes';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [searchIsVisible, setSearchIsVisible] = useState(false);
@@ -73,10 +74,13 @@ const Header = () => {
               <span>03</span>
             </li>
             <li className="flex h-[50px] px-[15px] items-center gap-[6px] cursor-pointer lg:px-0 lg:w-full">
-              <a href="#!">Coffee</a>
+              <Link href="#!">Phone</Link>
             </li>
             <li className="flex h-[50px] px-[15px] items-center gap-[6px] cursor-pointer lg:px-0 lg:w-full">
-              <a href="#!">Tea</a>
+              <Link href="#!">Laptop</Link>
+            </li>
+            <li className="flex h-[50px] px-[15px] items-center gap-[6px] cursor-pointer lg:px-0 lg:w-full">
+              <Link href="#!">Tablet</Link>
             </li>
             <li className="group flex px-[15px] cursor-pointer lg:px-0 lg:flex lg:flex-col lg:w-full lg:gap-10">
               <div className="flex h-[50px] items-center lg:w-full lg:justify-between gap-[6px] lg:">

@@ -7,19 +7,19 @@ const Dropdown = () => {
         <img
           src="/icon/arrow-top.svg"
           alt=""
-          className="dropdown-arrow absolute top-[-10px] left-[470px] lg:hidden"
+          className="dropdown-arrow absolute top-[-10px] left-[550px] lg:hidden"
         />
         <ul className="grid grid-cols-3 lg:grid-cols-1 lg:gap-10">
           <li className="flex gap-[14px]">
             <img
-              src="/icon/coffee.svg"
+              src="/icon/laptop.svg"
               alt=""
               className="icon w-[30px] h-[30px] items-start"
             />
 
             <ul className="flex flex-col gap-[14px] text-2xl font-normal">
               <h2 className="text-[1.6rem] font-bold">
-                <a href="#!">Coffee</a>
+                <a href="#!">Laptop</a>
               </h2>
               <li>
                 <a href="#!" className="hover:text-[#0071dc] hover:font-medium">
@@ -41,14 +41,14 @@ const Dropdown = () => {
 
           <li className="flex gap-[14px]">
             <img
-              src="/icon/tea.svg"
+              src="/icon/smartphone.svg"
               alt=""
               className="icon w-[30px] h-[30px] items-start"
             />
 
             <ul className="flex flex-col gap-[14px] text-2xl font-normal">
               <h2 className="text-[1.6rem] font-bold">
-                <a href="#!">Tea</a>
+                <a href="#!">Phone</a>
               </h2>
               <li>
                 <a href="#!" className="hover:text-[#0071dc] hover:font-medium">
@@ -65,14 +65,14 @@ const Dropdown = () => {
 
           <li className="flex gap-[14px]">
             <img
-              src="/icon/snack.svg"
+              src="/icon/tablet.svg"
               alt=""
               className="icon w-[30px] h-[30px] items-start"
             />
 
             <ul className="flex flex-col gap-[14px] text-2xl font-normal">
               <h2 className="text-[1.6rem] font-bold">
-                <a href="#!">Snack</a>
+                <a href="#!">Tablet</a>
               </h2>
               <li>
                 <a href="#!" className="hover:text-[#0071dc] hover:font-medium">
