@@ -4,7 +4,7 @@ const imagesArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const ImageSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [imageIsShowed, setImageIsShowed] = useState();
+  const [imageIsShowed, setImageIsShowed] = useState(1);
   const handleSlideForward = () => {
     setCurrentSlide((prevSlide) => prevSlide + 3);
     console.log(currentSlide);
@@ -13,14 +13,17 @@ const ImageSlider = () => {
   const handleSlideBackward = () => {
     setCurrentSlide((prevSlide) => prevSlide - 3);
   };
-  
+
+  const handleImageShow = (image) => {
+    setImageIsShowed(image);
+  };
 
   return (
     <>
       <div className="w-full h-[472px] lg:h-full">
         <div className="border-[3px] border-solid border-[rgb(235,235,240)] rounded-xl overflow-hidden">
           <img
-            src={`/image/iphone-2.jpg`}
+            src={`/image/iphone-${imageIsShowed}.jpg`}
             alt=""
             className="w-full h-full object-contain"
           />
@@ -53,7 +56,9 @@ const ImageSlider = () => {
             <div
               key={image}
               className=" cols-span-1 w-[72px] h-[72px] border-[2px] border-solid border-[rgb(235,235,240)] rounded-md overflow-hidden cursor-pointer"
-              onClick={}
+              onClick={() => {
+                handleImageShow(image);
+              }}
             >
               <img
                 src={`/image/iphone-${image}.jpg`}
