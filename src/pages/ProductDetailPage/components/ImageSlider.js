@@ -55,7 +55,9 @@ const ImageSlider = () => {
           return (
             <div
               key={image}
-              className=" cols-span-1 w-[72px] h-[72px] border-[2px] border-solid border-[rgb(235,235,240)] rounded-md overflow-hidden cursor-pointer"
+              className={`cols-span-1 w-[72px] h-[72px] border-[2px] border-solid border-[rgb(235,235,240)] rounded-md overflow-hidden cursor-pointer ${
+                image === imageIsShowed ? 'border-[#0071dc]' : ''
+              }`}
               onClick={() => {
                 handleImageShow(image);
               }}
