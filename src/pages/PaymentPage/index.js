@@ -56,6 +56,30 @@ const PaymentPage = () => {
               <h2 className="text-3xl font-medium">2. Shipping method</h2>
             </div>
             <div className="w-full h-[1px] my-[30px] bg-top-menu-border dark-bg-dark-body-bg"></div>
+            <h3 className="text-2xl font-medium">Available Shipping method</h3>
+            <div className="my-[30px] bg-body-bg dark:bg-dark-body-bg p-[20px] rounded-[20px] flex justify-between items-center">
+              <div className="flex items-center gap-[20px]">
+                <div className="w-[70px] h-[54px] rounded-[10px] overflow-hidden">
+                  <img
+                    src="/image/fedex.png"
+                    alt=""
+                    className="w-full h-full object-cover "
+                  />
+                </div>
+                <div>
+                  <p className="text-2xl font-medium mb-[4px]">
+                    Fedex Delivery
+                  </p>
+                  <p>Delivery: now</p>
+                </div>
+              </div>
+              <div className="flex gap-[14px] items-center">
+                <p>Free</p>
+                <div className="w-[19px] h-[19px]">
+                  <img src="/icon/check.svg" alt="" className="w-full h-full" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div className="col-span-3">456</div>
