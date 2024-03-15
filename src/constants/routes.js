@@ -6,3 +6,4 @@ export const PROFILE = '/profile';
 export const SHIPPING = '/checkout/shipping';
 export const CART = '/checkout';
 export const PAYMENTMETHOD = '/checkout/payment-method';
+export const PAYMENTSUCCESS = '/checkout/complete';

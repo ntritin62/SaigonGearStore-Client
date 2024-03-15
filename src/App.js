@@ -16,6 +16,7 @@ import EditInfoAction from './pages/ProfilePage/components/ProfileRight/componen
 import CheckoutPage from './pages/CheckoutPage';
 import ShippingPage from './pages/ShippingPage';
 import PaymentPage from './pages/PaymentPage';
+import PaymentSuccess from './pages/PaymentSuccess';
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
           {
             path: `${ROUTES.PAYMENTMETHOD}`,
             element: <PaymentPage />,
+          },
+          {
+            path: `${ROUTES.PAYMENTSUCCESS}`,
+            element: <PaymentSuccess />,
           },
         ],
       },

@@ -1,6 +1,8 @@
 import React from 'react';
 import * as ROUTES from '../../constants/routes';
 import { Link } from 'react-router-dom';
+import PaymentCard from '../../components/PaymentCard';
+
 const PaymentPage = () => {
   return (
     <>
@@ -82,7 +84,9 @@ const PaymentPage = () => {
             </div>
           </div>
         </div>
-        <div className="col-span-3">456</div>
+        <div className="col-span-3 p-[30px] rounded-[20px] bg-white dark:bg-dark-sidebar">
+          <PaymentCard />
+        </div>
       </div>
     </>
   );
