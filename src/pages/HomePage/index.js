@@ -47,17 +47,17 @@ const HomePage = () => {
           </h2>
           <ul className="w-full grid grid-cols-3 gap-[51px] md:grid-cols-1 md:gap-[20px]">
             <li>
-              <Link to="./coffee">
+              <Link to="./keyboard">
                 <MenuCard img="/image/laptop.png" title="Laptop" />
               </Link>
             </li>
             <li>
-              <Link to="./tea">
+              <Link to="./mouse">
                 <MenuCard img="./image/phone.png" title="Phone" />
               </Link>
             </li>
             <li>
-              <Link to="./food">
+              <Link to="./headphone">
                 <MenuCard img="./image/ipad.png" title="Tablet" />
               </Link>
             </li>

@@ -19,6 +19,7 @@ import PaymentPage from './pages/PaymentPage';
 import PaymentSuccess from './pages/PaymentSuccess';
 import { action as LoginAction } from './pages/LoginPage/action';
 import { action as SignupAction } from './pages/SignUpPage/action';
+import { loader as ProductLoader } from './pages/ProductsPageLayout/loader';
 
 const router = createBrowserRouter([
   {
@@ -86,11 +87,12 @@ const router = createBrowserRouter([
         element: <ProductDetail />,
       },
       {
-        path: ':products',
+        path: ':categoryName',
         element: <ProductsPageLayout />,
+        loader: ProductLoader,
         children: [
           {
-            path: ':productsType',
+            path: ':brandName',
             element: <ProductsMain />,
           },
         ],

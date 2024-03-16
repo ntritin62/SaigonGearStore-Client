@@ -25,7 +25,7 @@ const SignUpPage = () => {
   };
 
   return (
-    <main className="grid grid-cols-2 md:grid-cols-1">
+    <main className="grid grid-cols-2 md:grid-cols-1 h-screen">
       <div className="bg-left-login dark:bg-dark-left-login md:hidden">123</div>
       <div className="bg-right-login dark:bg-dark-right-login w-full">
         <form
