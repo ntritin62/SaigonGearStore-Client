@@ -3,10 +3,12 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
+import { useSubmit, useActionData } from 'react-router-dom';
 
 const LoginPage = () => {
+  const submit = useSubmit();
   const [passwordIsShowed, setPasswordIsShowed] = useState(false);
-
+  const err = useActionData();
   const {
     register,
     handleSubmit,
@@ -14,7 +16,10 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
   const submitHandler = (data) => {
-    console.log(data);
+    submit(data, {
+      method: 'post',
+      action: '/login',
+    });
   };
   const showPassword = () => {
     setPasswordIsShowed((prevState) => !prevState);
@@ -38,6 +43,11 @@ const LoginPage = () => {
               to your previously saved all information.
             </p>
           </div>
+          {err && (
+            <p className="text-2xl font-medium text-rose-900 mx-auto rounded-lg bg-[#ffdce0] border-solid border-[2px] border-[#e8cacf] w-full h-[50px] flex items-center justify-center">
+              {err}
+            </p>
+          )}
           <div className="flex flex-col gap-[20px]">
             <div className="relative">
               <input
@@ -96,6 +106,7 @@ const LoginPage = () => {
           >
             Login
           </button>
+
           <p className="font-normal text-2xl text-login-text text-center mt-[70px]">
             Don’t have an account yet?{' '}
             <Link to={ROUTES.SIGNUP} className="text-[#0071DC] font-medium ">

@@ -17,7 +17,7 @@ const updateTheme = (isDarkEnabled) => {
     docEl.style.setProperty('--background', white);
     docEl.style.setProperty('--foreground', black);
     document.querySelector('html').classList.remove('dark');
-    localStorage.setItem('dark', 0);
+    localStorage.removeItem('dark');
   }
 };
 export default function ThemeToggle({ className, isEnabled, setIsEnabled }) {

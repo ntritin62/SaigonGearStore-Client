@@ -17,6 +17,7 @@ import CheckoutPage from './pages/CheckoutPage';
 import ShippingPage from './pages/ShippingPage';
 import PaymentPage from './pages/PaymentPage';
 import PaymentSuccess from './pages/PaymentSuccess';
+import { action as LoginAction } from './pages/LoginPage/action';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
       {
         path: `${ROUTES.LOGIN}`,
         element: <LoginPage />,
+        action: LoginAction,
       },
       {
         path: `${ROUTES.SIGNUP}`,
