@@ -9,8 +9,9 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   const [searchIsVisible, setSearchIsVisible] = useState(false);
   const [sideBarIsVisible, setSideBarIsVisible] = useState(false);
-  const docEl = document.documentElement;
-  const [isEnabled, setIsEnabled] = useState(docEl.classList.contains('dark'));
+  // const docEl = document.documentElement;
+  // const [isEnabled, setIsEnabled] = useState(docEl.classList.contains('dark'));
+  const [isEnabled, setIsEnabled] = useState(localStorage.getItem('dark'));
   return (
     <header className=" bg-header-bg dark:bg-dark-header-bg">
       <div className="relative container flex items-center py-[30px] md:justify-between lg:py-[16px]">
