@@ -18,7 +18,7 @@ const LoginPage = () => {
   const submitHandler = (data) => {
     submit(data, {
       method: 'post',
-      action: '/login',
+      action: ROUTES.LOGIN,
     });
   };
   const showPassword = () => {

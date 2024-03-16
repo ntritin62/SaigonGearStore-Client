@@ -3,7 +3,6 @@ import { redirect } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 export async function action({ request }) {
   const data = Object.fromEntries(await request.formData());
-
   try {
     const response = await axios.post(
       `${process.env.REACT_APP_SERVER_URL}/auth/login`,

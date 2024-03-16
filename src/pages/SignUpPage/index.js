@@ -25,12 +25,12 @@ const SignUpPage = () => {
   };
 
   return (
-    <main className="grid grid-cols-2">
-      <div className="bg-left-login dark:bg-dark-left-login">123</div>
-      <div className="bg-right-login dark:bg-dark-right-login">
+    <main className="grid grid-cols-2 md:grid-cols-1">
+      <div className="bg-left-login dark:bg-dark-left-login md:hidden">123</div>
+      <div className="bg-right-login dark:bg-dark-right-login w-full">
         <form
           onSubmit={handleSubmit(submitHandler)}
-          className="flex flex-col px-[130px] pt-[110px] gap-[50px] pb-[50px]"
+          className="flex flex-col px-[130px] pt-[110px] gap-[50px] pb-[50px] sm:px-[10px]"
         >
           <div className="flex items-center justify-center gap-[14px]">
             <img src="/image/logo.svg" alt="" className="w-[32px] h-[32px]" />
