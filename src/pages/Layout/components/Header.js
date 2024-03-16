@@ -13,7 +13,7 @@ const Header = () => {
   // const [isEnabled, setIsEnabled] = useState(docEl.classList.contains('dark'));
   const [isEnabled, setIsEnabled] = useState(localStorage.getItem('dark'));
   return (
-    <header className=" bg-header-bg dark:bg-dark-header-bg">
+    <header className=" bg-header-bg dark:bg-dark-header-bg fixed top-0 left-0 right-0 z-50">
       <div className="relative container flex items-center py-[30px] md:justify-between lg:py-[16px]">
         {/* More */}
         <button
@@ -25,19 +25,18 @@ const Header = () => {
           <img src="/icon/more.svg" alt="" />
         </button>
         {/* Logo */}
-        <figure className="flex items-center gap-6">
-          <a
-            href={ROUTES.HOME}
-            className="inline-block flex items-center justify-between"
-          >
+
+        <a href={ROUTES.HOME} className=" flex items-center justify-between">
+          <figure className="flex items-center gap-[10px]">
             <img
-              className="w-[32px] h-[32px] lg:w-[24px] lg:h-[24px]"
+              className="icon w-[50px] h-[50px] lg:w-[24px] lg:h-[24px]"
               src="/image/logo.svg"
               alt=""
             />
-            <span className="text-4xl  font-bold lg:text-2xl">grocerymart</span>
-          </a>
-        </figure>
+            {/* <span className="text-4xl  font-bold lg:text-2xl">TNTGear</span> */}
+          </figure>
+        </a>
+
         {/* Navbar */}
         <nav
           className={

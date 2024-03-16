@@ -39,7 +39,7 @@ const settings = {
 
 const HomePage = () => {
   return (
-    <div className="container mt-[40px] pb-[40px]">
+    <div className="container  py-[40px]">
       <section className="flex flex-col gap-[40px]">
         <div>
           <h2 className="text-4xl font-bold mb-[20px]">
@@ -48,17 +48,17 @@ const HomePage = () => {
           <ul className="w-full grid grid-cols-3 gap-[51px] md:grid-cols-1 md:gap-[20px]">
             <li>
               <Link to="./keyboard">
-                <MenuCard img="/image/laptop.png" title="Laptop" />
+                <MenuCard img="/image/keyboard.png" title="Keyboard" />
               </Link>
             </li>
             <li>
               <Link to="./mouse">
-                <MenuCard img="./image/phone.png" title="Phone" />
+                <MenuCard img="./image/mouse.png" title="Mouse" />
               </Link>
             </li>
             <li>
               <Link to="./headphone">
-                <MenuCard img="./image/ipad.png" title="Tablet" />
+                <MenuCard img="./image/headphone.png" title="Headphone" />
               </Link>
             </li>
           </ul>

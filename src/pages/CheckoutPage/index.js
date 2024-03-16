@@ -6,7 +6,7 @@ import CartBox from '../../components/Cart';
 const CheckoutPage = () => {
   return (
     <>
-      <div className="container ">
+      <div className="container pt-[10px]">
         <div className="flex text-checkout-text text-2xl font-medium gap-[20px] mt-[30px] rounded-[10px] bg-white p-[20px] dark:bg-dark-sidebar">
           <p>Home</p>
           <img src="/icon/arrow-right.svg" alt="" />
