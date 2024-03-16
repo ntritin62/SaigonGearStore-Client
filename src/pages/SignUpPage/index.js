@@ -1,15 +1,16 @@
 import React from 'react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useSubmit, useActionData } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 
 const SignUpPage = () => {
+  const submit = useSubmit();
   const [passwordIsShowed, setPasswordIsShowed] = useState({
     password: false,
     confirmPassword: false,
   });
-
+  const err = useActionData();
   const {
     register,
     handleSubmit,
@@ -17,7 +18,10 @@ const SignUpPage = () => {
     formState: { errors },
   } = useForm();
   const submitHandler = (data) => {
-    console.log(data);
+    submit(data, {
+      method: 'post',
+      action: ROUTES.SIGNUP,
+    });
   };
 
   return (
@@ -38,6 +42,11 @@ const SignUpPage = () => {
               Let’s create your account and Shop like a pro and save money.
             </p>
           </div>
+          {err && (
+            <p className="text-2xl font-medium text-rose-900 mx-auto rounded-lg bg-[#ffdce0] border-solid border-[2px] border-[#e8cacf] w-full h-[50px] flex items-center justify-center">
+              {err}
+            </p>
+          )}
           <div className="flex flex-col gap-[20px]">
             <div className="relative">
               <input

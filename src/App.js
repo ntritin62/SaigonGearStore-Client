@@ -18,6 +18,7 @@ import ShippingPage from './pages/ShippingPage';
 import PaymentPage from './pages/PaymentPage';
 import PaymentSuccess from './pages/PaymentSuccess';
 import { action as LoginAction } from './pages/LoginPage/action';
+import { action as SignupAction } from './pages/SignUpPage/action';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
       {
         path: `${ROUTES.SIGNUP}`,
         element: <SignUpPage />,
+        action: SignupAction,
       },
       {
         path: `${ROUTES.CART}`,
