@@ -1,4 +1,11 @@
 import axios from 'axios';
+
+const getProductsByCategoryOrBrand = async (categoryName, brandName) => {
+  return await axios.get(
+    `${process.env.REACT_APP_SERVER_URL}/products?category=${categoryName}&brand=${brandName}`
+  );
+};
+
 export async function loader({ request, params }) {
   try {
     const response = await axios.get(
@@ -13,7 +20,17 @@ export async function loader({ request, params }) {
       error.info = response.data;
       throw error;
     }
-    return response.data.product;
+    const similarProds = await getProductsByCategoryOrBrand(
+      '',
+      response.data.product.brand.brandName
+    );
+    console.log(similarProds.data.products);
+    return {
+      product: response.data.product,
+      similarProds: similarProds.data.products.filter((product) => {
+        return product._id !== response.data.product._id;
+      }),
+    };
   } catch (err) {
     console.log(err);
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import MenuCard from './components/MenuCard';
 import ItemCard from '../../components/ItemCard';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
 const coffees = [
   {
@@ -38,6 +38,8 @@ const settings = {
 };
 
 const HomePage = () => {
+  const { keyboardProds, mouseProds, headphoneProds } = useLoaderData();
+  // console.log(data);
   return (
     <div className="container  py-[40px]">
       <section className="flex flex-col gap-[40px]">
@@ -65,18 +67,20 @@ const HomePage = () => {
         </div>
         <div>
           <div className="flex justify-between items-center mb-[20px]">
-            <h2 className="text-4xl font-bold ">Coffee</h2>
+            <h2 className="text-4xl font-bold ">Keyboard</h2>
             <a href="" className="text-[#539bea] font-medium pr-[25px]">
               More...
             </a>
           </div>
           <ul className="w-full grid grid-cols-4 gap-[30px] md:grid-cols-2 sm:grid-cols-1 md:gap-[20px] ">
-            {coffees.map((coffee) => (
+            {keyboardProds.map((prod) => (
               <ItemCard
-                img={coffee.img}
-                title={coffee.title}
-                price={coffee.price}
-                stars={coffee.stars}
+                key={prod._id}
+                id={prod._id}
+                img={prod.images[0]}
+                title={prod.name}
+                price={prod.price}
+                stars=""
               />
             ))}
           </ul>
@@ -84,48 +88,42 @@ const HomePage = () => {
 
         <div>
           <div className="flex justify-between items-center mb-[20px]">
-            <h2 className="text-4xl font-bold ">Coffee</h2>
+            <h2 className="text-4xl font-bold ">Mouse</h2>
             <a href="" className="text-[#539bea] font-medium pr-[25px]">
               More...
             </a>
           </div>
           <ul className="w-full grid grid-cols-4 gap-[30px] md:grid-cols-2 sm:grid-cols-1 md:gap-[20px] ">
-            {coffees.map((coffee) => (
-              <li>
-                <a href="#!">
-                  <ItemCard
-                    img={coffee.img}
-                    title={coffee.title}
-                    price={coffee.price}
-                    stars={coffee.stars}
-                  />
-                </a>
-              </li>
+            {mouseProds.map((prod) => (
+              <ItemCard
+                key={prod._id}
+                id={prod._id}
+                img={prod.images[0]}
+                title={prod.name}
+                price={prod.price}
+                stars=""
+              />
             ))}
           </ul>
         </div>
 
         <div>
           <div className="flex justify-between items-center mb-[20px]">
-            <h2 className="text-4xl font-bold ">Coffee</h2>
+            <h2 className="text-4xl font-bold ">Headphone</h2>
             <a href="" className="text-[#539bea] font-medium pr-[25px]">
               More...
             </a>
           </div>
           <ul className="w-full grid grid-cols-4 gap-[30px] md:grid-cols-2 sm:grid-cols-1 md:gap-[20px] ">
-            {coffees.map((coffee) => (
-              <li>
-                <a href="#!">
-                  <ItemCard
-                    key={coffee.title}
-                    img={coffee.img}
-                    isLiked={true}
-                    title={coffee.title}
-                    price={coffee.price}
-                    stars={coffee.stars}
-                  />
-                </a>
-              </li>
+            {headphoneProds.map((prod) => (
+              <ItemCard
+                key={prod._id}
+                id={prod._id}
+                img={prod.images[0]}
+                title={prod.name}
+                price={prod.price}
+                stars=""
+              />
             ))}
           </ul>
         </div>

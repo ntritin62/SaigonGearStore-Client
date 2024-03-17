@@ -22,6 +22,7 @@ import { action as SignupAction } from './pages/SignUpPage/action';
 import { loader as BrandLoader } from './pages/ProductsPageLayout/loader';
 import { loader as ProductLoader } from './pages/ProductsPageLayout/components/ProductsMain/loader';
 import { loader as ProductDetailLoader } from './pages/ProductDetailPage/loader';
+import { loader as HomePageLoader } from './pages/HomePage/loader';
 const router = createBrowserRouter([
   {
     path: `${ROUTES.HOME}`,
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
+        loader: HomePageLoader,
       },
       {
         path: `${ROUTES.LOGIN}`,

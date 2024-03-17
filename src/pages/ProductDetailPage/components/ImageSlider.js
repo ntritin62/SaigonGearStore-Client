@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 
-// const imagesArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
 const ImageSlider = ({ imagesArray }) => {
-  console.log(imagesArray);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [imageIsShowed, setImageIsShowed] = useState(imagesArray[0]);
   const handleSlideForward = () => {

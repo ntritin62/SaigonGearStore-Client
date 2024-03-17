@@ -1,15 +1,15 @@
 import React from 'react';
 import ImageSlider from './components/ImageSlider';
 import { useLoaderData } from 'react-router-dom';
+import ItemCard from '../../components/ItemCard';
 
 const ProductDetail = () => {
-  const product = useLoaderData();
-  console.log(product);
+  const { product, similarProds } = useLoaderData();
   return (
     <div className="container pt-[30px]">
       <div className="grid grid-cols-12 lg:flex lg:flex-col gap-[30px]">
         <figure className="col-span-4  flex flex-col items-center gap-[20px]">
-          <ImageSlider imagesArray={product.images} />
+          <ImageSlider key={product._id} imagesArray={product.images} />
         </figure>
         <section className="col-span-8 bg-white dark:bg-dark-header-bg p-[60px] md:p-[16px]">
           <h1 className="text-4xl font-medium">{product.name}</h1>
@@ -62,38 +62,17 @@ const ProductDetail = () => {
       </div>
       <h2 className="mt-[50px] text-5xl font-bold">Similar Items</h2>
       <div className="mt-[30px] mb-[100px] grid grid-cols-4 gap-[20px]">
-        <section className="col-span-1 bg-white dark:bg-dark-header-bg rounded-lg overflow-hidden p-[20px] cursor-pointer">
-          <img src="/image/iphone-1.jpg" alt="" />
-          <h3 className="text-3xl font-medium mt-[24px]">
-            Chuột không dây siêu nhẹ Pulsar X2H Mini Shinobu - Pulsar x Demon
-            Slayer Limited Edition
-          </h3>
-          <p className="mt-[20px]">3.410.000₫</p>
-        </section>
-        <section className="col-span-1 bg-white dark:bg-dark-header-bg rounded-lg overflow-hidden p-[20px]">
-          <img src="/image/iphone-1.jpg" alt="" />
-          <h3 className="text-3xl font-medium mt-[24px]">
-            Chuột không dây siêu nhẹ Pulsar X2H Mini Shinobu - Pulsar x Demon
-            Slayer Limited Edition
-          </h3>
-          <p className="mt-[20px]">3.410.000₫</p>
-        </section>
-        <section className="col-span-1 bg-white dark:bg-dark-header-bg rounded-lg overflow-hidden p-[20px]">
-          <img src="/image/iphone-1.jpg" alt="" />
-          <h3 className="text-3xl font-medium mt-[24px]">
-            Chuột không dây siêu nhẹ Pulsar X2H Mini Shinobu - Pulsar x Demon
-            Slayer Limited Edition
-          </h3>
-          <p className="mt-[20px]">3.410.000₫</p>
-        </section>
-        <section className="col-span-1 bg-white dark:bg-dark-header-bg rounded-lg overflow-hidden p-[20px]">
-          <img src="/image/iphone-1.jpg" alt="" />
-          <h3 className="text-3xl font-medium mt-[24px]">
-            Chuột không dây siêu nhẹ Pulsar X2H Mini Shinobu - Pulsar x Demon
-            Slayer Limited Edition
-          </h3>
-          <p className="mt-[20px]">3.410.000₫</p>
-        </section>
+        {similarProds.map((product) => (
+          <ItemCard
+            key={product._id}
+            id={product._id}
+            isLiked={false}
+            img={product.images[0]}
+            title={product.name}
+            price={product.price}
+            stars=""
+          />
+        ))}
       </div>
     </div>
   );
