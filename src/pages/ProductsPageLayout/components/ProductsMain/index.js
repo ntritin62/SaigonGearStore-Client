@@ -1,35 +1,11 @@
 import React, { useState } from 'react';
-
+import { useLoaderData } from 'react-router-dom';
 import ItemCard from '../../../../components/ItemCard';
 import Filter from './Filter';
 
-const coffees = [
-  {
-    img: '/image/cafe-i1.png',
-    title: 'Coffee Beans - Espresso Arabica and Robusta Beans',
-    price: '47.00',
-    stars: '4.3',
-  },
-  {
-    img: '/image/cafe-i2.png',
-    title: 'Coffee Beans - Espresso Arabica and Robusta Beans',
-    price: '47.00',
-    stars: '4.3',
-  },
-  {
-    img: '/image/cafe-i3.png',
-    title: 'Coffee Beans - Espresso Arabica and Robusta Beans',
-    price: '47.00',
-    stars: '4.3',
-  },
-  {
-    img: '/image/cafe-i4.png',
-    title: 'Coffee Beans - Espresso Arabica and Robusta Beans',
-    price: '47.00',
-    stars: '4.3',
-  },
-];
 const ProductsMain = () => {
+  const products = useLoaderData();
+  console.log(products);
   const [filterIsShowed, setFilterIsShowed] = useState(false);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(200);
@@ -142,15 +118,15 @@ const ProductsMain = () => {
         )}
       </div>
       <ul className="mt-[30px] grid grid-cols-3 gap-[30px] md:grid-cols-2 sm:grid-cols-1">
-        {coffees.map((coffee) => (
+        {products.map((product) => (
           <li>
             <a href="#!">
               <ItemCard
                 isLiked={false}
-                img={coffee.img}
-                title={coffee.title}
-                price={coffee.price}
-                stars={coffee.stars}
+                img={product.images[0]}
+                title={product.name}
+                price={product.price}
+                stars=""
               />
             </a>
           </li>

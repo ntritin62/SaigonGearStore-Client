@@ -19,8 +19,8 @@ import PaymentPage from './pages/PaymentPage';
 import PaymentSuccess from './pages/PaymentSuccess';
 import { action as LoginAction } from './pages/LoginPage/action';
 import { action as SignupAction } from './pages/SignUpPage/action';
-import { loader as ProductLoader } from './pages/ProductsPageLayout/loader';
-
+import { loader as BrandLoader } from './pages/ProductsPageLayout/loader';
+import { loader as ProductLoader } from './pages/ProductsPageLayout/components/ProductsMain/loader';
 const router = createBrowserRouter([
   {
     path: `${ROUTES.HOME}`,
@@ -89,11 +89,17 @@ const router = createBrowserRouter([
       {
         path: ':categoryName',
         element: <ProductsPageLayout />,
-        loader: ProductLoader,
+        loader: BrandLoader,
         children: [
+          {
+            index: true,
+            element: <ProductsMain />,
+            loader: ProductLoader,
+          },
           {
             path: ':brandName',
             element: <ProductsMain />,
+            loader: ProductLoader,
           },
         ],
       },

@@ -1,6 +1,5 @@
 import axios from 'axios';
 export async function loader({ request, params }) {
-  console.log(params);
   try {
     const response = await axios.get(
       `${process.env.REACT_APP_SERVER_URL}/categories/${params.categoryName}`,
