@@ -66,29 +66,23 @@ const Header = () => {
               </div>
               <span>03</span>
             </li>
-            <li className="hidden lg:flex h-[50px] px-[15px] items-center gap-[6px] cursor-pointer lg:px-0 justify-between w-full">
-              <div className="flex items-center gap-[16px]">
-                <img src="/icon/heart.svg" alt="" className="icon" />
-                <a href="#!">Favorite</a>
-              </div>
-              <span>03</span>
+
+            <li className="flex h-[50px] px-[15px] items-center gap-[6px] cursor-pointer lg:px-0 lg:w-full">
+              <Link to="./keyboard">Keyboard</Link>
             </li>
             <li className="flex h-[50px] px-[15px] items-center gap-[6px] cursor-pointer lg:px-0 lg:w-full">
-              <Link href="#!">Phone</Link>
+              <Link to="./mouse">Laptop</Link>
             </li>
             <li className="flex h-[50px] px-[15px] items-center gap-[6px] cursor-pointer lg:px-0 lg:w-full">
-              <Link href="#!">Laptop</Link>
+              <Link to="./headphone">Headphone</Link>
             </li>
-            <li className="flex h-[50px] px-[15px] items-center gap-[6px] cursor-pointer lg:px-0 lg:w-full">
-              <Link href="#!">Tablet</Link>
-            </li>
-            <li className="group flex px-[15px] cursor-pointer lg:px-0 lg:flex lg:flex-col lg:w-full lg:gap-10">
+            {/* <li className="group flex px-[15px] cursor-pointer lg:px-0 lg:flex lg:flex-col lg:w-full lg:gap-10">
               <div className="flex h-[50px] items-center lg:w-full lg:justify-between gap-[6px] lg:">
                 <a href="#!">Menu</a>
                 <img src="/icon/arrow-down.svg" alt="" className="icon" />
               </div>
               <Dropdown />
-            </li>
+            </li> */}
           </ul>
         </nav>
         <div

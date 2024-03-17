@@ -5,6 +5,7 @@ import Filter from './Filter';
 
 const ProductsMain = () => {
   const products = useLoaderData();
+  console.log(products);
   const [filterIsShowed, setFilterIsShowed] = useState(false);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(200);
@@ -121,11 +122,13 @@ const ProductsMain = () => {
           <ItemCard
             key={product._id}
             id={product._id}
-            isLiked={false}
             img={product.images[0]}
             title={product.name}
-            price={product.price}
-            stars=""
+            price={(
+              product.price -
+              (product.sale / 100) * product.price
+            ).toFixed(2)}
+            brand={product.brand.brandName}
           />
         ))}
       </ul>

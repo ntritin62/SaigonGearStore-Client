@@ -3,43 +3,9 @@ import MenuCard from './components/MenuCard';
 import ItemCard from '../../components/ItemCard';
 import { Link, useLoaderData } from 'react-router-dom';
 
-const coffees = [
-  {
-    img: './image/cafe-i1.png',
-    title: 'Coffee Beans - Espresso Arabica and Robusta Beans',
-    price: '47.00',
-    stars: '4.3',
-  },
-  {
-    img: './image/cafe-i2.png',
-    title: 'Coffee Beans - Espresso Arabica and Robusta Beans',
-    price: '47.00',
-    stars: '4.3',
-  },
-  {
-    img: './image/cafe-i3.png',
-    title: 'Coffee Beans - Espresso Arabica and Robusta Beans',
-    price: '47.00',
-    stars: '4.3',
-  },
-  {
-    img: './image/cafe-i4.png',
-    title: 'Coffee Beans - Espresso Arabica and Robusta Beans',
-    price: '47.00',
-    stars: '4.3',
-  },
-];
-const settings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 4,
-  slidesToScroll: 1,
-};
-
 const HomePage = () => {
   const { keyboardProds, mouseProds, headphoneProds } = useLoaderData();
-  // console.log(data);
+  console.log(keyboardProds);
   return (
     <div className="container  py-[40px]">
       <section className="flex flex-col gap-[40px]">
@@ -68,9 +34,12 @@ const HomePage = () => {
         <div>
           <div className="flex justify-between items-center mb-[20px]">
             <h2 className="text-4xl font-bold ">Keyboard</h2>
-            <a href="" className="text-[#539bea] font-medium pr-[25px]">
+            <Link
+              to="./keyboard"
+              className="text-[#539bea] font-medium pr-[25px]"
+            >
               More...
-            </a>
+            </Link>
           </div>
           <ul className="w-full grid grid-cols-4 gap-[30px] md:grid-cols-2 sm:grid-cols-1 md:gap-[20px] ">
             {keyboardProds.map((prod) => (
@@ -79,8 +48,8 @@ const HomePage = () => {
                 id={prod._id}
                 img={prod.images[0]}
                 title={prod.name}
-                price={prod.price}
-                stars=""
+                price={(prod.price - (prod.sale / 100) * prod.price).toFixed(2)}
+                brand={prod.brand.brandName}
               />
             ))}
           </ul>
@@ -89,9 +58,9 @@ const HomePage = () => {
         <div>
           <div className="flex justify-between items-center mb-[20px]">
             <h2 className="text-4xl font-bold ">Mouse</h2>
-            <a href="" className="text-[#539bea] font-medium pr-[25px]">
+            <Link to="./mouse" className="text-[#539bea] font-medium pr-[25px]">
               More...
-            </a>
+            </Link>
           </div>
           <ul className="w-full grid grid-cols-4 gap-[30px] md:grid-cols-2 sm:grid-cols-1 md:gap-[20px] ">
             {mouseProds.map((prod) => (
@@ -101,7 +70,7 @@ const HomePage = () => {
                 img={prod.images[0]}
                 title={prod.name}
                 price={prod.price}
-                stars=""
+                brand={prod.brand.brandName}
               />
             ))}
           </ul>
@@ -110,9 +79,12 @@ const HomePage = () => {
         <div>
           <div className="flex justify-between items-center mb-[20px]">
             <h2 className="text-4xl font-bold ">Headphone</h2>
-            <a href="" className="text-[#539bea] font-medium pr-[25px]">
+            <Link
+              to="./headphone"
+              className="text-[#539bea] font-medium pr-[25px]"
+            >
               More...
-            </a>
+            </Link>
           </div>
           <ul className="w-full grid grid-cols-4 gap-[30px] md:grid-cols-2 sm:grid-cols-1 md:gap-[20px] ">
             {headphoneProds.map((prod) => (
@@ -122,7 +94,7 @@ const HomePage = () => {
                 img={prod.images[0]}
                 title={prod.name}
                 price={prod.price}
-                stars=""
+                brand={prod.brand.brandName}
               />
             ))}
           </ul>

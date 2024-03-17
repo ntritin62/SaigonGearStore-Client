@@ -16,10 +16,6 @@ const ProductDetail = () => {
           <div className="flex gap-[60px] mt-[30px] sm:flex-col">
             <ul className="flex flex-col gap-[27px] grow">
               <li className="flex gap-x-[20px]">
-                <img src="/icon/document.svg" alt="" className="icon" />
-                <p className="text-2xl font-medium">Compare</p>
-              </li>
-              <li className="flex gap-x-[20px]">
                 <img src="/icon/cart.svg" alt="" className="icon" />
                 <span>
                   <p className="text-2xl font-medium">Delivery</p>
@@ -34,7 +30,7 @@ const ProductDetail = () => {
                 </span>
               </li>
             </ul>
-            <div className="p-[20px] border-[1px] border-solid border-[#B9BABE] rounded-md mx-auto">
+            <div className="p-[20px] border-[2px] border-solid border-[#B9BABE] rounded-md mx-auto">
               <span className="flex items-center gap-[10px]">
                 <p className="text-2xl font-medium">${product.price}</p>
                 <p className="text-2xl text-[#67B044] py-[2px] px-[8px] bg-[#e0eeda]">
@@ -42,15 +38,35 @@ const ProductDetail = () => {
                 </p>
               </span>
               <p className="text-4xl font-medium mt-[20px]">
-                ${product.price - (product.sale / 100) * product.price}
+                $
+                {(product.price - (product.sale / 100) * product.price).toFixed(
+                  2
+                )}
               </p>
-              <div className="mt-[20px] flex gap-[20px]">
+              <div className="mt-[20px] flex sm:flex-col gap-[20px]">
+                <div className="flex justify-between items-center gap-[10px] px-[20px] py-[10px] border-solid border-[3px] border-top-menu-border rounded-[10px] dark:border-dark-profile-text">
+                  <button className="w-[40px] h-[40px]">
+                    <img
+                      src="/icon/miner.svg"
+                      alt=""
+                      className="dark-icon w-full h-full"
+                    />
+                  </button>
+                  <span className="font-medium text-4xl">1</span>
+                  <button className="w-[40px] h-[40px]">
+                    <img
+                      src="/icon/plus.svg"
+                      alt=""
+                      className="dark-icon w-full h-full"
+                    />
+                  </button>
+                </div>
                 <button className="text-3xl font-medium rounded-md bg-[#FFB700] px-[50px] py-[10px]">
                   Add to cart
                 </button>
-                <button className="border-[1px] border-solid border-[#B9BABE] p-[11px] rounded-md">
+                {/* <button className="border-[1px] border-solid border-[#B9BABE] p-[11px] rounded-md">
                   <img src="/icon/heart.svg" alt="" className="icon" />
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
@@ -61,7 +77,7 @@ const ProductDetail = () => {
         </section>
       </div>
       <h2 className="mt-[50px] text-5xl font-bold">Similar Items</h2>
-      <div className="mt-[30px] mb-[100px] grid grid-cols-4 gap-[20px]">
+      <div className="mt-[30px] mb-[100px] grid grid-cols-4 sm:grid-cols-2  gap-[20px]">
         {similarProds.map((product) => (
           <ItemCard
             key={product._id}

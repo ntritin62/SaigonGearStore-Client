@@ -8,7 +8,7 @@ const ProfileRight = () => {
   const preview = false;
   return (
     <section className="col-span-8  rounded-[20px] p-[30px] bg-top-act-group dark:bg-dark-header-bg">
-      <h2 className="text-4xl font-bold">My Wallet</h2>
+      {/* <h2 className="text-4xl font-bold">My Wallet</h2>
       <p className="text-2xl mt-[4px]">Payment methods</p>
       <div className="mt-[16px] grid grid-cols-3 sm:grid-cols-1 lg:grid-cols-2 gap-[30px]">
         <Link to="./add-card" className="block mx-auto">
@@ -47,7 +47,7 @@ const ProfileRight = () => {
           cvc="235"
           name="JOHN SMITH"
         />
-      </div>
+      </div> */}
       <h2 className="text-4xl font-bold mt-[30px]">Account info</h2>
       <p className="text-2xl mt-[4px] ">
         Addresses, contact information and password
