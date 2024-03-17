@@ -72,16 +72,12 @@ const HomePage = () => {
           </div>
           <ul className="w-full grid grid-cols-4 gap-[30px] md:grid-cols-2 sm:grid-cols-1 md:gap-[20px] ">
             {coffees.map((coffee) => (
-              <li>
-                <a href="#!">
-                  <ItemCard
-                    img={coffee.img}
-                    title={coffee.title}
-                    price={coffee.price}
-                    stars={coffee.stars}
-                  />
-                </a>
-              </li>
+              <ItemCard
+                img={coffee.img}
+                title={coffee.title}
+                price={coffee.price}
+                stars={coffee.stars}
+              />
             ))}
           </ul>
         </div>

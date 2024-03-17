@@ -12,8 +12,8 @@ const Sidebar = ({ brands }) => {
             to={`./${brand.brandName}`}
             className={({ isActive }) =>
               isActive
-                ? 'flex items-center rounded-[10px] justify-between p-[20px] font-bold h-[60px] flex-shrink-0 bg-active-sidebar dark:text-text text-dark-text w-full md:w-[148px] md:h-[38px] md:text-2xl md:font-medium'
-                : 'flex items-center rounded-[10px] justify-between p-[20px] font-bold h-[60px] flex-shrink-0 dark:bg-dark-sidebar bg-sidebar w-full md:w-[148px] md:h-[38px] md:text-2xl md:font-medium'
+                ? 'flex items-center rounded-[10px] justify-between p-[20px] font-bold h-[60px] flex-shrink-0 bg-active-sidebar dark:text-text text-dark-text w-full md:w-[148px] md:h-[38px] md:text-2xl md:font-medium capitalize'
+                : 'flex items-center rounded-[10px] justify-between p-[20px] font-bold h-[60px] flex-shrink-0 dark:bg-dark-sidebar bg-sidebar w-full md:w-[148px] md:h-[38px] md:text-2xl md:font-medium capitalize'
             }
           >
             {brand.brandName}

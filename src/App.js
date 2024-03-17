@@ -21,6 +21,7 @@ import { action as LoginAction } from './pages/LoginPage/action';
 import { action as SignupAction } from './pages/SignUpPage/action';
 import { loader as BrandLoader } from './pages/ProductsPageLayout/loader';
 import { loader as ProductLoader } from './pages/ProductsPageLayout/components/ProductsMain/loader';
+import { loader as ProductDetailLoader } from './pages/ProductDetailPage/loader';
 const router = createBrowserRouter([
   {
     path: `${ROUTES.HOME}`,
@@ -85,6 +86,7 @@ const router = createBrowserRouter([
       {
         path: `${ROUTES.PRODUCTDETAIL}`,
         element: <ProductDetail />,
+        loader: ProductDetailLoader,
       },
       {
         path: ':categoryName',

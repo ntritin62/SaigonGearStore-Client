@@ -5,7 +5,6 @@ import Filter from './Filter';
 
 const ProductsMain = () => {
   const products = useLoaderData();
-
   const [filterIsShowed, setFilterIsShowed] = useState(false);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(200);
@@ -121,6 +120,7 @@ const ProductsMain = () => {
         {products.map((product) => (
           <ItemCard
             key={product._id}
+            id={product._id}
             isLiked={false}
             img={product.images[0]}
             title={product.name}

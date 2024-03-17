@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ItemCard = ({ img, title, price, stars, isLiked }) => {
+const ItemCard = ({ id, img, title, price, stars, isLiked }) => {
   return (
-    <Link>
+    <Link to={`/product/${id}`}>
       <section className="p-[16px] rounded-[20px] bg-item-card dark:bg-dark-item-card shadow-[0px_20px_60px_10px_rgba(237,237,246,0.20)] dark:shadow-[0px_20px_60px_10px_rgba(0,0,0,0.20)]">
         <div className="relative max-w-[280px] max-h-[284px] mx-auto">
           <img src={img} alt="" className="object-cover" />
