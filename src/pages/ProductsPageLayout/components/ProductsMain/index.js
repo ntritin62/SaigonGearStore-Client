@@ -5,7 +5,7 @@ import Filter from './Filter';
 
 const ProductsMain = () => {
   const products = useLoaderData();
-  console.log(products);
+
   const [filterIsShowed, setFilterIsShowed] = useState(false);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(200);
@@ -119,17 +119,14 @@ const ProductsMain = () => {
       </div>
       <ul className="mt-[30px] grid grid-cols-3 gap-[30px] md:grid-cols-2 sm:grid-cols-1">
         {products.map((product) => (
-          <li>
-            <a href="#!">
-              <ItemCard
-                isLiked={false}
-                img={product.images[0]}
-                title={product.name}
-                price={product.price}
-                stars=""
-              />
-            </a>
-          </li>
+          <ItemCard
+            key={product._id}
+            isLiked={false}
+            img={product.images[0]}
+            title={product.name}
+            price={product.price}
+            stars=""
+          />
         ))}
       </ul>
     </div>
