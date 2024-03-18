@@ -5,10 +5,13 @@ import ActionDropdown from './ActionDropdown';
 import { useState } from 'react';
 import * as ROUTES from '../../../constants/routes';
 import { Link } from 'react-router-dom';
+import { UseSelector, useSelector } from 'react-redux';
 
 const Header = () => {
   const [searchIsVisible, setSearchIsVisible] = useState(false);
   const [sideBarIsVisible, setSideBarIsVisible] = useState(false);
+  const cart = useSelector((state) => state.cart);
+
   // const docEl = document.documentElement;
   // const [isEnabled, setIsEnabled] = useState(docEl.classList.contains('dark'));
   const [isEnabled, setIsEnabled] = useState(localStorage.getItem('dark'));
@@ -26,7 +29,7 @@ const Header = () => {
         </button>
         {/* Logo */}
 
-        <a href={ROUTES.HOME} className=" flex items-center justify-between">
+        <Link href={ROUTES.HOME} className=" flex items-center justify-between">
           <figure className="flex items-center gap-[10px]">
             <img
               className="icon w-[50px] h-[50px] lg:w-[24px] lg:h-[24px]"
@@ -35,7 +38,7 @@ const Header = () => {
             />
             {/* <span className="text-4xl  font-bold lg:text-2xl">TNTGear</span> */}
           </figure>
-        </a>
+        </Link>
 
         {/* Navbar */}
         <nav
@@ -111,7 +114,9 @@ const Header = () => {
           <div className="relative group flex items-center  gap-[20px] bg-top-act-group dark:bg-dark-top-act-group px-[20px] py-[10px] rounded-lg text-2xl font-medium shadow-[0px_20px_60px_10px_rgba(237,237,246,0.20)] dark:shadow-[0px_20px_60px_10px_rgba(0,0,0,0.20)] md:hidden">
             <div className="flex items-center gap-[10px] cursor-pointer">
               <img src="/icon/cart.svg" alt="" className="icon" />
-              <p className="mt-[3px]">$65.42</p>
+              <p className="mt-[3px] w-[50px] text-center">
+                ${cart.totalPrice.toFixed(2)}
+              </p>
             </div>
             <ActionDropdown />
           </div>

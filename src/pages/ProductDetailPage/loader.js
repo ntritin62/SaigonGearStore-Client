@@ -24,7 +24,7 @@ export async function loader({ request, params }) {
       '',
       response.data.product.brand.brandName
     );
-    console.log(similarProds.data.products);
+
     return {
       product: response.data.product,
       similarProds: similarProds.data.products.filter((product) => {

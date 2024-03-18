@@ -179,7 +179,3 @@ select {
 .dark-icon {
   filter: var(--dark-icon);
 }
-
-.slick-slide > div {
-  margin: 0 10px;
-}

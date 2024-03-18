@@ -1,10 +1,30 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import ImageSlider from './components/ImageSlider';
 import { useLoaderData } from 'react-router-dom';
 import ItemCard from '../../components/ItemCard';
+import { addToCart } from '../../redux/cartSlice';
+import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 const ProductDetail = () => {
+  const dispatch = useDispatch();
+  const [quantity, setQuantity] = useState(1);
   const { product, similarProds } = useLoaderData();
+  const location = useLocation();
+  const addToCartHandler = () => {
+    const productData = {
+      productId: product._id,
+      productImage: product.images[0],
+      productName: product.name,
+      price: product.price - (product.sale / 100) * product.price,
+      quantity: quantity,
+    };
+    dispatch(addToCart(productData));
+  };
+
+  useEffect(() => {
+    setQuantity(1);
+  }, [location.pathname]);
   return (
     <div className="container pt-[30px]">
       <div className="grid grid-cols-12 lg:flex lg:flex-col gap-[30px]">
@@ -44,16 +64,27 @@ const ProductDetail = () => {
                 )}
               </p>
               <div className="mt-[20px] flex sm:flex-col gap-[20px]">
-                <div className="flex justify-between items-center gap-[10px] px-[20px] py-[10px] border-solid border-[3px] border-top-menu-border rounded-[10px] dark:border-dark-profile-text">
-                  <button className="w-[40px] h-[40px]">
+                <div
+                  key={product._id}
+                  className="flex justify-between items-center gap-[10px] px-[20px] py-[10px] border-solid border-[3px] border-top-menu-border rounded-[10px] dark:border-dark-profile-text"
+                >
+                  <button
+                    className="w-[40px] h-[40px]"
+                    onClick={() => setQuantity((prev) => prev - 1)}
+                  >
                     <img
                       src="/icon/miner.svg"
                       alt=""
                       className="dark-icon w-full h-full"
                     />
                   </button>
-                  <span className="font-medium text-4xl">1</span>
-                  <button className="w-[40px] h-[40px]">
+                  <span className="font-medium text-center text-4xl w-[30px]">
+                    {quantity}
+                  </span>
+                  <button
+                    className="w-[40px] h-[40px]"
+                    onClick={() => setQuantity((prev) => prev + 1)}
+                  >
                     <img
                       src="/icon/plus.svg"
                       alt=""
@@ -61,7 +92,10 @@ const ProductDetail = () => {
                     />
                   </button>
                 </div>
-                <button className="text-3xl font-medium rounded-md bg-[#FFB700] px-[50px] py-[10px]">
+                <button
+                  onClick={addToCartHandler}
+                  className="text-3xl font-medium rounded-md bg-[#FFB700] px-[50px] py-[10px]"
+                >
                   Add to cart
                 </button>
                 {/* <button className="border-[1px] border-solid border-[#B9BABE] p-[11px] rounded-md">

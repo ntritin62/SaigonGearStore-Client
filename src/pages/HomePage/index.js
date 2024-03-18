@@ -5,7 +5,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 
 const HomePage = () => {
   const { keyboardProds, mouseProds, headphoneProds } = useLoaderData();
-  console.log(keyboardProds);
+
   return (
     <div className="container  py-[40px]">
       <section className="flex flex-col gap-[40px]">
