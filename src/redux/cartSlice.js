@@ -1,5 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import getCart from '../services/cartService';
+import getCart, {
+  incrementInCartService,
+  decrementInCartService,
+} from '../services/cartService';
 import axios from 'axios';
 import {
   addToCartService,
@@ -34,6 +37,22 @@ export const removeFromCart = createAsyncThunk(
   }
 );
 
+export const incrementInCart = createAsyncThunk(
+  '/cart/incrementInCart',
+  async (params, _) => {
+    await incrementInCartService(params);
+    return params;
+  }
+);
+
+export const decrementInCart = createAsyncThunk(
+  '/cart/decrementInCart',
+  async (params, _) => {
+    await decrementInCartService(params);
+    return params;
+  }
+);
+
 const initialState = {
   products: [],
   totalPrice: 0,
@@ -46,42 +65,6 @@ export const cartSlice = createSlice({
     resetCart: (state, action) => {
       state.products = [];
       state.totalPrice = 0;
-    },
-
-    incrementInCart: (state, action) => {
-      const productToIncrease = state.products.find(
-        (product) => product._id === action.payload
-      );
-
-      productToIncrease.quantity++;
-
-      const index = state.products.findIndex(
-        (product) => product._id === action.payload
-      );
-      state.totalPrice += state.products[index].price;
-    },
-    decrementInCart: (state, action) => {
-      const productToRemove = state.products.find(
-        (product) => product._id === action.payload
-      );
-      state.productsNumber = state.productsNumber - 1;
-      if (productToRemove.quantity === 1) {
-        const index = state.products.findIndex(
-          (product) => product._id === action.payload
-        );
-        state.totalPrice -=
-          state.products[index].price *
-          parseInt(state.products[index].quantity);
-
-        state.products.splice(index, 1);
-      } else {
-        productToRemove.quantity--;
-
-        const index = state.products.findIndex(
-          (product) => product._id === action.payload
-        );
-        state.totalPrice -= state.products[index].price;
-      }
     },
   },
   extraReducers: (builder) => {
@@ -120,9 +103,47 @@ export const cartSlice = createSlice({
 
       state.products.splice(index, 1);
     });
+    builder.addCase(incrementInCart.fulfilled, (state, action) => {
+      const productToIncrease = state.products.find(
+        (product) => product._id === action.payload
+      );
+
+      productToIncrease.quantity++;
+      const index = state.products.findIndex(
+        (product) => product._id === action.payload
+      );
+      state.totalPrice +=
+        state.products[index].price -
+        (state.products[index].sale / 100) * state.products[index].price;
+    });
+    builder.addCase(decrementInCart.fulfilled, (state, action) => {
+      const productToRemove = state.products.find(
+        (product) => product._id === action.payload
+      );
+      state.productsNumber = state.productsNumber - 1;
+      if (productToRemove.quantity === 1) {
+        const index = state.products.findIndex(
+          (product) => product._id === action.payload
+        );
+        state.totalPrice -=
+          (state.products[index].price -
+            (state.products[index].sale / 100) * state.products[index].price) *
+          parseInt(state.products[index].quantity);
+
+        state.products.splice(index, 1);
+      } else {
+        productToRemove.quantity--;
+
+        const index = state.products.findIndex(
+          (product) => product._id === action.payload
+        );
+        state.totalPrice -=
+          state.products[index].price -
+          (state.products[index].sale / 100) * state.products[index].price;
+      }
+    });
   },
 });
 
-export const { incrementInCart, decrementInCart, resetCart } =
-  cartSlice.actions;
+export const { resetCart } = cartSlice.actions;
 export default cartSlice.reducer;

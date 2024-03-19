@@ -37,3 +37,31 @@ export const deleteItemInCartService = async (productId) => {
     },
   });
 };
+
+export const incrementInCartService = async (productId) => {
+  const token = getAuthToken();
+  return await axios.put(
+    `${process.env.REACT_APP_SERVER_URL}/cart/increase`,
+    { productId: productId },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+};
+
+export const decrementInCartService = async (productId) => {
+  const token = getAuthToken();
+  return await axios.put(
+    `${process.env.REACT_APP_SERVER_URL}/cart/decrease`,
+    { productId: productId },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+};
