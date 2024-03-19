@@ -16,7 +16,7 @@ const ActionDropdown = () => {
         />
         <div className="flex justify-between">
           <p className="text-3xl font-medium">
-            You have {cart.productsNumber} item
+            You have {cart.products.length} item
           </p>
           <Link
             to={ROUTES.CART}
@@ -30,13 +30,11 @@ const ActionDropdown = () => {
             return (
               <li className="p-[10px]">
                 <img
-                  src={product.productImage}
+                  src={product.images[0]}
                   alt=""
                   className="w-[175px] h-[175px] object-contain "
                 />
-                <p className="text-2xl font-normal mt-[14px]">
-                  {product.productName}
-                </p>
+                <p className="text-2xl font-normal mt-[14px]">{product.name}</p>
                 <p className="text-2xl font-medium mt-[6px]">
                   ${product.price}
                 </p>

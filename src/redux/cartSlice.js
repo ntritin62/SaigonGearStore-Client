@@ -1,4 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import getCart from '../services/getCart';
+import axios from 'axios';
+
+export const getUserCart = createAsyncThunk(
+  'cart/getUserCart',
+  async (params, thunkAPI) => {
+    const userCart = await getCart();
+    console.log(userCart);
+    return userCart.data.cart;
+  }
+);
+
 const initialState = {
   products: [],
   totalPrice: 0,
@@ -27,25 +39,23 @@ export const cartSlice = createSlice({
         action.payload.price * parseInt(action.payload.quantity);
     },
     removeFromCart: (state, action) => {
-      // find the product removing the array
       const productToRemove = state.products.find(
-        (product) => product._id === action.payload
+        (product) => product.productId === action.payload
       );
 
-      // find index of the product removing
       const index = state.products.findIndex(
-        (product) => product._id === action.payload
+        (product) => product.productId === action.payload
       );
       state.totalPrice -=
         state.products[index].price * parseInt(state.products[index].quantity);
-      // remove from the array
+
       state.products.splice(index, 1);
     },
     incrementInCart: (state, action) => {
       const productToIncrease = state.products.find(
         (product) => product.productId === action.payload
       );
-      console.log(productToIncrease);
+
       productToIncrease.quantity++;
 
       const index = state.products.findIndex(
@@ -76,6 +86,13 @@ export const cartSlice = createSlice({
         state.totalPrice -= state.products[index].price;
       }
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getUserCart.fulfilled, (state, action) => {
+      console.log(action);
+      state.products = action.payload.products;
+      state.totalPrice = action.payload.totalPrice;
+    });
   },
 });
 

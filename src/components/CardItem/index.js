@@ -1,14 +1,19 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { incrementInCart, decrementInCart } from '../../redux/cartSlice';
+import {
+  incrementInCart,
+  decrementInCart,
+  removeFromCart,
+} from '../../redux/cartSlice';
 const CardItem = ({ product }) => {
+  console.log(product);
   const dispatch = useDispatch();
   return (
     <div>
       <li className="flex gap-[30px] items-center">
         <figure className="w-[175px] h-[175px] sm:w-[60px] sm:h-[60px]">
           <img
-            src={product.productImage}
+            src={product.images[0]}
             alt=""
             className="w-full h-full object-contain"
           />
@@ -16,7 +21,7 @@ const CardItem = ({ product }) => {
         <section className="w-full flex flex-col gap-[16px]">
           <div className="flex justify-between shrink-0 sm:flex-col sm:gap-[10px] ">
             <h2 className="w-[374px] text-3xl font-medium sm:text-xl sm:w-full ">
-              {product.productName}
+              {product.name}
             </h2>
             <p className="text-4xl font-bold">${product.price.toFixed(2)}</p>
           </div>
@@ -38,7 +43,9 @@ const CardItem = ({ product }) => {
                   className="dark-icon w-full h-full"
                 />
               </button>
-              <span className="font-medium text-2xl">{product.quantity}</span>
+              <span className="font-medium text-2xl text-center w-[20px]">
+                {product.quantity}
+              </span>
               <button
                 className="w-[20px] h-[20px]"
                 onClick={() => {
@@ -52,7 +59,12 @@ const CardItem = ({ product }) => {
                 />
               </button>
             </div>
-            <button className="flex gap-[10px]">
+            <button
+              className="flex gap-[10px]"
+              onClick={() => {
+                dispatch(removeFromCart(product.productId));
+              }}
+            >
               <img
                 src="/icon/trash-can.svg"
                 alt=""
