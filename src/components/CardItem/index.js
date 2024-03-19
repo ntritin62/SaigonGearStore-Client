@@ -23,18 +23,23 @@ const CardItem = ({ product }) => {
             <h2 className="w-[374px] text-3xl font-medium sm:text-xl sm:w-full ">
               {product.name}
             </h2>
-            <p className="text-4xl font-bold">${product.price.toFixed(2)}</p>
+            <p className="text-4xl font-bold">
+              $
+              {(product.price - (product.sale / 100) * product.price).toFixed(
+                2
+              )}
+            </p>
           </div>
           <div className="text-checkout-text font-medium">
             ${product.price.toFixed(2)} |{' '}
             <span className="text-[#67B044]">In Stock</span>
           </div>
           <div className="flex justify-between items-center">
-            <div className="flex items-center gap-[10px] px-[20px] py-[10px] border-solid border-[1px] border-top-menu-border rounded-[10px] dark:border-dark-profile-text">
+            <div className="select-none flex items-center gap-[10px] px-[20px] py-[10px] border-solid border-[1px] border-top-menu-border rounded-[10px] dark:border-dark-profile-text">
               <button
                 className="w-[20px] h-[20px]"
                 onClick={() => {
-                  dispatch(decrementInCart(product.productId));
+                  dispatch(decrementInCart(product._id));
                 }}
               >
                 <img
@@ -49,7 +54,7 @@ const CardItem = ({ product }) => {
               <button
                 className="w-[20px] h-[20px]"
                 onClick={() => {
-                  dispatch(incrementInCart(product.productId));
+                  dispatch(incrementInCart(product._id));
                 }}
               >
                 <img

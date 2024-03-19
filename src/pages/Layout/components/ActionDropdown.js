@@ -36,7 +36,7 @@ const ActionDropdown = () => {
                 />
                 <p className="text-2xl font-normal mt-[14px]">{product.name}</p>
                 <p className="text-2xl font-medium mt-[6px]">
-                  ${product.price}
+                  ${product.price - (product.sale / 100) * product.price}
                 </p>
               </li>
             );

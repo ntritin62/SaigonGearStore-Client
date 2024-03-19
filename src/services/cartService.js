@@ -9,3 +9,17 @@ export default async function getCart() {
     },
   });
 }
+
+export const addToCartService = async (product) => {
+  const token = getAuthToken();
+  return await axios.post(
+    `${process.env.REACT_APP_SERVER_URL}/cart`,
+    { product: product },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+};

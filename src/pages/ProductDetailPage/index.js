@@ -12,13 +12,7 @@ const ProductDetail = () => {
   const { product, similarProds } = useLoaderData();
   const location = useLocation();
   const addToCartHandler = () => {
-    const productData = {
-      productId: product._id,
-      productImage: product.images[0],
-      productName: product.name,
-      price: product.price - (product.sale / 100) * product.price,
-      quantity: quantity,
-    };
+    const productData = { ...product, quantity: quantity };
     dispatch(addToCart(productData));
   };
 

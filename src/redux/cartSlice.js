@@ -1,13 +1,26 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import getCart from '../services/getCart';
+import getCart from '../services/cartService';
 import axios from 'axios';
+import { addToCartService } from '../services/cartService';
 
 export const getUserCart = createAsyncThunk(
   'cart/getUserCart',
   async (params, thunkAPI) => {
     const userCart = await getCart();
-    console.log(userCart);
     return userCart.data.cart;
+  }
+);
+
+export const addToCart = createAsyncThunk(
+  'cart/addToCart',
+  async (params, _) => {
+    console.log(params);
+    const product = {
+      _id: params._id,
+      quantity: params.quantity,
+    };
+    await addToCartService(product);
+    return params;
   }
 );
 
@@ -24,20 +37,7 @@ export const cartSlice = createSlice({
       state.products = [];
       state.totalPrice = 0;
     },
-    addToCart: (state, action) => {
-      const addProductExists = state.products.find(
-        (product) => product.productId === action.payload.productId
-      );
-      if (addProductExists) {
-        addProductExists.quantity += parseInt(action.payload.quantity);
-      } else {
-        state.products.push({
-          ...action.payload,
-        });
-      }
-      state.totalPrice +=
-        action.payload.price * parseInt(action.payload.quantity);
-    },
+
     removeFromCart: (state, action) => {
       const productToRemove = state.products.find(
         (product) => product.productId === action.payload
@@ -53,24 +53,24 @@ export const cartSlice = createSlice({
     },
     incrementInCart: (state, action) => {
       const productToIncrease = state.products.find(
-        (product) => product.productId === action.payload
+        (product) => product._id === action.payload
       );
 
       productToIncrease.quantity++;
 
       const index = state.products.findIndex(
-        (product) => product.productId === action.payload
+        (product) => product._id === action.payload
       );
       state.totalPrice += state.products[index].price;
     },
     decrementInCart: (state, action) => {
       const productToRemove = state.products.find(
-        (product) => product.productId === action.payload
+        (product) => product._id === action.payload
       );
       state.productsNumber = state.productsNumber - 1;
       if (productToRemove.quantity === 1) {
         const index = state.products.findIndex(
-          (product) => product.productId === action.payload
+          (product) => product._id === action.payload
         );
         state.totalPrice -=
           state.products[index].price *
@@ -81,7 +81,7 @@ export const cartSlice = createSlice({
         productToRemove.quantity--;
 
         const index = state.products.findIndex(
-          (product) => product.productId === action.payload
+          (product) => product._id === action.payload
         );
         state.totalPrice -= state.products[index].price;
       }
@@ -89,18 +89,28 @@ export const cartSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getUserCart.fulfilled, (state, action) => {
-      console.log(action);
       state.products = action.payload.products;
       state.totalPrice = action.payload.totalPrice;
+    });
+    builder.addCase(addToCart.fulfilled, (state, action) => {
+      const addProductExists = state.products.find(
+        (product) => product._id === action.payload._id
+      );
+      if (addProductExists) {
+        addProductExists.quantity += action.payload.quantity;
+      } else {
+        state.products.push({
+          ...action.payload,
+        });
+      }
+      state.totalPrice +=
+        (action.payload.price -
+          (action.payload.sale / 100) * action.payload.price) *
+        action.payload.quantity;
     });
   },
 });
 
-export const {
-  addToCart,
-  removeFromCart,
-  incrementInCart,
-  decrementInCart,
-  resetCart,
-} = cartSlice.actions;
+export const { removeFromCart, incrementInCart, decrementInCart, resetCart } =
+  cartSlice.actions;
 export default cartSlice.reducer;
