@@ -67,7 +67,7 @@ const CardItem = ({ product }) => {
             <button
               className="flex gap-[10px]"
               onClick={() => {
-                dispatch(removeFromCart(product.productId));
+                dispatch(removeFromCart(product._id));
               }}
             >
               <img

@@ -26,14 +26,14 @@ export const addToCartService = async (product) => {
 
 export const deleteItemInCartService = async (productId) => {
   const token = getAuthToken();
-  return await axios.delete(
-    `${process.env.REACT_APP_SERVER_URL}/cart`,
-    { productId: productId },
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+
+  return await axios.delete(`${process.env.REACT_APP_SERVER_URL}/cart/`, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    data: {
+      productId,
+    },
+  });
 };

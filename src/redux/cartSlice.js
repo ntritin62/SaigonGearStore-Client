@@ -1,7 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import getCart from '../services/cartService';
 import axios from 'axios';
-import { addToCartService } from '../services/cartService';
+import {
+  addToCartService,
+  deleteItemInCartService,
+} from '../services/cartService';
 
 export const getUserCart = createAsyncThunk(
   'cart/getUserCart',
@@ -14,12 +17,19 @@ export const getUserCart = createAsyncThunk(
 export const addToCart = createAsyncThunk(
   'cart/addToCart',
   async (params, _) => {
-    console.log(params);
     const product = {
       _id: params._id,
       quantity: params.quantity,
     };
     await addToCartService(product);
+    return params;
+  }
+);
+
+export const removeFromCart = createAsyncThunk(
+  'cart/removeFromCart',
+  async (params, _) => {
+    await deleteItemInCartService(params);
     return params;
   }
 );
@@ -38,19 +48,6 @@ export const cartSlice = createSlice({
       state.totalPrice = 0;
     },
 
-    removeFromCart: (state, action) => {
-      const productToRemove = state.products.find(
-        (product) => product.productId === action.payload
-      );
-
-      const index = state.products.findIndex(
-        (product) => product.productId === action.payload
-      );
-      state.totalPrice -=
-        state.products[index].price * parseInt(state.products[index].quantity);
-
-      state.products.splice(index, 1);
-    },
     incrementInCart: (state, action) => {
       const productToIncrease = state.products.find(
         (product) => product._id === action.payload
@@ -108,9 +105,24 @@ export const cartSlice = createSlice({
           (action.payload.sale / 100) * action.payload.price) *
         action.payload.quantity;
     });
+    builder.addCase(removeFromCart.fulfilled, (state, action) => {
+      const productToRemove = state.products.find(
+        (product) => product._id === action.payload
+      );
+
+      const index = state.products.findIndex(
+        (product) => product._id === action.payload
+      );
+      state.totalPrice -=
+        (state.products[index].price -
+          (state.products[index].sale / 100) * state.products[index].price) *
+        state.products[index].quantity;
+
+      state.products.splice(index, 1);
+    });
   },
 });
 
-export const { removeFromCart, incrementInCart, decrementInCart, resetCart } =
+export const { incrementInCart, decrementInCart, resetCart } =
   cartSlice.actions;
 export default cartSlice.reducer;
