@@ -4,12 +4,9 @@ import Header from './components/Header';
 import { ScrollRestoration } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getUserCart } from '../../redux/cartSlice';
+import { getUser } from '../../redux/userSlice';
 
 const Layout = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getUserCart());
-  }, []);
   return (
     <>
       <Header />

@@ -5,6 +5,7 @@ import { UseSelector, useSelector } from 'react-redux';
 
 const CartBox = ({ path }) => {
   const cart = useSelector((state) => state.cart);
+
   return (
     <div className="col-span-3 bg-white dark:bg-dark-sidebar rounded-[20px] p-[30px] h-fit">
       <div className="flex justify-between text-3xl font-medium lg:text-3xl  ">
@@ -28,6 +29,7 @@ const CartBox = ({ path }) => {
         <p>Estimated Total</p>
         <p>${cart.totalPrice.toFixed(2)}</p>
       </div>
+
       <Link
         to={path === 'shipping' ? ROUTES.PAYMENTMETHOD : ROUTES.SHIPPING}
         className="mt-[30px] bg-[#FFB700] py-[18px] block rounded-full text-3xl font-medium w-full text-text text-center "

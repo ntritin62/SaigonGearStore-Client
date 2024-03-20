@@ -6,7 +6,6 @@ import {
   removeFromCart,
 } from '../../redux/cartSlice';
 const CardItem = ({ product }) => {
-  console.log(product);
   const dispatch = useDispatch();
   return (
     <div>

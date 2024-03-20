@@ -3,7 +3,7 @@ import getCart, {
   incrementInCartService,
   decrementInCartService,
 } from '../services/cartService';
-import axios from 'axios';
+
 import {
   addToCartService,
   deleteItemInCartService,
@@ -56,6 +56,7 @@ export const decrementInCart = createAsyncThunk(
 const initialState = {
   products: [],
   totalPrice: 0,
+  address: {},
 };
 
 export const cartSlice = createSlice({
@@ -65,6 +66,9 @@ export const cartSlice = createSlice({
     resetCart: (state, action) => {
       state.products = [];
       state.totalPrice = 0;
+    },
+    setAddress: (state, action) => {
+      state.address = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -145,5 +149,5 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { resetCart } = cartSlice.actions;
+export const { resetCart, setAddress } = cartSlice.actions;
 export default cartSlice.reducer;

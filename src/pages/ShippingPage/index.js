@@ -2,23 +2,24 @@ import React from 'react';
 import CardItem from '../../components/CardItem';
 import { Link } from 'react-router-dom';
 import CartBox from '../../components/Cart';
-import { useState } from 'react';
-import { UseSelector, useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setAddress } from '../../redux/cartSlice';
 
 const ShippingPage = () => {
-  const [selectedOption, setSelectedOption] = useState('');
   const cart = useSelector((state) => state.cart);
-
+  const { user } = useSelector((state) => state.user);
+  const [selectedOption, setSelectedOption] = useState('');
+  const dispatch = useDispatch();
+  useEffect(() => {
+    setSelectedOption(user.address[0]._id);
+    dispatch(setAddress(user.address[0]._id));
+  }, [user]);
   const handleInputChange = (event) => {
     setSelectedOption(event.target.value);
-    console.log(selectedOption);
+    dispatch(setAddress(event.target.value));
   };
 
-  const radioOptions = [
-    { id: '1', label: 'Option 1' },
-    { id: '2', label: 'Option 2' },
-    { id: '3', label: 'Option 3' },
-  ];
   return (
     <>
       <div className="container pt-[10px]">
@@ -48,52 +49,50 @@ const ShippingPage = () => {
               </button>
             </div>
             <ul className="max-h-[200px] overflow-y-auto flex flex-col gap-[30px]">
-              {radioOptions.map((option) => (
-                <li className="flex justify-between sm:flex-col sm:gap-[16px]">
-                  <div className="flex gap-[16px]">
-                    <input
-                      type="radio"
-                      name="address"
-                      id={option.id}
-                      value={option.id}
-                      checked={selectedOption === option.id}
-                      onChange={handleInputChange}
-                      hidden
-                    />
-                    <label
-                      htmlFor={option.id}
-                      className="w-[19px] h-[19px] shrink-0 "
-                    >
-                      {selectedOption === option.id ? (
-                        <img
-                          src="/icon/check.svg"
-                          alt=""
-                          className="w-full h-full"
-                        />
-                      ) : (
-                        <div className="w-full h-full border-solid border-[1.5px] rounded-lg border-[#1A162E] dark:border-[#B9BABE] "></div>
-                      )}
-                    </label>
-                    <div>
-                      <p className="text-3xl font-medium sm:text-2xl">
-                        Imran Khan
-                      </p>
-                      <p className="text-2xl sm:text-xl">
-                        Al Hamra City (10th Floor), Hazrat Shahjalal Road,
-                        Sylhet, Sylhet, Bangladesh
-                      </p>
-                      <ul className="list-disc flex gap-[30px] mt-[20px] sm:text-xl ml-[15px]">
-                        <li>Shipping</li>
-                        <li>Delivery from store</li>
-                      </ul>
+              {user.address &&
+                user.address.map((address) => (
+                  <li className="flex justify-between sm:flex-col sm:gap-[16px]">
+                    <div className="flex gap-[16px]">
+                      <input
+                        type="radio"
+                        name="address"
+                        id={address._id}
+                        value={address._id}
+                        checked={selectedOption === address._id}
+                        onChange={handleInputChange}
+                        hidden
+                      />
+                      <label
+                        htmlFor={address._id}
+                        className="w-[19px] h-[19px] shrink-0 "
+                      >
+                        {selectedOption === address._id ? (
+                          <img
+                            src="/icon/check.svg"
+                            alt=""
+                            className="w-full h-full"
+                          />
+                        ) : (
+                          <div className="w-full h-full border-solid border-[1.5px] rounded-lg border-[#1A162E] dark:border-[#B9BABE] "></div>
+                        )}
+                      </label>
+                      <div>
+                        <p className="text-3xl font-medium sm:text-2xl">
+                          {address.name}
+                        </p>
+                        <p className="text-2xl sm:text-xl">{address.address}</p>
+                        <ul className="list-disc flex gap-[30px] mt-[20px] sm:text-xl ml-[15px]">
+                          <li>Shipping</li>
+                          <li>Delivery from store</li>
+                        </ul>
+                      </div>
                     </div>
-                  </div>
-                  <button className="flex gap-[10px] mt-auto mr-[15px]">
-                    <img src="/icon/edit.svg" alt="" className="dark-icon" />
-                    <span>Edit</span>
-                  </button>
-                </li>
-              ))}
+                    <button className="flex gap-[10px] mt-auto mr-[15px]">
+                      <img src="/icon/edit.svg" alt="" className="dark-icon" />
+                      <span>Edit</span>
+                    </button>
+                  </li>
+                ))}
             </ul>
           </div>
 
@@ -118,16 +117,16 @@ const ShippingPage = () => {
             <div className="w-[283px]">
               <div className="flex justify-between text-3xl font-medium">
                 <p>Subtotal:</p>
-                <p>$191.65</p>
+                <p>${cart.totalPrice.toFixed(2)}</p>
               </div>
               <div className="flex justify-between text-3xl font-medium mt-[10px]">
                 <p>Shipping:</p>
-                <p>$10:00</p>
+                <p>Free</p>
               </div>
               <div className="h-[1px] w-full dark:bg-[#B9BABE] bg-top-menu-border my-[30px]"></div>
               <div className="flex justify-between text-4xl font-bold">
                 <p>Total:</p>
-                <p>$201.65</p>
+                <p>${cart.totalPrice.toFixed(2)}</p>
               </div>
             </div>
           </div>

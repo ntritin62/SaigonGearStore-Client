@@ -1,9 +1,19 @@
 import React from 'react';
+import { useEffect, useState } from 'react';
 import * as ROUTES from '../../constants/routes';
 import { Link } from 'react-router-dom';
 import PaymentCard from '../../components/PaymentCard';
+import { useSelector } from 'react-redux';
 
 const PaymentPage = () => {
+  const cart = useSelector((state) => state.cart);
+  const { user } = useSelector((state) => state.user);
+  const [address, setAddress] = useState();
+
+  useEffect(() => {
+    setAddress(user.address.find((address) => address._id === cart.address));
+  }, [cart, user]);
+
   return (
     <>
       <div className="container pt-[10px]">
@@ -32,10 +42,21 @@ const PaymentPage = () => {
               </Link>
             </div>
             <div className="my-[30px] bg-body-bg dark:bg-dark-body-bg p-[20px] rounded-[20px] flex justify-between items-center">
-              <div>
-                <p className="text-2xl font-medium mb-[4px]">Imran Khan</p>
-                <p>Museum of Rajas, Sylhet Sadar, Sylhet 3100.</p>
-              </div>
+              {address && (
+                <div>
+                  <p className="text-2xl font-medium mb-[4px]">
+                    {address.name}
+                  </p>
+                  <p className="text-2xl font-medium">
+                    Address:{' '}
+                    <span className="font-normal">{address.address}</span>
+                  </p>
+                  <p className="text-2xl font-medium">
+                    Phone Number:{' '}
+                    <span className="font-normal">{address.phoneNumber}</span>
+                  </p>
+                </div>
+              )}
               <div className="w-[31px] h-[31px]">
                 <img src="/icon/check.svg" alt="" className="w-full h-full" />
               </div>
@@ -43,7 +64,7 @@ const PaymentPage = () => {
             <div className="my-[30px] bg-body-bg dark:bg-dark-body-bg p-[20px] rounded-[20px] flex justify-between items-center">
               <div>
                 <p className="text-2xl font-medium mb-[4px]">Items details</p>
-                <p>2 items</p>
+                <p>{cart.products.length} items</p>
               </div>
               <Link
                 to={ROUTES.SHIPPING}
@@ -85,7 +106,30 @@ const PaymentPage = () => {
           </div>
         </div>
         <div className="col-span-3 p-[30px] rounded-[20px] bg-white dark:bg-dark-sidebar">
-          <PaymentCard />
+          <div className="flex justify-between text-2xl font-medium lg:text-3xl  ">
+            <p>
+              Subtotal <span className="font-normal">(items)</span>
+            </p>
+            <p>{cart.products.length}</p>
+          </div>
+          <div className="flex justify-between text-2xl font-medium mt-[10px] lg:text-3xl  ">
+            <p>
+              Price <span className="font-normal">(Total)</span>
+            </p>
+            <p>${cart.totalPrice.toFixed(2)}</p>
+          </div>
+          <div className="flex justify-between text-2xl font-medium mt-[10px] lg:text-3xl  ">
+            <p>Shipping</p>
+            <p>Free</p>
+          </div>
+          <div className="h-[1px] w-full dark:bg-[#B9BABE] bg-top-menu-border my-[20px]"></div>
+          <div className="flex justify-between text-2xl font-medium lg:text-3xl ">
+            <p>Estimated Total</p>
+            <p>${cart.totalPrice.toFixed(2)}</p>
+          </div>
+          <div className="mt-[30px]">
+            <PaymentCard />
+          </div>
         </div>
       </div>
     </>

@@ -6,7 +6,8 @@ import { useSelector } from 'react-redux';
 
 const CheckoutPage = () => {
   const cart = useSelector((state) => state.cart);
-
+  const user = useSelector((state) => state.user);
+  // console.log(user);
   return (
     <>
       <div className="container pt-[10px]">

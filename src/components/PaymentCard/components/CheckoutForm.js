@@ -44,7 +44,10 @@ export default function CheckoutForm() {
       <PaymentElement id="payment-element" />
       {/* Show any error or success messages */}
       {message && (
-        <div id="payment-message" className="mt-[30px]">
+        <div
+          id="payment-message"
+          className="mt-[30px] text-[#df1b41] font-medium text-3xl"
+        >
           {message}
         </div>
       )}

@@ -1,4 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { getUserCart } from './redux/cartSlice';
+import { getUser } from './redux/userSlice';
 import * as ROUTES from './constants/routes';
 import Layout from './pages/Layout';
 import HomePage from './pages/HomePage';
@@ -111,6 +115,11 @@ const router = createBrowserRouter([
   },
 ]);
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUserCart());
+    dispatch(getUser());
+  }, []);
   return <RouterProvider router={router} />;
 }
 
