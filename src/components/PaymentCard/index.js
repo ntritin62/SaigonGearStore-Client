@@ -11,13 +11,15 @@ function Payment() {
   const [clientSecret, setClientSecret] = useState('');
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER_URL}/checkout/config`).then(
-      async (r) => {
+    fetch(`${process.env.REACT_APP_SERVER_URL}/checkout/config`)
+      .then(async (r) => {
         const { publishableKey } = await r.json();
 
         setStripePromise(loadStripe(publishableKey));
-      }
-    );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   useEffect(() => {
@@ -31,11 +33,15 @@ function Payment() {
           Authorization: `Bearer ${token}`,
         },
       }
-    ).then(async (result) => {
-      var { clientSecret } = await result.json();
+    )
+      .then(async (result) => {
+        var { clientSecret } = await result.json();
 
-      setClientSecret(clientSecret);
-    });
+        setClientSecret(clientSecret);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   return (

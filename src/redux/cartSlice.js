@@ -13,6 +13,7 @@ export const getUserCart = createAsyncThunk(
   'cart/getUserCart',
   async (params, thunkAPI) => {
     const userCart = await getCart();
+
     return userCart.data.cart;
   }
 );
@@ -66,6 +67,7 @@ export const cartSlice = createSlice({
     resetCart: (state, action) => {
       state.products = [];
       state.totalPrice = 0;
+      state.address = {};
     },
     setAddress: (state, action) => {
       state.address = action.payload;

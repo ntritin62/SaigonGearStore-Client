@@ -2,11 +2,18 @@ import { PaymentElement } from '@stripe/react-stripe-js';
 import { useState } from 'react';
 import { useStripe, useElements } from '@stripe/react-stripe-js';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import getAuthToken from '../../../services/getToken';
+import { resetCart } from '../../../redux/cartSlice';
 
 export default function CheckoutForm() {
+  const dispatch = useDispatch();
+  const token = getAuthToken();
   const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
+  const cart = useSelector((state) => state.cart);
 
   const [message, setMessage] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -24,11 +31,32 @@ export default function CheckoutForm() {
 
     const { error } = await stripe.confirmPayment({
       elements,
-      confirmParams: {
-        // Make sure to change this to your payment completion page
-        return_url: `${window.location.origin}/checkout/complete`,
-      },
+      redirect: 'if_required',
     });
+
+    const products = cart.products.map((product) => {
+      return { productId: product._id, quantity: product.quantity };
+    });
+    const cartData = {
+      address: cart.address,
+      totalPrice: cart.totalPrice,
+      products,
+    };
+
+    if (!error) {
+      await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/checkout/confirm-payment`,
+        { cart: cartData },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      dispatch(resetCart());
+      return navigate('/checkout/complete');
+    }
 
     if (error.type === 'card_error' || error.type === 'validation_error') {
       setMessage(error.message);
