@@ -9,18 +9,25 @@ function Payment() {
   const [clientSecret, setClientSecret] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:5252/config').then(async (r) => {
-      const { publishableKey } = await r.json();
-      setStripePromise(loadStripe(publishableKey));
-    });
+    fetch(`${process.env.REACT_APP_SERVER_URL}/checkout/config`).then(
+      async (r) => {
+        const { publishableKey } = await r.json();
+        console.log(publishableKey);
+        setStripePromise(loadStripe(publishableKey));
+      }
+    );
   }, []);
 
   useEffect(() => {
-    fetch('http://localhost:5252/create-payment-intent', {
-      method: 'POST',
-      body: JSON.stringify({}),
-    }).then(async (result) => {
+    fetch(
+      `${process.env.REACT_APP_SERVER_URL}/checkout/create-payment-intent`,
+      {
+        method: 'POST',
+        body: JSON.stringify({}),
+      }
+    ).then(async (result) => {
       var { clientSecret } = await result.json();
+      console.log(result);
       setClientSecret(clientSecret);
     });
   }, []);

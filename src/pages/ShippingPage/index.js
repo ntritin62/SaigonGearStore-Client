@@ -3,9 +3,11 @@ import CardItem from '../../components/CardItem';
 import { Link } from 'react-router-dom';
 import CartBox from '../../components/Cart';
 import { useState } from 'react';
+import { UseSelector, useSelector } from 'react-redux';
 
 const ShippingPage = () => {
   const [selectedOption, setSelectedOption] = useState('');
+  const cart = useSelector((state) => state.cart);
 
   const handleInputChange = (event) => {
     setSelectedOption(event.target.value);
@@ -97,12 +99,12 @@ const ShippingPage = () => {
 
           <h2 className="text-3xl font-medium mt-[30px]">Items details</h2>
           <ul className="flex flex-col gap-[30px] mt-[30px]">
-            <CardItem />
-            <div className="h-[1px] w-full dark:bg-[#B9BABE] bg-top-menu-border"></div>
-            <CardItem />
-            <div className="h-[1px] w-full dark:bg-[#B9BABE] bg-top-menu-border"></div>
-            <CardItem />
-            <div className="h-[1px] w-full dark:bg-[#B9BABE] bg-top-menu-border"></div>
+            {cart.products.map((product) => (
+              <>
+                <CardItem product={product} />
+                <div className="h-[1px] w-full dark:bg-[#B9BABE] bg-top-menu-border"></div>
+              </>
+            ))}
           </ul>
           <div className="flex mt-[30px] items-end justify-between sm:hidden">
             <Link className="flex gap-[10px] items-center">
