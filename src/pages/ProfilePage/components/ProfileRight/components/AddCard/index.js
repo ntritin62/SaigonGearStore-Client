@@ -36,18 +36,18 @@ const AddCard = () => {
       <Form onSubmit={handleSubmit(submitHandler)} className="mt-[30px]">
         <div className="grid grid-cols-2 gap-[30px] sm:grid-cols-1">
           <div className="flex flex-col gap-[20px] relative">
-            <label htmlFor="fullName" className="text-3xl font-medium">
+            <label htmlFor="name" className="text-3xl font-medium">
               Full name
             </label>
             <input
               type="text"
-              id="fullName"
-              name="fullName"
+              id="name"
+              name="name"
               className="p-[12px] border-[1px] border-solid border-[#D2D1D6] rounded-[10px] placeholder:text-[#D2D1D6]"
               placeholder="Full Name"
-              {...register('fullName', { required: true })}
+              {...register('name', { required: true })}
             />
-            {errors.fullName && (
+            {errors.name && (
               <p className="absolute bottom-[-25px] text-2xl font-medium text-rose-900">
                 Please enter your full name.
               </p>
@@ -63,7 +63,11 @@ const AddCard = () => {
               name="phoneNumber"
               className="p-[12px] border-[1px] border-solid border-[#D2D1D6] rounded-[10px] placeholder:text-[#D2D1D6]"
               placeholder="Phone number"
-              {...register('phoneNumber', { required: true })}
+              {...register('phoneNumber', {
+                required: true,
+                pattern:
+                  /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/gm,
+              })}
             />
             {errors.phoneNumber && (
               <p className="absolute bottom-[-25px] text-2xl font-medium text-rose-900">
@@ -84,8 +88,6 @@ const AddCard = () => {
               placeholder="Address"
               {...register('address', {
                 required: true,
-                pattern:
-                  /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/gm,
               })}
             />
             {errors.address && (

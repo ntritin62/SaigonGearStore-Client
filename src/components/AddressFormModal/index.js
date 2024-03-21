@@ -98,7 +98,11 @@ const AddressFormModal = ({ closeForm, data, setSelectedOption }) => {
                 name="phoneNumber"
                 className="p-[12px] border-[1px] border-solid border-[#D2D1D6] rounded-[10px] placeholder:text-[#D2D1D6]"
                 placeholder="Phone number"
-                {...register('phoneNumber', { required: true })}
+                {...register('phoneNumber', {
+                  required: true,
+                  pattern:
+                    /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/gm,
+                })}
               />
               {errors.phoneNumber && (
                 <p className="absolute bottom-[-25px] text-2xl font-medium text-rose-900">
