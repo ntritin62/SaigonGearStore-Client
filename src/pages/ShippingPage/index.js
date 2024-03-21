@@ -5,8 +5,13 @@ import CartBox from '../../components/Cart';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setAddress } from '../../redux/cartSlice';
+import AddressFormModal from '../../components/AddressFormModal';
 
 const ShippingPage = () => {
+  const [addressModelIsShowed, setAddressModelIsShowed] = useState({
+    status: '',
+    data: null,
+  });
   const cart = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
   const [selectedOption, setSelectedOption] = useState('');
@@ -20,8 +25,22 @@ const ShippingPage = () => {
     dispatch(setAddress(event.target.value));
   };
 
+  const closeAddressModal = () => {
+    setAddressModelIsShowed({ status: false });
+  };
+
+  const showAddressModal = (data) => {
+    setAddressModelIsShowed({ status: true, data: data });
+  };
+
   return (
     <>
+      {addressModelIsShowed.status && (
+        <AddressFormModal
+          closeForm={closeAddressModal}
+          data={addressModelIsShowed.data}
+        />
+      )}
       <div className="container pt-[10px]">
         <div className="flex text-checkout-text text-2xl font-medium gap-[20px] mt-[30px] rounded-[10px] bg-white p-[20px] dark:bg-dark-sidebar">
           <p>Home</p>
@@ -39,7 +58,12 @@ const ShippingPage = () => {
                 <h2 className="text-3xl font-medium">Shipping address</h2>
                 <p className="text-2xl">Where should we deliver your order?</p>
               </div>
-              <button className="flex gap-[10px] py-[10px] px-[20px] bg-[#FFB700] text-3xl font-medium rounded-full sm:mx-auto text-text">
+              <button
+                onClick={() => {
+                  showAddressModal({});
+                }}
+                className="flex gap-[10px] py-[10px] px-[20px] bg-[#FFB700] text-3xl font-medium rounded-full sm:mx-auto text-text"
+              >
                 <img
                   src="/icon/plus.svg"
                   alt=""
@@ -87,7 +111,12 @@ const ShippingPage = () => {
                         </ul>
                       </div>
                     </div>
-                    <button className="flex gap-[10px] mt-auto mr-[15px]">
+                    <button
+                      onClick={() => {
+                        showAddressModal(address);
+                      }}
+                      className="flex gap-[10px] mt-auto mr-[15px]"
+                    >
                       <img src="/icon/edit.svg" alt="" className="dark-icon" />
                       <span>Edit</span>
                     </button>
