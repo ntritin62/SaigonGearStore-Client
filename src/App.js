@@ -84,7 +84,7 @@ const router = createBrowserRouter([
             action: EditInfoAction,
           },
           {
-            path: 'add-card',
+            path: 'add-address',
             element: <AddCard />,
             action: AddCardAction,
           },

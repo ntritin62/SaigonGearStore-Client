@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getUserService } from '../services/userService';
 import axios from 'axios';
 const initialState = {
-  user: { address: [{ _id: '' }] },
+  user: { name: '', email: '', phoneNumber: '', address: [{ _id: '' }] },
 };
 
 export const getUser = createAsyncThunk(

@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import ItemCard from '../../../../components/ItemCard';
 import Filter from './Filter';
+import { useParams } from 'react-router-dom';
 
 const ProductsMain = () => {
   const products = useLoaderData();
-  console.log(products);
+  const { categoryName } = useParams();
+
   const [filterIsShowed, setFilterIsShowed] = useState(false);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(200);
@@ -24,10 +26,10 @@ const ProductsMain = () => {
   return (
     <div className="w-full">
       <div className="flex justify-between items-center relative">
-        <h2 className="text-4xl font-bold sm:text-3xl sm:font-medium">
-          Total LavAzza 1320
+        <h2 className="text-4xl font-bold sm:text-3xl sm:font-medium capitalize">
+          {categoryName}
         </h2>
-        <button
+        {/* <button
           className="flex items-center py-[6px] px-[12px] gap-[16px] rounded-[6px] bg-item-card dark:bg-dark-item-card "
           onClick={() => {
             setFilterIsShowed((prevState) => !prevState);
@@ -35,8 +37,8 @@ const ProductsMain = () => {
         >
           <span className="font-medium">Filter</span>
           <img src="/icon/filter.svg" alt="" className="icon" />
-        </button>
-        {filterIsShowed && (
+        </button> */}
+        {/* {filterIsShowed && (
           <div className="absolute p-[30px] top-[66px] right-0 rounded-3xl bg-dropdown dark:bg-dark-dropdown-bg z-30 drop-shadow-xl lg:z-10 select-none">
             <h2 className="text-4xl font-medium">Filter</h2>
             <div className="grid grid-cols-2 mt-[30px] lg:grid-cols-1">
@@ -115,7 +117,7 @@ const ProductsMain = () => {
               </button>
             </div>
           </div>
-        )}
+        )} */}
       </div>
       <ul className="mt-[30px] grid grid-cols-3 gap-[30px] md:grid-cols-2 sm:grid-cols-1">
         {products.map((product) => (

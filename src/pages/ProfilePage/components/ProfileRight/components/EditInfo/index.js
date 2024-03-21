@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import * as ROUTES from '../../../../../../constants/routes';
 import { Link } from 'react-router-dom';
 import { useSubmit, useNavigation, useActionData } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const EditInfo = () => {
+  const { user } = useSelector((state) => state.user);
+
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      fullName: user.fullName,
+      email: user.email,
+      phoneNumber: user.phoneNumber,
+    },
+  });
   const navigation = useNavigation();
   const submit = useSubmit();
   const data = useActionData();
@@ -19,7 +27,7 @@ const EditInfo = () => {
       ? 'Saving...'
       : navigation.state === 'loading'
       ? 'Saved!'
-      : 'Save Card';
+      : 'Save';
 
   const submitHandler = (data) => {
     submit(data, { method: 'post' });
@@ -94,7 +102,7 @@ const EditInfo = () => {
               </p>
             )}
           </div>
-          <div className="flex flex-col gap-[20px] relative">
+          {/* <div className="flex flex-col gap-[20px] relative">
             <label htmlFor="password" className="text-3xl font-medium">
               Password
             </label>
@@ -110,7 +118,7 @@ const EditInfo = () => {
                 Invalid password.
               </p>
             )}
-          </div>
+          </div> */}
         </div>
         <div className="mt-[30px] flex justify-end gap-[30px] items-center">
           <Link to={ROUTES.PROFILE} className="text-2xl font-medium">

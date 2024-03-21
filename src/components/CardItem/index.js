@@ -9,12 +9,12 @@ const CardItem = ({ product }) => {
   const dispatch = useDispatch();
   return (
     <div>
-      <li className="flex gap-[30px] items-center">
-        <figure className="w-[175px] h-[175px] sm:w-[60px] sm:h-[60px]">
+      <li className="flex gap-[30px] items-center mb-[10px]">
+        <figure className="w-[175px] h-[175px] sm:w-[60px] sm:h-[60px] bg-[#fff] rounded-xl">
           <img
             src={product.images[0]}
             alt=""
-            className="w-full h-full object-contain"
+            className="w-full h-full object-contain rounded-lg  overflow-hidden "
           />
         </figure>
         <section className="w-full flex flex-col gap-[16px]">

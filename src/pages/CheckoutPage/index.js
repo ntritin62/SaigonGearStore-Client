@@ -23,10 +23,10 @@ const CheckoutPage = () => {
             <ul className="flex flex-col gap-[30px]">
               {cart.products.map((product) => {
                 return (
-                  <>
+                  <li key={product._id}>
                     <CardItem product={product} />
                     <div className="h-[1px] w-full dark:bg-[#B9BABE] bg-top-menu-border"></div>
-                  </>
+                  </li>
                 );
               })}
             </ul>

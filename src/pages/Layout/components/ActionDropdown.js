@@ -7,7 +7,7 @@ const ActionDropdown = () => {
   const cart = useSelector((state) => state.cart);
 
   return (
-    <div className="absolute hidden  top-[45px]  group-hover:block dark:text-[#B9BABE] right-0 z-30 bg-white dark:bg-dark-dropdown-bg p-[30px] shadow-[0px_40px_90px_20px_rgba(200,200,200,0.40)] dark:shadow-[0px_40px_90px_20px_rgba(23,28,40,0.40)] rounded-3xl md:hidden w-[585px]">
+    <div className="absolute hidden   top-[45px]  group-hover:block dark:text-[#B9BABE] right-0 z-30 bg-white dark:bg-dark-dropdown-bg p-[30px] shadow-[0px_40px_90px_20px_rgba(200,200,200,0.40)] dark:shadow-[0px_40px_90px_20px_rgba(23,28,40,0.40)] rounded-3xl md:hidden w-[585px]">
       <div className="relative ">
         <img
           src="/icon/arrow-top.svg"
@@ -28,15 +28,21 @@ const ActionDropdown = () => {
         <ul className="grid grid-cols-3 my-[30px]">
           {cart.products.slice(0, 3).map((product) => {
             return (
-              <li className="p-[10px]">
+              <li key={product._id} tin={product._id} className="p-[10px]">
                 <img
                   src={product.images[0]}
                   alt=""
-                  className="w-[175px] h-[175px] object-contain "
+                  className="w-[175px] h-[175px] object-contain rounded-xl overflow-hidden bg-[#fff]"
                 />
-                <p className="text-2xl font-normal mt-[14px]">{product.name}</p>
+                <p className="text-2xl font-normal mt-[14px] h-[50px]">
+                  {product.name}
+                </p>
                 <p className="text-2xl font-medium mt-[6px]">
-                  ${product.price - (product.sale / 100) * product.price}
+                  $
+                  {(
+                    product.price -
+                    (product.sale / 100) * product.price
+                  ).toFixed(2)}
                 </p>
               </li>
             );
@@ -62,9 +68,11 @@ const ActionDropdown = () => {
           </li>
         </ul>
         <div className="bg-top-menu-border dark:bg-dark-top-menu-border h-[1px] w-full"></div>
-        <button className="text-text block text-3xl font-medium rounded-full bg-[#FFB700] py-[18px] px-[40px] mt-[30px] ml-auto">
-          Check Out All
-        </button>
+        <Link to={ROUTES.CART}>
+          <button className="text-text block text-3xl font-medium rounded-full bg-[#FFB700] py-[18px] px-[40px] mt-[30px] ml-auto">
+            Check Out All
+          </button>
+        </Link>
       </div>
     </div>
   );

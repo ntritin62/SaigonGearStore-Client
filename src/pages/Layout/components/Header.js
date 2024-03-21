@@ -4,7 +4,7 @@ import Dropdown from '../../../components/Dropdown';
 import ActionDropdown from './ActionDropdown';
 import { useState } from 'react';
 import * as ROUTES from '../../../constants/routes';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { UseSelector, useSelector } from 'react-redux';
 
 const Header = () => {
@@ -74,7 +74,7 @@ const Header = () => {
               <Link to="./keyboard">Keyboard</Link>
             </li>
             <li className="flex h-[50px] px-[15px] items-center gap-[6px] cursor-pointer lg:px-0 lg:w-full">
-              <Link to="./mouse">Laptop</Link>
+              <Link to="./mouse">Mouse</Link>
             </li>
             <li className="flex h-[50px] px-[15px] items-center gap-[6px] cursor-pointer lg:px-0 lg:w-full">
               <Link to="./headphone">Headphone</Link>
