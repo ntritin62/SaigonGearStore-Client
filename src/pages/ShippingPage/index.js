@@ -39,6 +39,7 @@ const ShippingPage = () => {
         <AddressFormModal
           closeForm={closeAddressModal}
           data={addressModelIsShowed.data}
+          setSelectedOption={setSelectedOption}
         />
       )}
       <div className="container pt-[10px]">

@@ -2,10 +2,17 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Form, useNavigation } from 'react-router-dom';
 import { useSubmit } from 'react-router-dom';
+import axios from 'axios';
+import getAuthToken from '../../services/getToken';
+import { useDispatch } from 'react-redux';
+import { getUser } from '../../redux/userSlice';
 
-const AddressFormModal = ({ closeForm, data }) => {
+const AddressFormModal = ({ closeForm, data, setSelectedOption }) => {
+  const dispatch = useDispatch();
+  const token = getAuthToken();
   const submit = useSubmit();
   const navigation = useNavigation();
+  const addressId = data._id;
 
   const {
     register,
@@ -27,9 +34,25 @@ const AddressFormModal = ({ closeForm, data }) => {
       ? 'Saved!'
       : 'Save Address';
 
-  const submitHandler = (data) => {
-    console.log(data);
-    // submit(data, { method: 'post' });
+  const submitHandler = async (data) => {
+    await axios.post(
+      `${process.env.REACT_APP_SERVER_URL}/address/`,
+      {
+        address: {
+          ...data,
+          _id: addressId,
+        },
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    dispatch(getUser());
+    setSelectedOption(addressId);
+    closeForm();
   };
   return (
     <>
