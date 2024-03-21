@@ -27,6 +27,8 @@ import { loader as BrandLoader } from './pages/ProductsPageLayout/loader';
 import { loader as ProductLoader } from './pages/ProductsPageLayout/components/ProductsMain/loader';
 import { loader as ProductDetailLoader } from './pages/ProductDetailPage/loader';
 import { loader as HomePageLoader } from './pages/HomePage/loader';
+import OrdersPage from './pages/ProfilePage/components/ProfileRight/components/Orders';
+import { loader as OrdersPageLoader } from './pages/ProfilePage/components/ProfileRight/components/Orders/loader';
 const router = createBrowserRouter([
   {
     path: `${ROUTES.HOME}`,
@@ -85,6 +87,11 @@ const router = createBrowserRouter([
             path: 'add-card',
             element: <AddCard />,
             action: AddCardAction,
+          },
+          {
+            path: 'orders',
+            element: <OrdersPage />,
+            loader: OrdersPageLoader,
           },
         ],
       },

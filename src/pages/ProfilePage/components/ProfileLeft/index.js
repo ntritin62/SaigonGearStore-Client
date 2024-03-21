@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import * as ROUTES from '../../../../constants/routes';
 
 const ProfileLeft = () => {
   return (
@@ -18,34 +19,56 @@ const ProfileLeft = () => {
       <ul className="p-[30px] bg-top-act-group rounded-b-3xl dark:bg-dark-header-bg">
         <h2 className="text-3xl font-medium">Manage Account</h2>
         <li className="mt-[16px]">
-          <Link className="flex gap-[10px] items-center">
+          <NavLink
+            to="/profile/edit-info"
+            className={({ isActive }) =>
+              isActive
+                ? 'flex gap-[10px] items-center text-[#0071dc]'
+                : 'flex gap-[10px] items-center'
+            }
+          >
             <img
               src="/icon/profile.svg"
               alt=""
               className="dark-icon w-[24px] h-[24px]"
             />
             <p>Personal info</p>
-          </Link>
+          </NavLink>
         </li>
         <li className="mt-[10px]">
-          <Link className="flex gap-[10px] items-center">
+          <NavLink
+            to="/profile/add-card"
+            className={({ isActive }) =>
+              isActive
+                ? 'flex gap-[10px] items-center text-[#0071dc]'
+                : 'flex gap-[10px] items-center'
+            }
+          >
             <img
               src="/icon/address.svg"
               alt=""
               className="dark-icon w-[24px] h-[24px]"
             />
             <p>Addresses</p>
-          </Link>
+          </NavLink>
         </li>
+        <h2 className="mt-[20px] text-3xl font-medium">My items</h2>
         <li className="mt-[10px]">
-          <Link className="flex gap-[10px] items-center">
+          <NavLink
+            to="/profile/orders"
+            className={({ isActive }) =>
+              isActive
+                ? 'flex gap-[10px] items-center text-[#0071dc]'
+                : 'flex gap-[10px] items-center'
+            }
+          >
             <img
-              src="/icon/message.svg"
+              src="/icon/order.svg"
               alt=""
               className="dark-icon w-[24px] h-[24px]"
             />
-            <p>Communications & privacy</p>
-          </Link>
+            <p>Orders</p>
+          </NavLink>
         </li>
       </ul>
     </aside>

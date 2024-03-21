@@ -120,13 +120,15 @@ const Header = () => {
             </div>
             <ActionDropdown />
           </div>
-          <figure>
-            <img
-              src="/image/avatar.jpg"
-              alt=""
-              className="w-[50px] h-[50px] shadow-[0px_4px_14px_2px_rgba(0,0,0,0.08)] rounded-[8px]"
-            />
-          </figure>
+          <Link to={ROUTES.PROFILE}>
+            <figure>
+              <img
+                src="/image/avatar.jpg"
+                alt=""
+                className="w-[50px] h-[50px] shadow-[0px_4px_14px_2px_rgba(0,0,0,0.08)] rounded-[8px]"
+              />
+            </figure>
+          </Link>
           <ThemeToggle
             className="block md:hidden"
             isEnabled={isEnabled}
