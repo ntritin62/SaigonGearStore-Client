@@ -54,6 +54,7 @@ const router = createBrowserRouter([
           }
           return null;
         },
+        action: LoginAction,
       },
       {
         path: `${ROUTES.SIGNUP}`,

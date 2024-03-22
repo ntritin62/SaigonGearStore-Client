@@ -4,18 +4,14 @@ import { useForm } from 'react-hook-form';
 import { Form, Link, useLocation } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 import { useSubmit, useActionData, useNavigate } from 'react-router-dom';
-import { getUser } from '../../redux/userSlice';
-import { getUserCart } from '../../redux/cartSlice';
+
 import { useDispatch } from 'react-redux';
-import axios from 'axios';
 
 const LoginPage = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   const submit = useSubmit();
   const [passwordIsShowed, setPasswordIsShowed] = useState(false);
-  const [err, setError] = useState('');
+
+  const err = useActionData();
 
   const {
     register,
@@ -24,29 +20,11 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
-  const submitHandler = async (data) => {
-    try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/auth/login`,
-        data,
-        {
-          headers: { 'Content-Type': 'application/json' },
-        }
-      );
-
-      if (!response.status === 200) {
-        const error = new Error('An error occurred while fetching the events');
-        error.code = response.status;
-        error.info = response.data;
-        throw error;
-      }
-      const resData = response.data;
-      localStorage.setItem('token', resData.token);
-
-      window.location.reload();
-    } catch (e) {
-      setError(e.response.data.message);
-    }
+  const submitHandler = (data) => {
+    submit(data, {
+      method: 'post',
+      action: ROUTES.LOGIN,
+    });
   };
   const showPassword = () => {
     setPasswordIsShowed((prevState) => !prevState);

@@ -22,6 +22,7 @@ export async function action({ request }) {
 
     const resData = response.data;
     localStorage.setItem('token', resData.token);
+    window.location.reload();
     return redirect(ROUTES.HOME);
   } catch (error) {
     return error.response.data.message;
