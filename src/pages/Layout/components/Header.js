@@ -40,11 +40,10 @@ const Header = () => {
         <Link href={ROUTES.HOME} className=" flex items-center justify-between">
           <figure className="flex items-center gap-[10px]">
             <img
-              className="icon w-[50px] h-[50px] lg:w-[24px] lg:h-[24px]"
-              src="/image/logo.svg"
+              className="w-[50px] h-[50px]  object-cover"
+              src="/image/logo.png"
               alt=""
             />
-            {/* <span className="text-4xl  font-bold lg:text-2xl">TNTGear</span> */}
           </figure>
         </Link>
 
@@ -70,13 +69,15 @@ const Header = () => {
           </button>
 
           <ul className="flex items-center font-medium text-2xl lg:flex-col lg:items-start lg:mt-[20px]">
-            <li className="hidden lg:flex h-[50px] px-[15px] items-center gap-[6px] cursor-pointer lg:px-0 justify-between w-full">
-              <div className="flex items-center gap-[16px]">
-                <img src="/icon/cart.svg" alt="" className="icon" />
-                <a href="#!">Cart</a>
-              </div>
-              <span>03</span>
-            </li>
+            <Link to={ROUTES.CART} className="block w-full">
+              <li className="hidden lg:flex h-[50px] px-[15px] items-center gap-[6px] cursor-pointer lg:px-0 justify-between w-full">
+                <div className="flex items-center gap-[16px]">
+                  <img src="/icon/cart.svg" alt="" className="icon" />
+                  <a href="#!">Cart</a>
+                </div>
+                <span>{cart.products.length}</span>
+              </li>
+            </Link>
 
             <li className="flex h-[50px] px-[15px] items-center gap-[6px] cursor-pointer lg:px-0 lg:w-full">
               <Link to="./keyboard">Keyboard</Link>
