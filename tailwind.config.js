@@ -21,7 +21,7 @@ module.exports = {
         'top-menu-border': '#d2d1d6',
         'menu-card': '#fff',
         'item-card': '#fff',
-        'active-sidebar': '#77DAE6',
+        'active-sidebar': '#2dc9af',
         sidebar: '#eee',
         'left-login': '#FAFAFD',
         'right-login': '#fff',

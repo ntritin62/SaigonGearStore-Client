@@ -2,11 +2,19 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import * as ROUTES from '../../../../../../constants/routes';
 import { Link } from 'react-router-dom';
-import { useSubmit, useNavigation, useActionData } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import {
+  useSubmit,
+  useNavigation,
+  useActionData,
+  useNavigate,
+} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser } from '../../../../../../redux/userSlice';
 
 const EditInfo = () => {
   const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -14,7 +22,7 @@ const EditInfo = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      fullName: user.fullName,
+      name: user.fullName,
       email: user.email,
       phoneNumber: user.phoneNumber,
     },
@@ -29,7 +37,7 @@ const EditInfo = () => {
       ? 'Saved!'
       : 'Save';
 
-  const submitHandler = (data) => {
+  const submitHandler = async (data) => {
     submit(data, { method: 'post' });
   };
 
@@ -52,7 +60,7 @@ const EditInfo = () => {
               id="name"
               className="p-[12px] border-[1px] border-solid border-[#D2D1D6] rounded-[10px] placeholder:text-[#D2D1D6]"
               placeholder="Full name"
-              {...register('fullName', { required: true })}
+              {...register('name', { required: true })}
             />
             {errors.fullName && (
               <p className="absolute bottom-[-25px] text-2xl font-medium text-rose-900">

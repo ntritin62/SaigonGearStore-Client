@@ -18,11 +18,11 @@ const PaymentPage = () => {
     <>
       <div className="container pt-[10px]">
         <div className="flex text-checkout-text text-2xl font-medium gap-[20px] mt-[30px] rounded-[10px] bg-white p-[20px] dark:bg-dark-sidebar">
-          <p>Home</p>
+          <Link to={ROUTES.HOME}>Home</Link>
           <img src="/icon/arrow-right.svg" alt="" />
-          <p>checkout</p>
+          <Link to={ROUTES.CART}>checkout</Link>
           <img src="/icon/arrow-right.svg" alt="" />
-          <p>Shipping</p>
+          <Link to={ROUTES.SHIPPING}>Shipping</Link>
           <img src="/icon/arrow-right.svg" alt="" />
           <p className="text-text dark:text-dark-text">Payment method</p>
         </div>

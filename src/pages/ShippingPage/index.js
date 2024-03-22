@@ -1,11 +1,12 @@
 import React from 'react';
 import CardItem from '../../components/CardItem';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CartBox from '../../components/Cart';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setAddress } from '../../redux/cartSlice';
 import AddressFormModal from '../../components/AddressFormModal';
+import * as ROUTES from '../../constants/routes';
 
 const ShippingPage = () => {
   const [addressModelIsShowed, setAddressModelIsShowed] = useState({
@@ -13,6 +14,7 @@ const ShippingPage = () => {
     data: null,
   });
   const cart = useSelector((state) => state.cart);
+
   const { user } = useSelector((state) => state.user);
   const [selectedOption, setSelectedOption] = useState('');
   const dispatch = useDispatch();
@@ -44,11 +46,13 @@ const ShippingPage = () => {
       )}
       <div className="container pt-[10px]">
         <div className="flex text-checkout-text text-2xl font-medium gap-[20px] mt-[30px] rounded-[10px] bg-white p-[20px] dark:bg-dark-sidebar">
-          <p>Home</p>
+          <Link to={ROUTES.HOME}>Home</Link>
           <img src="/icon/arrow-right.svg" alt="" />
-          <p>checkout</p>
+          <Link to={ROUTES.CART}>checkout</Link>
           <img src="/icon/arrow-right.svg" alt="" />
-          <p className="text-text dark:text-dark-text">Shipping</p>
+          <Link to={ROUTES.SHIPPING} className="text-text dark:text-dark-text">
+            Shipping
+          </Link>
         </div>
       </div>
       <div className="container grid grid-cols-11 xl:flex xl:flex-col my-[30px] gap-[30px] dark:text-checkout-text">

@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import ReactCreditCards from 'react-credit-cards-2';
 import 'react-credit-cards-2/dist/es/styles-compiled.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getUser } from '../../../../redux/userSlice';
 
 const ProfileRight = () => {
+  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
-  const preview = false;
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
   return (
     <section className="col-span-8  rounded-[20px] p-[30px] bg-top-act-group dark:bg-dark-header-bg">
       <h2 className="text-4xl font-bold mt-[30px]">Account info</h2>

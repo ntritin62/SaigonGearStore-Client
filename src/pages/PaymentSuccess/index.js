@@ -20,7 +20,7 @@ const PaymentSuccess = () => {
             Continue Shopping
           </Link>
           <Link
-            to={ROUTES.PROFILE}
+            to="/profile/orders"
             className="inline-block mt-[30px] p-[20px] rounded-[10px] text-2xl font-medium bg-login-btn"
           >
             Your orders

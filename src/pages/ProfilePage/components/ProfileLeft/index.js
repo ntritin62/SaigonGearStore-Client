@@ -26,7 +26,7 @@ const ProfileLeft = () => {
             to="/profile/edit-info"
             className={({ isActive }) =>
               isActive
-                ? 'flex gap-[10px] items-center text-[#0071dc]'
+                ? 'flex gap-[10px] items-center text-active-sidebar'
                 : 'flex gap-[10px] items-center'
             }
           >
@@ -43,7 +43,7 @@ const ProfileLeft = () => {
             to="/profile/add-address"
             className={({ isActive }) =>
               isActive
-                ? 'flex gap-[10px] items-center text-[#0071dc]'
+                ? 'flex gap-[10px] items-center text-active-sidebar'
                 : 'flex gap-[10px] items-center'
             }
           >
@@ -61,7 +61,7 @@ const ProfileLeft = () => {
             to="/profile/orders"
             className={({ isActive }) =>
               isActive
-                ? 'flex gap-[10px] items-center text-[#0071dc]'
+                ? 'flex gap-[10px] items-center text-active-sidebar'
                 : 'flex gap-[10px] items-center'
             }
           >

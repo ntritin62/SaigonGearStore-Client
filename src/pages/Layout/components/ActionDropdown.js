@@ -25,54 +25,68 @@ const ActionDropdown = () => {
             See All
           </Link>
         </div>
-        <ul className="grid grid-cols-3 my-[30px]">
-          {cart.products.slice(0, 3).map((product) => {
-            return (
-              <li key={product._id} tin={product._id} className="p-[10px]">
-                <img
-                  src={product.images[0]}
-                  alt=""
-                  className="w-[175px] h-[175px] object-contain rounded-xl overflow-hidden bg-[#fff]"
-                />
-                <p className="text-2xl font-normal mt-[14px] h-[50px]">
-                  {product.name}
-                </p>
-                <p className="text-2xl font-medium mt-[6px]">
-                  $
-                  {(
-                    product.price -
-                    (product.sale / 100) * product.price
-                  ).toFixed(2)}
-                </p>
+        {cart.products.length === 0 && (
+          <div className="flex flex-col items-center">
+            <img
+              src="/image/empty-cart.svg"
+              alt=""
+              className="w-[300px] h-[300px]"
+            />
+            <p className="text-4xl font-medium">Your cart is empty.</p>
+          </div>
+        )}
+        {cart.products.length > 0 && (
+          <>
+            <ul className="grid grid-cols-3 my-[30px]">
+              {cart.products.slice(0, 3).map((product) => {
+                return (
+                  <li key={product._id} tin={product._id} className="p-[10px]">
+                    <img
+                      src={product.images[0]}
+                      alt=""
+                      className="w-[175px] h-[175px] object-contain rounded-xl overflow-hidden bg-[#fff]"
+                    />
+                    <p className="text-2xl font-normal mt-[14px] h-[50px]">
+                      {product.name}
+                    </p>
+                    <p className="text-2xl font-medium mt-[6px]">
+                      $
+                      {(
+                        product.price -
+                        (product.sale / 100) * product.price
+                      ).toFixed(2)}
+                    </p>
+                  </li>
+                );
+              })}
+            </ul>
+            <div className="bg-top-menu-border dark:bg-dark-top-menu-border h-[1px] w-full"></div>
+            <ul className="my-[30px] flex flex-col gap-[20px]">
+              <li className="flex justify-between text-3xl font-normal">
+                <p>Subtotal:</p>
+                <p>${cart.totalPrice.toFixed(2)}</p>
               </li>
-            );
-          })}
-        </ul>
-        <div className="bg-top-menu-border dark:bg-dark-top-menu-border h-[1px] w-full"></div>
-        <ul className="my-[30px] flex flex-col gap-[20px]">
-          <li className="flex justify-between text-3xl font-normal">
-            <p>Subtotal:</p>
-            <p>${cart.totalPrice.toFixed(2)}</p>
-          </li>
-          <li className="flex justify-between text-3xl font-normal">
-            <p>Texes:</p>
-            <p>Free</p>
-          </li>
-          <li className="flex justify-between text-3xl font-normal">
-            <p>Shipping:</p>
-            <p>Free</p>
-          </li>
-          <li className="flex justify-between text-3xl font-medium">
-            <p>Total Price:</p>
-            <p>${cart.totalPrice.toFixed(2)}</p>
-          </li>
-        </ul>
-        <div className="bg-top-menu-border dark:bg-dark-top-menu-border h-[1px] w-full"></div>
-        <Link to={ROUTES.CART}>
-          <button className="text-text block text-3xl font-medium rounded-full bg-[#FFB700] py-[18px] px-[40px] mt-[30px] ml-auto">
-            Check Out All
-          </button>
-        </Link>
+              <li className="flex justify-between text-3xl font-normal">
+                <p>Texes:</p>
+                <p>Free</p>
+              </li>
+              <li className="flex justify-between text-3xl font-normal">
+                <p>Shipping:</p>
+                <p>Free</p>
+              </li>
+              <li className="flex justify-between text-3xl font-medium">
+                <p>Total Price:</p>
+                <p>${cart.totalPrice.toFixed(2)}</p>
+              </li>
+            </ul>
+            <div className="bg-top-menu-border dark:bg-dark-top-menu-border h-[1px] w-full"></div>
+            <Link to={ROUTES.CART}>
+              <button className="text-text block text-3xl font-medium rounded-full bg-[#FFB700] py-[18px] px-[40px] mt-[30px] ml-auto">
+                Check Out All
+              </button>
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );

@@ -34,7 +34,10 @@ import { loader as HomePageLoader } from './pages/HomePage/loader';
 import OrdersPage from './pages/ProfilePage/components/ProfileRight/components/Orders';
 import { loader as OrdersPageLoader } from './pages/ProfilePage/components/ProfileRight/components/Orders/loader';
 import getAuthToken from './services/getToken';
+
+import { loader as CheckoutPageLoader } from './pages/PaymentPage/loader';
 const token = getAuthToken();
+
 const router = createBrowserRouter([
   {
     path: `${ROUTES.HOME}`,
@@ -83,14 +86,17 @@ const router = createBrowserRouter([
           {
             path: `${ROUTES.SHIPPING}`,
             element: <ShippingPage />,
+            loader: CheckoutPageLoader,
           },
           {
             path: `${ROUTES.PAYMENTMETHOD}`,
             element: <PaymentPage />,
+            loader: CheckoutPageLoader,
           },
           {
             path: `${ROUTES.PAYMENTSUCCESS}`,
             element: <PaymentSuccess />,
+            loader: CheckoutPageLoader,
           },
         ],
       },

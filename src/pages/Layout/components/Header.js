@@ -151,7 +151,7 @@ const Header = () => {
                     <li>
                       <Link
                         to={ROUTES.SIGNUP}
-                        className="hover:text-[#0171dc] font-medium"
+                        className="hover:text-active-sidebar font-medium"
                       >
                         <li>Sign up</li>
                       </Link>
@@ -178,7 +178,10 @@ const Header = () => {
                     className="dropdown-arrow absolute top-[-45px] right-[-10px]"
                   />
                   <ul className="text-center">
-                    <Link to={ROUTES.PROFILE} className="hover:text-[#0171dc]">
+                    <Link
+                      to={ROUTES.PROFILE}
+                      className="hover:text-active-sidebar"
+                    >
                       <li>Profile</li>
                     </Link>
                     <div className="w-full h-[1px] bg-login-text my-[10px]"></div>
