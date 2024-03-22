@@ -8,9 +8,12 @@ import { useLocation } from 'react-router-dom';
 import getAuthToken from '../../services/getToken';
 import { useNavigate } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
+import MessagePopUp from '../../components/MessagePopUp';
 
 const ProductDetail = () => {
   const token = getAuthToken();
+  const [messageIsShowed, setMessageIsShowed] = useState(false);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
@@ -22,14 +25,25 @@ const ProductDetail = () => {
       navigate(ROUTES.LOGIN);
     }
     dispatch(addToCart(productData));
+    setMessageIsShowed(true);
   };
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setMessageIsShowed(false);
+    }, 700);
+    return () => clearTimeout(timeout);
+  }, [messageIsShowed]);
   useEffect(() => {
     setQuantity(1);
   }, [location.pathname]);
   return (
-    <div className="container pt-[30px]">
-      <div className="grid grid-cols-12 lg:flex lg:flex-col gap-[30px]">
+    <div className="container pt-[30px] ">
+      <div className="relative grid grid-cols-12 lg:flex lg:flex-col gap-[30px]">
+        <MessagePopUp
+          message="Product successfully added to your shopping cart"
+          isShowed={messageIsShowed}
+        />
         <figure className="col-span-4  flex flex-col items-center gap-[20px]">
           <ImageSlider key={product._id} imagesArray={product.images} />
         </figure>
