@@ -1,25 +1,52 @@
 import React from 'react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Form, Link, useLocation } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
-import { useSubmit, useActionData } from 'react-router-dom';
+import { useSubmit, useActionData, useNavigate } from 'react-router-dom';
+import { getUser } from '../../redux/userSlice';
+import { getUserCart } from '../../redux/cartSlice';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const submit = useSubmit();
   const [passwordIsShowed, setPasswordIsShowed] = useState(false);
-  const err = useActionData();
+  const [err, setError] = useState('');
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-  const submitHandler = (data) => {
-    submit(data, {
-      method: 'post',
-      action: ROUTES.LOGIN,
-    });
+
+  const submitHandler = async (data) => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/auth/login`,
+        data,
+        {
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+
+      if (!response.status === 200) {
+        const error = new Error('An error occurred while fetching the events');
+        error.code = response.status;
+        error.info = response.data;
+        throw error;
+      }
+      const resData = response.data;
+      localStorage.setItem('token', resData.token);
+
+      window.location.reload();
+    } catch (e) {
+      setError(e.response.data.message);
+    }
   };
   const showPassword = () => {
     setPasswordIsShowed((prevState) => !prevState);
@@ -28,7 +55,7 @@ const LoginPage = () => {
     <main className="grid grid-cols-2 md:grid-cols-1 h-screen">
       <div className="bg-left-login dark:bg-dark-left-login md:hidden">123</div>
       <div className="bg-right-login dark:bg-dark-right-login w-full">
-        <form
+        <Form
           onSubmit={handleSubmit(submitHandler)}
           className="flex flex-col px-[130px] pt-[110px] gap-[50px] pb-[50px] sm:px-[10px]"
         >
@@ -113,7 +140,7 @@ const LoginPage = () => {
               Sign Up
             </Link>
           </p>
-        </form>
+        </Form>
       </div>
     </main>
   );

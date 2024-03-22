@@ -2,15 +2,23 @@ import React from 'react';
 import ThemeToggle from '../../../components/ThemeToggle';
 import Dropdown from '../../../components/Dropdown';
 import ActionDropdown from './ActionDropdown';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as ROUTES from '../../../constants/routes';
 import { Link, NavLink } from 'react-router-dom';
 import { UseSelector, useSelector } from 'react-redux';
+import getAuthToken from '../../../services/getToken';
 
 const Header = () => {
+  const token = getAuthToken();
   const [searchIsVisible, setSearchIsVisible] = useState(false);
   const [sideBarIsVisible, setSideBarIsVisible] = useState(false);
   const cart = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.user);
+
+  const logoutHandler = () => {
+    localStorage.removeItem('token');
+    window.location.reload();
+  };
 
   // const docEl = document.documentElement;
   // const [isEnabled, setIsEnabled] = useState(docEl.classList.contains('dark'));
@@ -120,15 +128,73 @@ const Header = () => {
             </div>
             <ActionDropdown />
           </div>
-          <Link to={ROUTES.PROFILE}>
-            <figure>
-              <img
-                src="/image/avatar.jpg"
-                alt=""
-                className="w-[50px] h-[50px] shadow-[0px_4px_14px_2px_rgba(0,0,0,0.08)] rounded-[8px]"
-              />
-            </figure>
-          </Link>
+          {!token && (
+            <div className="relative group">
+              <figure>
+                <img src="/icon/account.svg" className="dark-icon" />
+              </figure>
+              <div className="hidden  absolute w-[150px] top-[100%]  group-hover:block dark:text-[#B9BABE] right-0 z-30 bg-white dark:bg-dark-dropdown-bg p-[30px] shadow-[0px_40px_90px_20px_rgba(200,200,200,0.40)] dark:shadow-[0px_40px_90px_20px_rgba(23,28,40,0.40)] rounded-3xl md:hidden ">
+                <div className="relative ">
+                  <img
+                    src="/icon/arrow-top.svg"
+                    alt=""
+                    className="dropdown-arrow absolute top-[-45px] right-[-10px]"
+                  />
+                  <ul className="text-center">
+                    <Link
+                      to={ROUTES.LOGIN}
+                      className="hover:text-[#0171dc] font-medium "
+                    >
+                      <li>Login</li>
+                    </Link>
+                    <div className="w-full h-[1px] bg-login-text my-[10px]"></div>
+                    <li>
+                      <Link
+                        to={ROUTES.SIGNUP}
+                        className="hover:text-[#0171dc] font-medium"
+                      >
+                        <li>Sign up</li>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
+          {token && (
+            <div className="relative group">
+              <figure>
+                <img
+                  src="/image/avatar.jpg"
+                  alt=""
+                  className="w-[50px] h-[50px] shadow-[0px_4px_14px_2px_rgba(0,0,0,0.08)] rounded-[8px] select-none"
+                />
+              </figure>
+              <div className="hidden  absolute w-[150px] top-[100%]  group-hover:block dark:text-[#B9BABE] right-0 z-30 bg-white dark:bg-dark-dropdown-bg p-[30px] shadow-[0px_40px_90px_20px_rgba(200,200,200,0.40)] dark:shadow-[0px_40px_90px_20px_rgba(23,28,40,0.40)] rounded-3xl md:hidden ">
+                <div className="relative ">
+                  <img
+                    src="/icon/arrow-top.svg"
+                    alt=""
+                    className="dropdown-arrow absolute top-[-45px] right-[-10px]"
+                  />
+                  <ul className="text-center">
+                    <Link to={ROUTES.PROFILE} className="hover:text-[#0171dc]">
+                      <li>Profile</li>
+                    </Link>
+                    <div className="w-full h-[1px] bg-login-text my-[10px]"></div>
+                    <li>
+                      <button
+                        className="text-[#de1f27] font-medium"
+                        onClick={logoutHandler}
+                      >
+                        Logout
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
           <ThemeToggle
             className="block md:hidden"
             isEnabled={isEnabled}

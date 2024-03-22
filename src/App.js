@@ -1,4 +1,8 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  redirect,
+  RouterProvider,
+} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getUserCart } from './redux/cartSlice';
@@ -29,6 +33,8 @@ import { loader as ProductDetailLoader } from './pages/ProductDetailPage/loader'
 import { loader as HomePageLoader } from './pages/HomePage/loader';
 import OrdersPage from './pages/ProfilePage/components/ProfileRight/components/Orders';
 import { loader as OrdersPageLoader } from './pages/ProfilePage/components/ProfileRight/components/Orders/loader';
+import getAuthToken from './services/getToken';
+const token = getAuthToken();
 const router = createBrowserRouter([
   {
     path: `${ROUTES.HOME}`,
@@ -42,15 +48,32 @@ const router = createBrowserRouter([
       {
         path: `${ROUTES.LOGIN}`,
         element: <LoginPage />,
-        action: LoginAction,
+        loader: () => {
+          if (token) {
+            return redirect(ROUTES.HOME);
+          }
+          return null;
+        },
       },
       {
         path: `${ROUTES.SIGNUP}`,
         element: <SignUpPage />,
+        loader: () => {
+          if (token) {
+            return redirect(ROUTES.HOME);
+          }
+          return null;
+        },
         action: SignupAction,
       },
       {
         path: `${ROUTES.CART}`,
+        loader: () => {
+          if (!token) {
+            return redirect(ROUTES.LOGIN);
+          }
+          return null;
+        },
         children: [
           {
             index: true,
@@ -73,6 +96,12 @@ const router = createBrowserRouter([
       {
         path: `${ROUTES.PROFILE}`,
         element: <ProfilePage />,
+        loader: () => {
+          if (!token) {
+            return redirect(ROUTES.LOGIN);
+          }
+          return null;
+        },
         children: [
           {
             index: true,

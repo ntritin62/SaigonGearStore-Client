@@ -14,7 +14,10 @@ const ProfileRight = () => {
       <p className="text-2xl mt-[4px] ">
         Addresses, contact information and password
       </p>
-      <div className="grid grid-cols-2 sm:grid-cols-1 gap-[20px] mt-[16px] ">
+      <Link
+        to="./edit-info"
+        className="grid grid-cols-2 sm:grid-cols-1 gap-[20px] mt-[16px] "
+      >
         <div className="p-[10px] bg-profile-card dark:bg-dark-profile-card flex items-center gap-[10px] rounded-[10px]">
           <div className="p-[15px] bg-white rounded-[8px] dark:bg-dark-item-card">
             <img src="/icon/mail.svg" alt="" className="dark-icon" />
@@ -24,7 +27,10 @@ const ProfileRight = () => {
             <p className="text-xl mt-[6px]">{user.email}</p>
           </div>
         </div>
-        <div className="p-[10px] bg-profile-card dark:bg-dark-profile-card flex items-center gap-[10px] rounded-[10px]">
+        <Link
+          to="./edit-info"
+          className="p-[10px] bg-profile-card dark:bg-dark-profile-card flex items-center gap-[10px] rounded-[10px]"
+        >
           <div className="p-[15px] bg-white rounded-[8px] dark:bg-dark-item-card">
             <img src="/icon/phone.svg" alt="" className="dark-icon" />
           </div>
@@ -32,8 +38,11 @@ const ProfileRight = () => {
             <p className="text-2xl font-medium">Phone number</p>
             <p className="text-xl mt-[6px]">{user.phoneNumber}</p>
           </div>
-        </div>
-        <div className="p-[10px] bg-profile-card dark:bg-dark-profile-card flex items-center gap-[10px] rounded-[10px]">
+        </Link>
+        <Link
+          to="./add-address"
+          className="p-[10px] bg-profile-card dark:bg-dark-profile-card flex items-center gap-[10px] rounded-[10px]"
+        >
           <div className="p-[15px] bg-white rounded-[8px] dark:bg-dark-item-card">
             <img src="/icon/address.svg" alt="" className="dark-icon" />
           </div>
@@ -41,8 +50,8 @@ const ProfileRight = () => {
             <p className="text-2xl font-medium">Add an address</p>
             <p className="text-xl mt-[6px]">{user.address[0].address}</p>
           </div>
-        </div>
-      </div>
+        </Link>
+      </Link>
     </section>
   );
 };

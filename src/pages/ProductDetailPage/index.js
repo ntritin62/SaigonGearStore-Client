@@ -5,14 +5,22 @@ import ItemCard from '../../components/ItemCard';
 import { addToCart } from '../../redux/cartSlice';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import getAuthToken from '../../services/getToken';
+import { useNavigate } from 'react-router-dom';
+import * as ROUTES from '../../constants/routes';
 
 const ProductDetail = () => {
+  const token = getAuthToken();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
   const { product, similarProds } = useLoaderData();
   const location = useLocation();
   const addToCartHandler = () => {
     const productData = { ...product, quantity: quantity };
+    if (!token) {
+      navigate(ROUTES.LOGIN);
+    }
     dispatch(addToCart(productData));
   };
 
@@ -88,9 +96,9 @@ const ProductDetail = () => {
                 </div>
                 <button
                   onClick={addToCartHandler}
-                  className="text-3xl font-medium rounded-md bg-[#FFB700] px-[50px] py-[10px]"
+                  className="text-3xl font-medium rounded-md bg-[#FFB700] px-[50px] py-[10px] max-w-[300px]"
                 >
-                  Add to cart
+                  {token ? 'Add to cart' : 'You have to login'}
                 </button>
                 {/* <button className="border-[1px] border-solid border-[#B9BABE] p-[11px] rounded-md">
                   <img src="/icon/heart.svg" alt="" className="icon" />
