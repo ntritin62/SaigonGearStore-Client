@@ -34,8 +34,13 @@ import { loader as HomePageLoader } from './pages/HomePage/loader';
 import OrdersPage from './pages/ProfilePage/components/ProfileRight/components/Orders';
 import { loader as OrdersPageLoader } from './pages/ProfilePage/components/ProfileRight/components/Orders/loader';
 import getAuthToken from './services/getToken';
-
+import AdminOrders from './pages/Admin/AdminOrders';
+import AdminProducts from './pages/Admin/AdminProducts';
+import AdminLayout from './pages/Admin/AdminLayout';
+import { loader as AdminProductsLoader } from './pages/Admin/AdminProducts/loader';
+import { loader as AdminOrdersLoader } from './pages/Admin/AdminOrders/loader';
 import { loader as CheckoutPageLoader } from './pages/PaymentPage/loader';
+
 const token = getAuthToken();
 
 const router = createBrowserRouter([
@@ -131,7 +136,6 @@ const router = createBrowserRouter([
           },
         ],
       },
-
       {
         path: `${ROUTES.PRODUCTDETAIL}`,
         element: <ProductDetail />,
@@ -153,6 +157,22 @@ const router = createBrowserRouter([
             loader: ProductLoader,
           },
         ],
+      },
+    ],
+  },
+  {
+    path: `${ROUTES.ADMIN}`,
+    element: <AdminLayout />,
+    children: [
+      {
+        path: '/admin/products',
+        element: <AdminProducts />,
+        loader: AdminProductsLoader,
+      },
+      {
+        path: '/admin/orders',
+        element: <AdminOrders />,
+        loader: AdminOrdersLoader,
       },
     ],
   },

@@ -35,11 +35,10 @@ const LoginPage = () => {
       <div className="bg-right-login dark:bg-dark-right-login w-full">
         <Form
           onSubmit={handleSubmit(submitHandler)}
-          className="flex flex-col px-[130px] pt-[110px] gap-[50px] pb-[50px] sm:px-[10px]"
+          className="flex flex-col px-[130px] pt-[30px] gap-[50px] pb-[50px] sm:px-[10px]"
         >
           <div className="flex items-center justify-center gap-[14px]">
-            <img src="/image/logo.svg" alt="" className="w-[32px] h-[32px]" />
-            <p className="text-3xl font-bold">grocerymart</p>
+            <img src="/image/logo.png" alt="" className="w-[120px] h-[120px]" />
           </div>
           <div className="flex flex-col gap-[10px]">
             <h1 className="text-4xl font-medium text-center">Login</h1>

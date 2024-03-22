@@ -144,7 +144,7 @@ const Header = () => {
                   <ul className="text-center">
                     <Link
                       to={ROUTES.LOGIN}
-                      className="hover:text-[#0171dc] font-medium "
+                      className="hover:text-active-sidebar  font-medium "
                     >
                       <li>Login</li>
                     </Link>
