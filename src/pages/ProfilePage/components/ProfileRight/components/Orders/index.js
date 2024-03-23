@@ -3,7 +3,7 @@ import { useLoaderData, Link } from 'react-router-dom';
 import * as ROUTES from '../../../../../../constants/routes';
 const OrdersPage = () => {
   const { orders } = useLoaderData();
-  console.log(orders);
+
   return (
     <section className="col-span-8 p-[30px] bg-profile-right dark:bg-dark-profile-right rounded-[20px]">
       <div className="flex items-center gap-[10px]">
@@ -12,8 +12,23 @@ const OrdersPage = () => {
         </Link>
         <h2 className="text-3xl font-medium">My orders</h2>
       </div>
-      <div className="mt-[30px] h-[500px] overflow-scroll">
-        {orders.length > 0 && (
+
+      {orders.length === 0 && (
+        <>
+          <div className="flex flex-col justify-center items-center h-full">
+            <img
+              src="/icon/no-order.png"
+              alt=""
+              className="w-[200px] h-[200px]"
+            />
+            <span className="mt-[30px] text-4xl font-medium">
+              You have no orders
+            </span>
+          </div>
+        </>
+      )}
+      {orders.length > 0 && (
+        <div className="mt-[30px] h-[500px] overflow-scroll">
           <ul>
             {orders.map((order) => (
               <li
@@ -103,8 +118,8 @@ const OrdersPage = () => {
               </li>
             ))}
           </ul>
-        )}
-      </div>
+        </div>
+      )}
     </section>
   );
 };

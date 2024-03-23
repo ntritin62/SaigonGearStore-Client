@@ -58,6 +58,7 @@ const EditInfo = () => {
             <input
               type="text"
               id="name"
+              name="name"
               className="p-[12px] border-[1px] border-solid border-[#D2D1D6] rounded-[10px] placeholder:text-[#D2D1D6]"
               placeholder="Full name"
               {...register('name', { required: true })}
