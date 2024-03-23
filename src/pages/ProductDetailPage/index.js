@@ -9,6 +9,7 @@ import getAuthToken from '../../services/getToken';
 import { useNavigate } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 import MessagePopUp from '../../components/MessagePopUp';
+import { Link } from 'react-router-dom';
 
 const ProductDetail = () => {
   const token = getAuthToken();
@@ -18,7 +19,9 @@ const ProductDetail = () => {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
   const { product, similarProds } = useLoaderData();
+  console.log(product);
   const location = useLocation();
+
   const addToCartHandler = () => {
     const productData = { ...product, quantity: quantity };
     if (!token) {
@@ -34,9 +37,11 @@ const ProductDetail = () => {
     }, 700);
     return () => clearTimeout(timeout);
   }, [messageIsShowed]);
+
   useEffect(() => {
     setQuantity(1);
   }, [location.pathname]);
+
   return (
     <div className="container pt-[30px] ">
       <div className="relative grid grid-cols-12 lg:flex lg:flex-col gap-[30px]">
@@ -44,11 +49,20 @@ const ProductDetail = () => {
           message="Product successfully added to your shopping cart"
           isShowed={messageIsShowed}
         />
-        <figure className="col-span-4  flex flex-col items-center gap-[20px]">
+        <figure className="col-span-4 flex flex-col items-center gap-[20px] overflow-hidden">
           <ImageSlider key={product._id} imagesArray={product.images} />
         </figure>
         <section className="col-span-8 bg-white dark:bg-dark-header-bg p-[60px] md:p-[16px]">
-          <h1 className="text-4xl font-medium">{product.name}</h1>
+          <div className="flex justify-between items-center">
+            <h1 className="text-4xl font-medium">{product.name}</h1>
+            <Link
+              to={`/${product.category.categoryName}/${product.brand.brandName}`}
+            >
+              <button className="border-solid border-[1px] border-top-menu-border w-[100px] p-[10px] rounded-xl hover:drop-shadow-xl">
+                <img src={product.brand.logoImage} alt="" className="w-full" />
+              </button>
+            </Link>
+          </div>
           <div className="flex gap-[60px] mt-[30px] sm:flex-col">
             <ul className="flex flex-col gap-[27px] grow">
               <li className="flex gap-x-[20px]">

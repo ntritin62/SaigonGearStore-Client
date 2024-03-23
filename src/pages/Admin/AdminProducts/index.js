@@ -283,11 +283,37 @@ const AdminProducts = () => {
           {products.map((product) => (
             <ProductItem key={product._id}>
               <img src={`${product.images[0]}`} alt="" />
-              <ProductInfo>
+              <div>
                 <ProductTitle>{product.name}</ProductTitle>
-                <ProductOldPrice>Price: ${product.price}</ProductOldPrice>
-                <ProductSaleOff>Discount: {product.sale}%</ProductSaleOff>
-              </ProductInfo>
+                <div className="flex justify-between w-[300px] mt-[20px]">
+                  <div>
+                    <p className="text-2xl font-medium">
+                      Category:{' '}
+                      <span className="font-normal capitalize">
+                        {product.category.categoryName}
+                      </span>
+                    </p>
+                    <p className="text-2xl font-medium mt-[10px] flex gap-[10px]">
+                      Brand:{' '}
+                      <img
+                        src={product.brand.logoImage}
+                        alt=""
+                        className="w-[45px] h-[45px]"
+                      />
+                    </p>
+                  </div>
+                  <div className="flex flex-col">
+                    <p className="text-2xl font-medium">
+                      Price:{' '}
+                      <span className="font-normal">${product.price}</span>
+                    </p>
+                    <p className="text-2xl font-medium mt-[10px]">
+                      Discount:{' '}
+                      <span className="font-normal">{product.sale}%</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
               <Actions>
                 <button
                   onClick={() => {
@@ -360,8 +386,7 @@ const ProductItem = styled.li`
 
 const ProductInfo = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+
   font-size: 14px;
 `;
 

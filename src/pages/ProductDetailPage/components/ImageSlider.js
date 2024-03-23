@@ -27,7 +27,7 @@ const ImageSlider = ({ imagesArray }) => {
           />
         </div>
       </div>
-      <div className="relative grid grid-cols-6 md:grid-cols-4 mx-auto gap-[8px] w-full h-[72px] ">
+      <div className="relative grid grid-cols-6 md:grid-cols-6 mx-auto gap-[8px] w-full h-[60px] sm:h-[50px] ">
         {imagesArray.length > 6 && (
           <button
             className={`w-[36px] h-[36px] flex items-center justify-center absolute left-[10px] top-[50%] translate-y-[-50%] rounded-full bg-white drop-shadow-[0px_2px_8px_rgba(0,0,0,0.2)] cursor-pointer ${
@@ -55,7 +55,7 @@ const ImageSlider = ({ imagesArray }) => {
           return (
             <div
               key={image}
-              className={`cols-span-1 w-[72px] h-[72px] border-[3px] border-solid  rounded-md overflow-hidden cursor-pointer ${
+              className={`cols-span-1 w-[60px] mx-auto h-[60px] sm:w-[50px] sm:h-[50px] border-[3px] border-solid  rounded-md overflow-hidden cursor-pointer ${
                 image === imageIsShowed
                   ? 'border-[#0071dc]'
                   : 'border-[rgb(235,235,240)]'
