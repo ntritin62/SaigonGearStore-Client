@@ -171,7 +171,7 @@ const Header = () => {
                   className="w-[50px] h-[50px] shadow-[0px_4px_14px_2px_rgba(0,0,0,0.08)] rounded-[8px] select-none"
                 />
               </figure>
-              <div className="hidden  absolute w-[150px] top-[100%]  group-hover:block dark:text-[#B9BABE] right-0 z-30 bg-white dark:bg-dark-dropdown-bg p-[30px] shadow-[0px_40px_90px_20px_rgba(200,200,200,0.40)] dark:shadow-[0px_40px_90px_20px_rgba(23,28,40,0.40)] rounded-3xl md:hidden ">
+              <div className="hidden  absolute w-[200px] top-[100%]  group-hover:block dark:text-[#B9BABE] right-0 z-30 bg-white dark:bg-dark-dropdown-bg p-[30px] shadow-[0px_40px_90px_20px_rgba(200,200,200,0.40)] dark:shadow-[0px_40px_90px_20px_rgba(23,28,40,0.40)] rounded-3xl md:hidden ">
                 <div className="relative ">
                   <img
                     src="/icon/arrow-top.svg"
@@ -179,6 +179,18 @@ const Header = () => {
                     className="dropdown-arrow absolute top-[-45px] right-[-10px]"
                   />
                   <ul className="text-center">
+                    {user.user.role === 'admin' && (
+                      <>
+                        <Link
+                          to="./admin"
+                          className="hover:text-active-sidebar"
+                        >
+                          <li>Admin Panel</li>
+                        </Link>
+                        <div className="w-full h-[1px] bg-login-text my-[10px]"></div>
+                      </>
+                    )}
+
                     <Link
                       to={ROUTES.PROFILE}
                       className="hover:text-active-sidebar"

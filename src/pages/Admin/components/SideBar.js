@@ -29,8 +29,7 @@ const SideBar = () => {
       <button
         onClick={() => {
           localStorage.removeItem('token');
-          dispatch(setUser(null));
-          navigate('/');
+          window.location.reload();
         }}
       >
         Logout
