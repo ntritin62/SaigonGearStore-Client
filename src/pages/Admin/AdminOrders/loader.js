@@ -1,12 +1,8 @@
+import axios from 'axios';
 export async function loader() {
-  return fetch(`${process.env.REACT_APP_BACKEND_URL}/admin/orders`)
-    .then((response) => {
-      return response.json();
-    })
-    .then((resData) => {
-      return resData.orders;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  const response = await axios.get(
+    `${process.env.REACT_APP_SERVER_URL}/admin/orders`
+  );
+
+  return response.data.orders;
 }

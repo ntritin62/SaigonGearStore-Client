@@ -12,7 +12,7 @@ const AdminProducts = () => {
   const productsData = useLoaderData();
 
   const [title, setTitle] = useState('');
-  const [brand, setBrand] = useState('');
+  const [brand, setBrand] = useState('65f59122fcf40c7182070655');
   const [brands, setBrands] = useState([]);
   const [category, setCategory] = useState('keyboard');
   const [oldprice, setOldprice] = useState(0);
@@ -20,7 +20,7 @@ const AdminProducts = () => {
   const [saleoff, setSaleoff] = useState('');
   const [description, setDescription] = useState('');
 
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState('');
   const [formIsShow, setFormIsShow] = useState(false);
   const [isEdited, setIsEdited] = useState(null);
   const [products, setProducts] = useState(productsData);
@@ -50,63 +50,50 @@ const AdminProducts = () => {
     };
   }, [toastShowing]);
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
-    // formData.append('title', title);
-    // formData.append('author', author);
-    // formData.append('category', category);
-    // formData.append('oldprice', oldprice);
-    // formData.append('price', oldprice - oldprice * (saleoff / 100));
-    // formData.append('saleoff', saleoff);
-    // formData.append('image', image);
+    formData.append('name', title);
+    formData.append('brand', brand);
+    formData.append('category', category);
+    formData.append('price', oldprice);
+    formData.append('saleoff', saleoff);
+    formData.append('description', description);
+
+    Array.from(images).forEach((img) => {
+      formData.append('images', img);
+    });
+
     if (isEdited) {
-      fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/products/update-product/` +
-          isEdited,
-        {
-          method: 'PUT',
-          body: formData,
-        }
-      )
-        .then((res) => {
-          return res.json();
-        })
-        .then((resData) => {
-          setMessage('Cập nhật sản phẩm');
-          setToastShowing(true);
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      const response = await axios.put(
+        `${process.env.REACT_APP_SERVER_URL}/admin/product/${isEdited._id}`,
+        formData
+      );
+      setToastShowing(true);
+      setMessage('Updated the product');
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     } else {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/products/post-product`, {
-        method: 'POST',
-        body: formData,
-      })
-        .then((res) => {
-          return res.json();
-        })
-        .then((resData) => {
-          setMessage('Thêm sản phẩm');
-          setToastShowing(true);
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/admin/product`,
+        formData
+      );
+      setToastShowing(true);
+      setMessage('Added a new product');
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     }
     setFormIsShow(false);
     setTitle('');
-    setNewprice('');
-    setOldprice('');
-    setSaleoff('');
+    setNewprice(0);
+    setBrand('65f59122fcf40c7182070655');
+    setOldprice(0);
+    setDescription('');
+    setCategory('keyboard');
+    setSaleoff(0);
     setIsEdited(null);
     setImages('');
   };
@@ -119,7 +106,7 @@ const AdminProducts = () => {
             <div className="toast-content">
               <div className="message">
                 <span className="text text-1">Success</span>
-                <span className="text text-2">{message} thành công</span>
+                <span className="text text-2">{message} successfully</span>
               </div>
             </div>
             <div className="progress active"></div>
@@ -162,8 +149,10 @@ const AdminProducts = () => {
               <select
                 id="brand"
                 name="brand"
-                onChange={(e) => setBrand(e.target.value)}
-                value={brand._id}
+                onChange={(e) => {
+                  setBrand(e.target.value);
+                }}
+                value={brand || isEdited.brand._id}
               >
                 {brands.map((brand) => (
                   <option key={brand._id} value={brand._id}>
@@ -191,7 +180,7 @@ const AdminProducts = () => {
               <Label htmlFor="saleoff">Discount</Label>
               <Input
                 type="number"
-                placeholder="Enter sale off..."
+                placeholder="Enter discount..."
                 id="saleoff"
                 name="saleoff"
                 value={saleoff || ''}
@@ -232,8 +221,8 @@ const AdminProducts = () => {
               <input
                 type="file"
                 multiple
-                id="image"
-                name="image"
+                id="images"
+                name="images"
                 accept="image/png, image/jpeg"
                 onChange={(event) => {
                   console.log(event.target.files);
@@ -261,8 +250,11 @@ const AdminProducts = () => {
                   setNewprice('');
                   setOldprice('');
                   setSaleoff('');
+                  setCategory('keyboard');
+                  setDescription('');
                   setIsEdited(null);
                   setImages('');
+                  setBrand('65f59122fcf40c7182070655');
                 }}
                 type="button"
               >
@@ -294,53 +286,25 @@ const AdminProducts = () => {
               <ProductInfo>
                 <ProductTitle>{product.name}</ProductTitle>
                 <ProductOldPrice>Price: ${product.price}</ProductOldPrice>
-                <ProductSaleOff>Sale: {product.sale}%</ProductSaleOff>
+                <ProductSaleOff>Discount: {product.sale}%</ProductSaleOff>
               </ProductInfo>
               <Actions>
                 <button
                   onClick={() => {
                     setTitle(product.name);
                     setOldprice(product.price);
-                    setBrand(product.brand);
+                    setBrand(product.brand._id);
                     setSaleoff(product.sale);
                     setCategory(product.category.categoryName);
                     setDescription(product.description);
                     setFormIsShow(true);
-                    setIsEdited(product._id);
+                    setIsEdited(product);
                   }}
                 >
                   <img
                     src="/icon/edit.svg"
                     alt=""
                     className="icon w-[24px] h-[24px]"
-                  />
-                </button>
-                <button
-                  onClick={() => {
-                    fetch(
-                      'http://localhost:8080/products/delete-product/' +
-                        product._id,
-                      { method: 'DELETE' }
-                    )
-                      .then((res) => {
-                        return res.json();
-                      })
-                      .then((resData) => {
-                        setMessage('Xoá sản phẩm');
-                        setToastShowing(true);
-                        setTimeout(() => {
-                          window.location.reload();
-                        }, 1000);
-                      })
-                      .catch((err) => {
-                        console.log(err);
-                      });
-                  }}
-                >
-                  <img
-                    src="/icon/admin-trash-can.svg"
-                    alt=""
-                    className="w-[24px] h-[24px]"
                   />
                 </button>
               </Actions>
@@ -506,7 +470,7 @@ const SubmitButton = styled.button`
   cursor: pointer;
   width: 100px;
   height: 40px;
-  background-color: #004aad;
+  background-color: #2dc9af;
   color: #fff;
   font-weight: 600;
   border-radius: 999px;

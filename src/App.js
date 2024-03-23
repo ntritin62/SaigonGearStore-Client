@@ -101,7 +101,6 @@ const router = createBrowserRouter([
           {
             path: `${ROUTES.PAYMENTSUCCESS}`,
             element: <PaymentSuccess />,
-            loader: CheckoutPageLoader,
           },
         ],
       },

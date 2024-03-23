@@ -124,7 +124,7 @@ const Header = () => {
             <div className="flex items-center gap-[10px] cursor-pointer">
               <img src="/icon/cart.svg" alt="" className="icon" />
               <p className="mt-[3px] w-[80px] text-center">
-                ${cart.totalPrice.toFixed(2)}
+                ${cart.totalPrice}
               </p>
             </div>
             <ActionDropdown />

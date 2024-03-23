@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { useLoaderData } from 'react-router-dom';
-const VND = new Intl.NumberFormat('vi-VN', {
-  style: 'currency',
-  currency: 'VND',
-});
+import axios from 'axios';
 
 const AdminOrders = () => {
   const [toastShowing, setToastShowing] = useState(false);
   const orderData = useLoaderData();
   const [ordersList, setOrdersList] = useState(orderData);
+
   useEffect(() => {
     const TimeOut = setTimeout(() => {
       setToastShowing(false);
@@ -26,7 +24,9 @@ const AdminOrders = () => {
             <div className="toast-content">
               <div className="message">
                 <span className="text text-1">Success</span>
-                <span className="text text-2">Giao hàng thành công</span>
+                <span className="text text-2">
+                  Confirmed the order successfully
+                </span>
               </div>
             </div>
             <div className="progress active"></div>
@@ -35,8 +35,8 @@ const AdminOrders = () => {
       )}
       {ordersList.length === 0 && (
         <NoProducts>
-          <img src="/images/no-order.svg" alt="" />
-          <span>Không có đơn hàng nào mới</span>
+          <img src="/icon/no-order.png" alt="" />
+          <span>There are no new orders</span>
         </NoProducts>
       )}
       {ordersList.length !== 0 && (
@@ -44,52 +44,45 @@ const AdminOrders = () => {
           {ordersList.map((order) => (
             <OrdersItem key={order._id}>
               <button
-                onClick={() => {
-                  fetch(
-                    `${process.env.REACT_APP_BACKEND_URL}/admin/update-order/` +
-                      order._id,
-                    {
-                      method: 'PUT',
-                    }
-                  )
-                    .then((res) => {
-                      return res.json();
-                    })
-                    .then((resData) => {
-                      const newOrders = ordersList.filter(
-                        (oldOrder) => order._id !== oldOrder._id
-                      );
-                      setOrdersList(newOrders);
-                      setToastShowing(true);
-                    })
-                    .catch((err) => {});
+                onClick={async () => {
+                  const response = await axios.put(
+                    `${process.env.REACT_APP_SERVER_URL}/admin/order/${order._id}`
+                  );
+                  setToastShowing(true);
+                  setTimeout(() => {
+                    window.location.reload();
+                  }, 1000);
                 }}
               >
-                GIAO HÀNG
+                ACCEPT
               </button>
               <ProductList>
-                {order.cart.products.map((product) => (
-                  <ProductItem key={product._id}>
-                    <img src={`${product.imageUrl}`} alt="" />
+                {order.products.map((product) => (
+                  <ProductItem key={product.productId._id}>
+                    <img src={`${product.productId.images[0]}`} alt="" />
                     <ProductInfo>
-                      <span>{product.title}</span>
-                      <span>Số lượng: {product.quantity}</span>
+                      <span>{product.productId.name}</span>
+                      <span>Quantity: {product.quantity}</span>
                     </ProductInfo>
                     <ProductPrice>
-                      {VND.format(product.price * product.quantity)}
+                      $
+                      {(
+                        (product.productId.price -
+                          (product.productId.sale / 100) *
+                            product.productId.price) *
+                        product.quantity
+                      ).toFixed(2)}
                     </ProductPrice>
                   </ProductItem>
                 ))}
               </ProductList>
               <OrderInfo>
                 <ReceiverInfo>
-                  <span>{order.receiver.name}</span>
-                  <span>Địa chỉ: {order.receiver.address}</span>
-                  <span>Số điện thoại: {order.receiver.phoneNumber}</span>
+                  <span>{order.shipping.name}</span>
+                  <span>Address: {order.shipping.address}</span>
+                  <span>Phone: {order.shipping.phoneNumber}</span>
                 </ReceiverInfo>
-                <OrderPrice>
-                  Tổng tiền: {VND.format(order.cart.totalPrice)}
-                </OrderPrice>
+                <OrderPrice>Amount: ${order.amount.toFixed(2)}</OrderPrice>
               </OrderInfo>
             </OrdersItem>
           ))}
@@ -120,7 +113,7 @@ const OrdersItem = styled.div`
     border: none;
     padding: 10px;
     border-radius: 5px;
-    background-color: #004aad;
+    background-color: #2dc9af;
     color: #fff;
     font-weight: 600;
     margin-left: auto;
@@ -287,8 +280,9 @@ const NoProducts = styled.div`
   border-radius: 20px;
   box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.1);
   img {
-    width: 150px;
-    height: 150px;
+    margin-bottom: 20px;
+    width: 200px;
+    height: 200px;
   }
   span {
     font-size: 20px;
