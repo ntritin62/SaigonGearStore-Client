@@ -40,7 +40,9 @@ const ProfileRight = () => {
           </div>
           <div>
             <p className="text-2xl font-medium">Phone number</p>
-            <p className="text-xl mt-[6px]">{user.phoneNumber}</p>
+            {user.phoneNumber && (
+              <p className="text-xl mt-[6px]">{user.phoneNumber}</p>
+            )}
           </div>
         </Link>
         <Link
@@ -52,7 +54,9 @@ const ProfileRight = () => {
           </div>
           <div>
             <p className="text-2xl font-medium">Add an address</p>
-            <p className="text-xl mt-[6px]">{user.address[0].address}</p>
+            {user.address.length > 0 && (
+              <p className="text-xl mt-[6px]">{user.address[0].address}</p>
+            )}
           </div>
         </Link>
       </Link>
