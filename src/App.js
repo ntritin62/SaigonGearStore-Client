@@ -162,6 +162,7 @@ const router = createBrowserRouter([
   {
     path: `${ROUTES.ADMIN}`,
     element: <AdminLayout />,
+    loader: AdminProductsLoader,
     children: [
       {
         path: '/admin/products',
