@@ -2,31 +2,48 @@ import React from 'react';
 import MenuCard from './components/MenuCard';
 import ItemCard from '../../components/ItemCard';
 import { Link, useLoaderData } from 'react-router-dom';
-import { Carousel } from 'flowbite-react';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick';
 
 const HomePage = () => {
+  var settings = {
+    dots: true,
+    infinite: true,
+    autoplay: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    speed: 1000,
+    autoplaySpeed: 2000,
+  };
   const { keyboardProds, mouseProds, headphoneProds } = useLoaderData();
 
   return (
     <div className="container  py-[40px]">
-      <div className="h-[450px] rounded-[20px] overflow-hidden sm:h-64 xl:h-80 2xl:h-96">
-        <Carousel>
-          <img
-            src="/image/banner-3.jpg"
-            alt="..."
-            className=" h-full object-fill"
-          />
-          <img
-            src="/image/banner-1.png"
-            alt="..."
-            className=" h-full object-fill"
-          />
-          <img
-            src="/image/banner-2.png"
-            alt="..."
-            className=" h-full object-fill"
-          />
-        </Carousel>
+      <div className="slider-container">
+        <Slider {...settings}>
+          <div>
+            <img
+              src="/image/banner-1.png"
+              alt=""
+              className="h-[455px] sm:h-full w-full object-fill rounded-[30px] overflow-hidden"
+            />
+          </div>
+          <div>
+            <img
+              src="/image/banner-2.png"
+              alt=""
+              className="h-[455px] sm:h-full w-full object-fill rounded-[20px] overflow-hidden"
+            />
+          </div>
+          <div>
+            <img
+              src="/image/banner-3.jpg"
+              alt=""
+              className="h-[455px] sm:h-full w-full object-fill rounded-[20px] overflow-hidden"
+            />
+          </div>
+        </Slider>
       </div>
       <section className="flex flex-col gap-[40px] mt-[40px]">
         <div>
