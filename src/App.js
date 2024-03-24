@@ -22,58 +22,36 @@ import { loader as AdminOrdersLoader } from './pages/Admin/AdminOrders/loader';
 import { loader as CheckoutPageLoader } from './pages/PaymentPage/loader';
 import getAuthToken from './services/getToken';
 
-// import Layout from './pages/Layout';
 const Layout = lazy(() => import('./pages/Layout'));
-// import HomePage from './pages/HomePage';
 const HomePage = lazy(() => import('./pages/HomePage'));
-// import ProductsPageLayout from './pages/ProductsPageLayout';
 const ProductsPageLayout = lazy(() => import('./pages/ProductsPageLayout'));
-// import ProductsMain from './pages/ProductsPageLayout/components/ProductsMain';
 const ProductsMain = lazy(() =>
   import('./pages/ProductsPageLayout/components/ProductsMain')
 );
-// import ProductDetail from './pages/ProductDetailPage';
 const ProductDetail = lazy(() => import('./pages/ProductDetailPage'));
-// import LoginPage from './pages/LoginPage';
 const LoginPage = lazy(() => import('./pages/LoginPage'));
-// import SignUpPage from './pages/SignUpPage';
 const SignUpPage = lazy(() => import('./pages/SignUpPage'));
-// import ProfilePage from './pages/ProfilePage';
 const ProfilePage = lazy(() => import('./pages/ProfilePage'));
-// import ProfileRight from './pages/ProfilePage/components/ProfileRight';
 const ProfileRight = lazy(() =>
   import('./pages/ProfilePage/components/ProfileRight')
 );
-// import AddCard from './pages/ProfilePage/components/ProfileRight/components/AddCard';
 const AddCard = lazy(() =>
   import('./pages/ProfilePage/components/ProfileRight/components/AddCard')
 );
-// import EditInfo from './pages/ProfilePage/components/ProfileRight/components/EditInfo';
 const EditInfo = lazy(() =>
   import('./pages/ProfilePage/components/ProfileRight/components/EditInfo')
 );
-
-// import CheckoutPage from './pages/CheckoutPage';
 const CheckoutPage = lazy(() => import('./pages/CheckoutPage'));
-// import ShippingPage from './pages/ShippingPage';
 const ShippingPage = lazy(() => import('./pages/ShippingPage'));
-// import PaymentPage from './pages/PaymentPage';
 const PaymentPage = lazy(() => import('./pages/PaymentPage'));
-// import PaymentSuccess from './pages/PaymentSuccess';
 const PaymentSuccess = lazy(() => import('./pages/PaymentSuccess'));
-
-// import OrdersPage from './pages/ProfilePage/components/ProfileRight/components/Orders';
 const OrdersPage = lazy(() =>
   import('./pages/ProfilePage/components/ProfileRight/components/Orders')
 );
-
-// import AdminOrders from './pages/Admin/AdminOrders';
 const AdminOrders = lazy(() => import('./pages/Admin/AdminOrders'));
-// import AdminProducts from './pages/Admin/AdminProducts';
 const AdminProducts = lazy(() => import('./pages/Admin/AdminProducts'));
-// import AdminLayout from './pages/Admin/AdminLayout';
 const AdminLayout = lazy(() => import('./pages/Admin/AdminLayout'));
-
+const ErrorPage = lazy(() => import('./pages/Error'));
 const token = getAuthToken();
 
 const router = createBrowserRouter([
@@ -82,6 +60,11 @@ const router = createBrowserRouter([
     element: (
       <Suspense fallback={<p>Loading...</p>}>
         <Layout />
+      </Suspense>
+    ),
+    errorElement: (
+      <Suspense fallback={<p>Loading...</p>}>
+        <ErrorPage />
       </Suspense>
     ),
     children: [
