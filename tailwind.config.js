@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}', './node_modules/animate.css'],
+  content: [
+    './src/**/*.{js,jsx,ts,tsx}',
+    './node_modules/animate.css',
+    'node_modules/flowbite-react/lib/esm/**/*.js',
+  ],
   darkMode: 'class',
   theme: {
     extend: {
@@ -65,5 +69,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), require('flowbite/plugin')],
 };

@@ -41,7 +41,10 @@ const Header = () => {
         </button>
         {/* Logo */}
 
-        <Link href={ROUTES.HOME} className=" flex items-center justify-between">
+        <Link
+          href={ROUTES.HOME}
+          className=" flex items-center justify-between select-none"
+        >
           <figure className="flex items-center gap-[10px]">
             <img
               className="w-[50px] h-[50px]  object-cover"

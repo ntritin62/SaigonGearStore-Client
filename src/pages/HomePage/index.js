@@ -2,16 +2,36 @@ import React from 'react';
 import MenuCard from './components/MenuCard';
 import ItemCard from '../../components/ItemCard';
 import { Link, useLoaderData } from 'react-router-dom';
+import { Carousel } from 'flowbite-react';
 
 const HomePage = () => {
   const { keyboardProds, mouseProds, headphoneProds } = useLoaderData();
 
   return (
     <div className="container  py-[40px]">
-      <section className="flex flex-col gap-[40px]">
+      <div className="h-[450px] rounded-[20px] overflow-hidden sm:h-64 xl:h-80 2xl:h-96">
+        <Carousel>
+          <img
+            src="/image/banner-3.jpg"
+            alt="..."
+            className=" h-full object-fill"
+          />
+          <img
+            src="/image/banner-1.png"
+            alt="..."
+            className=" h-full object-fill"
+          />
+          <img
+            src="/image/banner-2.png"
+            alt="..."
+            className=" h-full object-fill"
+          />
+        </Carousel>
+      </div>
+      <section className="flex flex-col gap-[40px] mt-[40px]">
         <div>
           <h2 className="text-4xl font-bold mb-[20px]">
-            <a href="">Browse Menu</a>
+            <a href="">Browse</a>
           </h2>
           <ul className="w-full grid grid-cols-3 gap-[51px] md:grid-cols-1 md:gap-[20px]">
             <li>

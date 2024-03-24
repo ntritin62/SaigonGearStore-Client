@@ -10,7 +10,7 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <div className="mt-[110px] lg:mt-[80px]">
+      <div className="my-[110px] lg:mt-[80px]">
         <Outlet />
       </div>
       <ScrollRestoration />

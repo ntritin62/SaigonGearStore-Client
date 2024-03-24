@@ -44,7 +44,7 @@ const ActionDropdown = () => {
                     <img
                       src={product.images[0]}
                       alt=""
-                      className="w-[175px] h-[175px] object-contain rounded-xl overflow-hidden bg-[#fff]"
+                      className="w-[75px] h-[75px] object-contain rounded-xl overflow-hidden bg-[#fff]"
                     />
                     <p className="text-2xl font-normal mt-[14px] h-[50px]">
                       {product.name}
@@ -81,7 +81,7 @@ const ActionDropdown = () => {
             </ul>
             <div className="bg-top-menu-border dark:bg-dark-top-menu-border h-[1px] w-full"></div>
             <Link to={ROUTES.CART}>
-              <button className="text-text block text-3xl font-medium rounded-full bg-[#FFB700] py-[18px] px-[40px] mt-[30px] ml-auto">
+              <button className="text-text block text-3xl font-medium rounded-full bg-active-sidebar py-[18px] px-[40px] mt-[30px] ml-auto">
                 Check Out All
               </button>
             </Link>
