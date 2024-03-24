@@ -32,7 +32,7 @@ const CartBox = ({ path }) => {
 
       <Link
         to={path === 'shipping' ? ROUTES.PAYMENTMETHOD : ROUTES.SHIPPING}
-        className="mt-[30px] bg-[#FFB700] py-[18px] block rounded-full text-3xl font-medium w-full text-text text-center "
+        className="mt-[30px] bg-active-sidebar py-[18px] block rounded-full text-3xl font-medium w-full text-text text-center "
       >
         Continue to checkout
       </Link>

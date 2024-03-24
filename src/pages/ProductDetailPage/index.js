@@ -58,7 +58,7 @@ const ProductDetail = () => {
             <Link
               to={`/${product.category.categoryName}/${product.brand.brandName}`}
             >
-              <button className="border-solid border-[1px] border-top-menu-border w-[100px] p-[10px] rounded-xl hover:drop-shadow-xl">
+              <button className="border-solid border-[1px] border-top-menu-border w-[100px] p-[10px] rounded-xl bg-body-bg dark:bg-dark-body-bg  hover:drop-shadow-[0_0_2px_rgba(0,0,0,0.12)]">
                 <img src={product.brand.logoImage} alt="" className="w-full" />
               </button>
             </Link>
@@ -124,7 +124,7 @@ const ProductDetail = () => {
                 </div>
                 <button
                   onClick={addToCartHandler}
-                  className="text-3xl font-medium rounded-md bg-[#FFB700] px-[50px] py-[10px] max-w-[300px]"
+                  className="text-3xl font-medium rounded-md bg-active-sidebar px-[50px] py-[10px] max-w-[300px] text-white hover:shadow-2xl"
                 >
                   {token ? 'Add to cart' : 'You have to login'}
                 </button>

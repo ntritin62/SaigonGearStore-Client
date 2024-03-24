@@ -106,7 +106,7 @@ const LoginPage = () => {
 
           <button
             type="submit"
-            className="rounded-[10px] bg-login-btn text-text py-[12px] text-3xl font-medium"
+            className="rounded-[10px] bg-active-sidebar text-text py-[12px] text-3xl font-medium hover:shadow-xl"
           >
             Login
           </button>

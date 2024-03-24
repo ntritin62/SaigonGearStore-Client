@@ -67,7 +67,7 @@ const ShippingPage = () => {
                 onClick={() => {
                   showAddressModal({});
                 }}
-                className="flex gap-[10px] py-[10px] px-[20px] bg-[#FFB700] text-3xl font-medium rounded-full sm:mx-auto text-text"
+                className="flex gap-[10px] py-[10px] px-[20px] bg-active-sidebar text-3xl font-medium rounded-full sm:mx-auto text-text"
               >
                 <img
                   src="/icon/plus.svg"

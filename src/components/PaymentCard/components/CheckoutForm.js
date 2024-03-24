@@ -82,7 +82,7 @@ export default function CheckoutForm() {
       <button
         disabled={isProcessing || !stripe || !elements}
         id="submit"
-        className="w-full mt-[20px] bg-login-btn p-[18px] rounded-[10px] text-3xl font-medium"
+        className="w-full mt-[20px] bg-active-sidebar p-[18px] rounded-[10px] text-3xl font-medium"
       >
         <span id="button-text">
           {isProcessing ? 'Processing ... ' : 'Pay now'}
