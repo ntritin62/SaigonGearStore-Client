@@ -17,7 +17,7 @@ const AdminProducts = () => {
   const [category, setCategory] = useState('keyboard');
   const [oldprice, setOldprice] = useState(0);
   const [newprice, setNewprice] = useState(0);
-  const [saleoff, setSaleoff] = useState('');
+  const [saleoff, setSaleoff] = useState(0);
   const [description, setDescription] = useState('');
 
   const [images, setImages] = useState('');
@@ -275,7 +275,7 @@ const AdminProducts = () => {
       {products.length === 0 && (
         <NoProducts>
           <img src="/images/no-products.svg" alt="" />
-          <span>Không có sản phẩm nào</span>
+          <span>No products</span>
         </NoProducts>
       )}
       {products.length !== 0 && (
@@ -298,7 +298,7 @@ const AdminProducts = () => {
                       <img
                         src={product.brand.logoImage}
                         alt=""
-                        className="w-[45px] h-[45px]"
+                        className="w-[45px] h-[45px] object-contain"
                       />
                     </p>
                   </div>

@@ -4,58 +4,103 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { getUserCart } from './redux/cartSlice';
 import { getUser } from './redux/userSlice';
 import * as ROUTES from './constants/routes';
-import Layout from './pages/Layout';
-import HomePage from './pages/HomePage';
-import ProductsPageLayout from './pages/ProductsPageLayout';
-import ProductsMain from './pages/ProductsPageLayout/components/ProductsMain';
-import ProductDetail from './pages/ProductDetailPage';
-import LoginPage from './pages/LoginPage';
-import SignUpPage from './pages/SignUpPage';
-import ProfilePage from './pages/ProfilePage';
-import ProfileRight from './pages/ProfilePage/components/ProfileRight';
-import AddCard from './pages/ProfilePage/components/ProfileRight/components/AddCard';
-import EditInfo from './pages/ProfilePage/components/ProfileRight/components/EditInfo';
 import AddCardAction from './pages/ProfilePage/components/ProfileRight/components/AddCard/action';
 import EditInfoAction from './pages/ProfilePage/components/ProfileRight/components/EditInfo/action';
-import CheckoutPage from './pages/CheckoutPage';
-import ShippingPage from './pages/ShippingPage';
-import PaymentPage from './pages/PaymentPage';
-import PaymentSuccess from './pages/PaymentSuccess';
 import { action as LoginAction } from './pages/LoginPage/action';
 import { action as SignupAction } from './pages/SignUpPage/action';
 import { loader as BrandLoader } from './pages/ProductsPageLayout/loader';
 import { loader as ProductLoader } from './pages/ProductsPageLayout/components/ProductsMain/loader';
 import { loader as ProductDetailLoader } from './pages/ProductDetailPage/loader';
 import { loader as HomePageLoader } from './pages/HomePage/loader';
-import OrdersPage from './pages/ProfilePage/components/ProfileRight/components/Orders';
 import { loader as OrdersPageLoader } from './pages/ProfilePage/components/ProfileRight/components/Orders/loader';
-import getAuthToken from './services/getToken';
-import AdminOrders from './pages/Admin/AdminOrders';
-import AdminProducts from './pages/Admin/AdminProducts';
-import AdminLayout from './pages/Admin/AdminLayout';
 import { loader as AdminProductsLoader } from './pages/Admin/AdminProducts/loader';
 import { loader as AdminOrdersLoader } from './pages/Admin/AdminOrders/loader';
 import { loader as CheckoutPageLoader } from './pages/PaymentPage/loader';
+import getAuthToken from './services/getToken';
+
+// import Layout from './pages/Layout';
+const Layout = lazy(() => import('./pages/Layout'));
+// import HomePage from './pages/HomePage';
+const HomePage = lazy(() => import('./pages/HomePage'));
+// import ProductsPageLayout from './pages/ProductsPageLayout';
+const ProductsPageLayout = lazy(() => import('./pages/ProductsPageLayout'));
+// import ProductsMain from './pages/ProductsPageLayout/components/ProductsMain';
+const ProductsMain = lazy(() =>
+  import('./pages/ProductsPageLayout/components/ProductsMain')
+);
+// import ProductDetail from './pages/ProductDetailPage';
+const ProductDetail = lazy(() => import('./pages/ProductDetailPage'));
+// import LoginPage from './pages/LoginPage';
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+// import SignUpPage from './pages/SignUpPage';
+const SignUpPage = lazy(() => import('./pages/SignUpPage'));
+// import ProfilePage from './pages/ProfilePage';
+const ProfilePage = lazy(() => import('./pages/ProfilePage'));
+// import ProfileRight from './pages/ProfilePage/components/ProfileRight';
+const ProfileRight = lazy(() =>
+  import('./pages/ProfilePage/components/ProfileRight')
+);
+// import AddCard from './pages/ProfilePage/components/ProfileRight/components/AddCard';
+const AddCard = lazy(() =>
+  import('./pages/ProfilePage/components/ProfileRight/components/AddCard')
+);
+// import EditInfo from './pages/ProfilePage/components/ProfileRight/components/EditInfo';
+const EditInfo = lazy(() =>
+  import('./pages/ProfilePage/components/ProfileRight/components/EditInfo')
+);
+
+// import CheckoutPage from './pages/CheckoutPage';
+const CheckoutPage = lazy(() => import('./pages/CheckoutPage'));
+// import ShippingPage from './pages/ShippingPage';
+const ShippingPage = lazy(() => import('./pages/ShippingPage'));
+// import PaymentPage from './pages/PaymentPage';
+const PaymentPage = lazy(() => import('./pages/PaymentPage'));
+// import PaymentSuccess from './pages/PaymentSuccess';
+const PaymentSuccess = lazy(() => import('./pages/PaymentSuccess'));
+
+// import OrdersPage from './pages/ProfilePage/components/ProfileRight/components/Orders';
+const OrdersPage = lazy(() =>
+  import('./pages/ProfilePage/components/ProfileRight/components/Orders')
+);
+
+// import AdminOrders from './pages/Admin/AdminOrders';
+const AdminOrders = lazy(() => import('./pages/Admin/AdminOrders'));
+// import AdminProducts from './pages/Admin/AdminProducts';
+const AdminProducts = lazy(() => import('./pages/Admin/AdminProducts'));
+// import AdminLayout from './pages/Admin/AdminLayout';
+const AdminLayout = lazy(() => import('./pages/Admin/AdminLayout'));
 
 const token = getAuthToken();
 
 const router = createBrowserRouter([
   {
     path: `${ROUTES.HOME}`,
-    element: <Layout />,
+    element: (
+      <Suspense fallback={<p>Loading...</p>}>
+        <Layout />
+      </Suspense>
+    ),
     children: [
       {
         index: true,
-        element: <HomePage />,
+        element: (
+          <Suspense fallback={<p>Loading...</p>}>
+            <HomePage />
+          </Suspense>
+        ),
         loader: HomePageLoader,
       },
       {
         path: `${ROUTES.LOGIN}`,
-        element: <LoginPage />,
+        element: (
+          <Suspense fallback={<p>Loading...</p>}>
+            <LoginPage />
+          </Suspense>
+        ),
         loader: () => {
           if (token) {
             return redirect(ROUTES.HOME);
@@ -66,7 +111,11 @@ const router = createBrowserRouter([
       },
       {
         path: `${ROUTES.SIGNUP}`,
-        element: <SignUpPage />,
+        element: (
+          <Suspense fallback={<p>Loading...</p>}>
+            <SignUpPage />
+          </Suspense>
+        ),
         loader: () => {
           if (token) {
             return redirect(ROUTES.HOME);
@@ -86,27 +135,47 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <CheckoutPage />,
+            element: (
+              <Suspense fallback={<p>Loading...</p>}>
+                <CheckoutPage />
+              </Suspense>
+            ),
           },
           {
             path: `${ROUTES.SHIPPING}`,
-            element: <ShippingPage />,
+            element: (
+              <Suspense fallback={<p>Loading...</p>}>
+                <ShippingPage />
+              </Suspense>
+            ),
             loader: CheckoutPageLoader,
           },
           {
             path: `${ROUTES.PAYMENTMETHOD}`,
-            element: <PaymentPage />,
+            element: (
+              <Suspense fallback={<p>Loading...</p>}>
+                <PaymentPage />
+              </Suspense>
+            ),
             loader: CheckoutPageLoader,
           },
           {
             path: `${ROUTES.PAYMENTSUCCESS}`,
-            element: <PaymentSuccess />,
+            element: (
+              <Suspense fallback={<p>Loading...</p>}>
+                <PaymentSuccess />
+              </Suspense>
+            ),
           },
         ],
       },
       {
         path: `${ROUTES.PROFILE}`,
-        element: <ProfilePage />,
+        element: (
+          <Suspense fallback={<p>Loading...</p>}>
+            <ProfilePage />
+          </Suspense>
+        ),
         loader: () => {
           if (!token) {
             return redirect(ROUTES.LOGIN);
@@ -116,43 +185,75 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <ProfileRight />,
+            element: (
+              <Suspense fallback={<p>Loading...</p>}>
+                <ProfileRight />
+              </Suspense>
+            ),
           },
           {
             path: 'edit-info',
-            element: <EditInfo />,
+            element: (
+              <Suspense fallback={<p>Loading...</p>}>
+                <EditInfo />
+              </Suspense>
+            ),
             action: EditInfoAction,
           },
           {
             path: 'add-address',
-            element: <AddCard />,
+            element: (
+              <Suspense fallback={<p>Loading...</p>}>
+                <AddCard />
+              </Suspense>
+            ),
             action: AddCardAction,
           },
           {
             path: 'orders',
-            element: <OrdersPage />,
+            element: (
+              <Suspense fallback={<p>Loading...</p>}>
+                <OrdersPage />
+              </Suspense>
+            ),
             loader: OrdersPageLoader,
           },
         ],
       },
       {
         path: `${ROUTES.PRODUCTDETAIL}`,
-        element: <ProductDetail />,
+        element: (
+          <Suspense fallback={<p>Loading...</p>}>
+            <ProductDetail />
+          </Suspense>
+        ),
         loader: ProductDetailLoader,
       },
       {
         path: ':categoryName',
-        element: <ProductsPageLayout />,
+        element: (
+          <Suspense fallback={<p>Loading...</p>}>
+            <ProductsPageLayout />
+          </Suspense>
+        ),
         loader: BrandLoader,
         children: [
           {
             index: true,
-            element: <ProductsMain />,
+            element: (
+              <Suspense fallback={<p>Loading...</p>}>
+                <ProductsMain />
+              </Suspense>
+            ),
             loader: ProductLoader,
           },
           {
             path: ':brandName',
-            element: <ProductsMain />,
+            element: (
+              <Suspense fallback={<p>Loading...</p>}>
+                <ProductsMain />
+              </Suspense>
+            ),
             loader: ProductLoader,
           },
         ],
@@ -161,17 +262,29 @@ const router = createBrowserRouter([
   },
   {
     path: `${ROUTES.ADMIN}`,
-    element: <AdminLayout />,
+    element: (
+      <Suspense fallback={<p>Loading...</p>}>
+        <AdminLayout />
+      </Suspense>
+    ),
     loader: AdminProductsLoader,
     children: [
       {
         path: '/admin/products',
-        element: <AdminProducts />,
+        element: (
+          <Suspense fallback={<p>Loading...</p>}>
+            <AdminProducts />
+          </Suspense>
+        ),
         loader: AdminProductsLoader,
       },
       {
         path: '/admin/orders',
-        element: <AdminOrders />,
+        element: (
+          <Suspense fallback={<p>Loading...</p>}>
+            <AdminOrders />
+          </Suspense>
+        ),
         loader: AdminOrdersLoader,
       },
     ],
