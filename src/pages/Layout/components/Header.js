@@ -7,11 +7,15 @@ import * as ROUTES from '../../../constants/routes';
 import { Link, NavLink } from 'react-router-dom';
 import { UseSelector, useSelector } from 'react-redux';
 import getAuthToken from '../../../services/getToken';
+import SearchDropdown from '../../../components/SearchDropdown';
+import useDebounce from '../../../hooks/useDebounce';
 
 const Header = () => {
   const token = getAuthToken();
   const [searchIsVisible, setSearchIsVisible] = useState(false);
   const [sideBarIsVisible, setSideBarIsVisible] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
+  const searchValueDebounce = useDebounce(searchValue, 1000);
   const cart = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user);
 
@@ -105,10 +109,17 @@ const Header = () => {
         ></div>
 
         <div className="ml-auto flex items-center gap-[20px] md:ml-0 md:gap-0 ">
-          <div className="flex items-center cursor-pointer bg-top-act-group dark:bg-dark-top-act-group p-[13px]  rounded-lg text-2xl font-medium shadow-[0px_20px_60px_10px_rgba(237,237,246,0.20)] dark:shadow-[0px_20px_60px_10px_rgba(0,0,0,0.20)] md:hidden">
+          <div className="relative flex items-center cursor-pointer bg-top-act-group dark:bg-dark-top-act-group p-[13px]  rounded-lg text-2xl font-medium shadow-[0px_20px_60px_10px_rgba(237,237,246,0.20)] dark:shadow-[0px_20px_60px_10px_rgba(0,0,0,0.20)] md:hidden">
             {searchIsVisible && (
               <div className="lg:max-w-[140px]">
-                <input type="text" />
+                <input
+                  type="text"
+                  value={searchValue}
+                  onChange={(e) => {
+                    setSearchValue(e.target.value);
+                  }}
+                  placeholder="Search"
+                />
               </div>
             )}
             <img
@@ -119,6 +130,9 @@ const Header = () => {
                 setSearchIsVisible((prevState) => !prevState);
               }}
             />
+            {searchIsVisible && (
+              <SearchDropdown searchTerm={searchValueDebounce} />
+            )}
           </div>
           <div className="relative group flex items-center  gap-[20px] bg-top-act-group dark:bg-dark-top-act-group px-[20px] py-[10px] rounded-lg text-2xl font-medium shadow-[0px_20px_60px_10px_rgba(237,237,246,0.20)] dark:shadow-[0px_20px_60px_10px_rgba(0,0,0,0.20)] md:hidden">
             <div className="flex items-center gap-[10px] cursor-pointer">
