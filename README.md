@@ -34,6 +34,8 @@
 User:
 
 - Login/Signup
+- User can search products by name
+- User can change dark/light theme
 - Users can buy products
 - Users can check their orders
 
@@ -41,3 +43,27 @@ Admin:
 
 - Admin can add/edit product
 - Admin can check orders and confirm orders
+
+## Preview :
+
+![home](https://github.com/ntritin62/SaigonGearStore-Client/assets/104788686/52859bf7-95f5-492e-98d8-41f933b8bec8)
+
+<table>
+  <tr>
+    <td><img src="https://github.com/ntritin62/SaigonGearStore-Client/assets/104788686/a1a4eef1-f395-49ab-94bb-72a92419b826" alt="mockup" /></td>
+    <td><img src="https://github.com/ntritin62/SaigonGearStore-Client/assets/104788686/bcdaaa99-a929-414c-afc4-8acf7a8173bb" alt="mockups" /></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/ntritin62/SaigonGearStore-Client/assets/104788686/0c3e296b-6e71-449d-ba8b-2f8aafb14756" alt="mockup" /></td>
+    <td><img src="https://github.com/ntritin62/SaigonGearStore-Client/assets/104788686/803e5705-7f76-450f-8baf-fcc0eae56c55" alt="mockups" /></td>
+  </tr>
+</table>
+
+## Responsive Preview:
+
+<table>
+  <tr>
+    <td><img src="https://github.com/ntritin62/SaigonGearStore-Client/assets/104788686/58af4e75-c17e-49d4-9ad3-4a607db8b3ea" alt="mockup" /></td>
+    <td><img src="https://github.com/ntritin62/SaigonGearStore-Client/assets/104788686/d67037f0-91f3-47e2-be6b-ca745c27f697" alt="mockups" /></td>
+  </tr>
+</table>
