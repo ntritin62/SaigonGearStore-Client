@@ -1,7 +1,7 @@
-# SaigonGear store website MERN stack
+# SaigonGear store website
 
 <p>Full-Stack SaigonGear store Website using MERN Stack.</p>
-<img src="https://github.com/ntritin62/SaigonGearStore-Client/assets/104788686/fa5d8a4c-417b-4319-9e4a-c08774e26c13" alt="mockup" style="width:200px;height:200px;"/>
+<img src="https://github.com/ntritin62/SaigonGearStore-Client/assets/104788686/fa5d8a4c-417b-4319-9e4a-c08774e26c13" alt="mockup" style="width:200px;height:200px;s"/>
 
 ## 🖥️ Tech Stack
 
@@ -21,6 +21,8 @@
 ![mongodb](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)&nbsp;
 ![jwt](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)&nbsp;
 ![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white)&nbsp;
+![Stripe](https://img.shields.io/badge/Stripe-626CD9?style=for-the-badge&logo=Stripe&logoColor=white)&nbsp;
+![Stripe]https://img.shields.io/badge/Amazon_AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
 
 **Deploy:**
 
@@ -29,9 +31,13 @@
 
 ## 🚀 Features
 
-- Login/Signup User Account
-- Add/Edit/Delete Product
-- Users can add products to their cart
+User:
+
+- Login/Signup
+- Users can buy products
 - Users can check their orders
-- Admin can add/edit/delete product
-- Admin can check orders
+
+Admin:
+
+- Admin can add/edit product
+- Admin can check orders and confirm orders
