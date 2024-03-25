@@ -28,7 +28,7 @@ const Header = () => {
   // const [isEnabled, setIsEnabled] = useState(docEl.classList.contains('dark'));
   const [isEnabled, setIsEnabled] = useState(localStorage.getItem('dark'));
   return (
-    <header className=" bg-header-bg dark:bg-dark-header-bg fixed top-0 left-0 right-0 z-50">
+    <header className=" bg-header-bg dark:bg-dark-header-bg fixed top-0 left-0 right-0 z-50 select-none">
       <div className="relative container flex items-center py-[30px] md:justify-between lg:py-[16px]">
         {/* More */}
         <button
@@ -45,7 +45,7 @@ const Header = () => {
           href={ROUTES.HOME}
           className=" flex items-center justify-between select-none"
         >
-          <figure className="flex items-center gap-[10px]">
+          <figure className="flex items-center gap-[10px] ">
             <img
               className="w-[50px] h-[50px]  object-cover"
               src="/image/logo.png"
@@ -147,7 +147,7 @@ const Header = () => {
             <ActionDropdown />
           </div>
           {!token && (
-            <div className="relative group">
+            <div className="relative group select-none">
               <figure>
                 <img src="/icon/account.svg" className="dark-icon" />
               </figure>

@@ -31,7 +31,17 @@ const LoginPage = () => {
   };
   return (
     <main className="grid grid-cols-2 md:grid-cols-1 h-screen">
-      <div className="bg-left-login dark:bg-dark-left-login md:hidden">123</div>
+      <div className="bg-left-login dark:bg-dark-left-login md:hidden flex flex-col items-center  gap-[20px]">
+        <div className="dark:bg-white rounded-full w-[300px] h-[300px] flex items-center justify-center mt-[50px]">
+          <img src="/image/login-left.svg" alt="" className="" />
+        </div>
+        <h2 className="text-5xl font-bold">Irrelevant results again?</h2>
+        <p className="text-login-text  text-2xl w-[300px] text-center mt-[20px]">
+          No need to rummage through irrelevant items anymore, we got you
+          covered. Habitual sends you relevant items based off of your habits
+          and interests.
+        </p>
+      </div>
       <div className="bg-right-login dark:bg-dark-right-login w-full">
         <Form
           onSubmit={handleSubmit(submitHandler)}
@@ -99,9 +109,9 @@ const LoginPage = () => {
               )}
             </div>
 
-            <a href="#!" className="text-[#0071DC] text-right font-medium">
+            {/* <a href="#!" className="text-[#0071DC] text-right font-medium">
               Recovery Password
-            </a>
+            </a> */}
           </div>
 
           <button
@@ -111,7 +121,7 @@ const LoginPage = () => {
             Login
           </button>
 
-          <p className="font-normal text-2xl text-login-text text-center mt-[70px]">
+          <p className="font-normal text-2xl text-login-text text-center mt-[20px]">
             Don’t have an account yet?{' '}
             <Link to={ROUTES.SIGNUP} className="text-[#0071DC] font-medium ">
               Sign Up

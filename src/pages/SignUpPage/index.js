@@ -26,7 +26,18 @@ const SignUpPage = () => {
 
   return (
     <main className="grid grid-cols-2 md:grid-cols-1 h-screen">
-      <div className="bg-left-login dark:bg-dark-left-login md:hidden">123</div>
+      <div className="bg-left-login dark:bg-dark-left-login md:hidden">
+        <div className="bg-left-login dark:bg-dark-left-login md:hidden flex flex-col items-center  gap-[20px]">
+          <div className="dark:bg-white rounded-full w-[300px] h-[300px] flex items-center justify-center mt-[50px]">
+            <img src="/image/signup-left.svg" alt="" className="" />
+          </div>
+          <h2 className="text-5xl font-bold">Welcome!</h2>
+          <p className="text-login-text  text-2xl w-[300px] text-center mt-[20px]">
+            It’s a pleasure to meet you. We are excited that you’re here so
+            let’s get started!
+          </p>
+        </div>
+      </div>
       <div className="bg-right-login dark:bg-dark-right-login w-full">
         <form
           onSubmit={handleSubmit(submitHandler)}
@@ -145,7 +156,7 @@ const SignUpPage = () => {
           >
             Sign Up
           </button>
-          <p className="font-normal text-2xl text-login-text text-center mt-[70px]">
+          <p className="font-normal text-2xl text-login-text text-center mt-[20px]">
             You have an account yet?{' '}
             <Link to={ROUTES.LOGIN} className="text-[#0071DC] font-medium ">
               Log In
