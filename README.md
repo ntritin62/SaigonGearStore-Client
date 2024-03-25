@@ -46,16 +46,16 @@ Admin:
 
 ## Preview :
 
-![home](https://github.com/ntritin62/SaigonGearStore-Client/assets/104788686/52859bf7-95f5-492e-98d8-41f933b8bec8)
+![home](https://github.com/ntritin62/SaigonGearStore-Client/assets/104788686/a3d2bd0b-c2da-489c-aa72-f714d7b876c4)
 
 <table>
   <tr>
-    <td><img src="https://github.com/ntritin62/SaigonGearStore-Client/assets/104788686/a1a4eef1-f395-49ab-94bb-72a92419b826" alt="mockup" /></td>
-    <td><img src="https://github.com/ntritin62/SaigonGearStore-Client/assets/104788686/bcdaaa99-a929-414c-afc4-8acf7a8173bb" alt="mockups" /></td>
+    <td><img src="https://github.com/ntritin62/SaigonGearStore-Client/assets/104788686/0ab95de2-f9e7-4235-a45e-2409bd65b5a7" alt="mockup" /></td>
+    <td><img src="https://github.com/ntritin62/SaigonGearStore-Client/assets/104788686/59ffcd6a-38d0-453b-848f-67aaf0293b96" alt="mockups" /></td>
   </tr>
   <tr>
-    <td><img src="https://github.com/ntritin62/SaigonGearStore-Client/assets/104788686/0c3e296b-6e71-449d-ba8b-2f8aafb14756" alt="mockup" /></td>
-    <td><img src="https://github.com/ntritin62/SaigonGearStore-Client/assets/104788686/803e5705-7f76-450f-8baf-fcc0eae56c55" alt="mockups" /></td>
+    <td><img src="https://github.com/ntritin62/SaigonGearStore-Client/assets/104788686/5214b8b1-ca17-47df-88a5-6f2870ade236" alt="mockup" /></td>
+    <td><img src="https://github.com/ntritin62/SaigonGearStore-Client/assets/104788686/456e1dba-a5cc-495e-af9f-28449a4d232b" alt="mockups" /></td>
   </tr>
 </table>
 
@@ -63,7 +63,7 @@ Admin:
 
 <table>
   <tr>
-    <td><img src="https://github.com/ntritin62/SaigonGearStore-Client/assets/104788686/58af4e75-c17e-49d4-9ad3-4a607db8b3ea" alt="mockup" /></td>
-    <td><img src="https://github.com/ntritin62/SaigonGearStore-Client/assets/104788686/d67037f0-91f3-47e2-be6b-ca745c27f697" alt="mockups" /></td>
+    <td><img src="https://github.com/ntritin62/SaigonGearStore-Client/assets/104788686/eabb55f9-a779-47f9-a8d7-101ee362f54e" alt="mockup" /></td>
+    <td><img src="https://github.com/ntritin62/SaigonGearStore-Client/assets/104788686/c4a1e9ab-cb33-4b5d-b61c-436ee6052e75" alt="mockups" /></td>
   </tr>
 </table>
