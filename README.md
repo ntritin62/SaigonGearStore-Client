@@ -1,5 +1,6 @@
 # SaigonGear store website MERN stack
 
+![logo](https://github.com/ntritin62/SaigonGearStore-Client/assets/104788686/fa5d8a4c-417b-4319-9e4a-c08774e26c13)&nbsp;
 Full-Stack SaigonGear store Website using MERN Stack.
 
 ## 🖥️ Tech Stack
