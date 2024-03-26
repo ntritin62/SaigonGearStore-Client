@@ -37,6 +37,7 @@ User:
 - User can search products by name
 - User can change dark/light theme
 - Users can buy products
+- Users can message the store through the Facebook Messenger chat box
 - Users can check their orders
 
 Admin:
