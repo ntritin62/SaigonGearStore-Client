@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import CartBox from '../../components/Cart';
 import { useSelector } from 'react-redux';
 import * as ROUTES from '../../constants/routes';
+import { Helmet } from 'react-helmet';
 
 const CheckoutPage = () => {
   const cart = useSelector((state) => state.cart);
@@ -11,6 +12,9 @@ const CheckoutPage = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Checkout</title>
+      </Helmet>
       <div className="container pt-[10px]">
         <div className="flex text-checkout-text text-2xl font-medium gap-[20px] mt-[30px] rounded-[10px] bg-white p-[20px] dark:bg-dark-sidebar">
           <Link to={ROUTES.HOME}>Home</Link>

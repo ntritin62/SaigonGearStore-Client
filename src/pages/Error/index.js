@@ -2,9 +2,13 @@ import React from 'react';
 import Header from '../Layout/components/Header';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
+import { Helmet } from 'react-helmet';
 const ErrorPage = () => {
   return (
     <>
+      <Helmet>
+        <title>Error</title>
+      </Helmet>
       <Header />
       <div className="my-[150px] flex flex-col items-center justify-center">
         <h1 className="text-[80px] font-bold">Oops</h1>

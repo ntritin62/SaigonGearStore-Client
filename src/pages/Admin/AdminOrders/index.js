@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { useLoaderData } from 'react-router-dom';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 
 const AdminOrders = () => {
   const [toastShowing, setToastShowing] = useState(false);
@@ -17,78 +18,83 @@ const AdminOrders = () => {
     };
   }, [toastShowing]);
   return (
-    <Container>
-      {toastShowing && (
-        <Toast>
-          <div className="toast active">
-            <div className="toast-content">
-              <div className="message">
-                <span className="text text-1">Success</span>
-                <span className="text text-2">
-                  Confirmed the order successfully
-                </span>
+    <>
+      <Helmet>
+        <title>Admin | Orders</title>
+      </Helmet>
+      <Container>
+        {toastShowing && (
+          <Toast>
+            <div className="toast active">
+              <div className="toast-content">
+                <div className="message">
+                  <span className="text text-1">Success</span>
+                  <span className="text text-2">
+                    Confirmed the order successfully
+                  </span>
+                </div>
               </div>
+              <div className="progress active"></div>
             </div>
-            <div className="progress active"></div>
-          </div>
-        </Toast>
-      )}
-      {ordersList.length === 0 && (
-        <NoProducts>
-          <img src="/icon/no-order.png" alt="" />
-          <span>There are no new orders</span>
-        </NoProducts>
-      )}
-      {ordersList.length !== 0 && (
-        <OrdersList>
-          {ordersList.map((order) => (
-            <OrdersItem key={order._id}>
-              <button
-                onClick={async () => {
-                  const response = await axios.put(
-                    `${process.env.REACT_APP_SERVER_URL}/admin/order/${order._id}`
-                  );
-                  setToastShowing(true);
-                  setTimeout(() => {
-                    window.location.reload();
-                  }, 1000);
-                }}
-              >
-                ACCEPT
-              </button>
-              <ProductList>
-                {order.products.map((product) => (
-                  <ProductItem key={product.productId._id}>
-                    <img src={`${product.productId.images[0]}`} alt="" />
-                    <ProductInfo>
-                      <span>{product.productId.name}</span>
-                      <span>Quantity: {product.quantity}</span>
-                    </ProductInfo>
-                    <ProductPrice>
-                      $
-                      {(
-                        (product.productId.price -
-                          (product.productId.sale / 100) *
-                            product.productId.price) *
-                        product.quantity
-                      ).toFixed(2)}
-                    </ProductPrice>
-                  </ProductItem>
-                ))}
-              </ProductList>
-              <OrderInfo>
-                <ReceiverInfo>
-                  <span>{order.shipping.name}</span>
-                  <span>Address: {order.shipping.address}</span>
-                  <span>Phone: {order.shipping.phoneNumber}</span>
-                </ReceiverInfo>
-                <OrderPrice>Amount: ${order.amount.toFixed(2)}</OrderPrice>
-              </OrderInfo>
-            </OrdersItem>
-          ))}
-        </OrdersList>
-      )}
-    </Container>
+          </Toast>
+        )}
+        {ordersList.length === 0 && (
+          <NoProducts>
+            <img src="/icon/no-order.png" alt="" />
+            <span>There are no new orders</span>
+          </NoProducts>
+        )}
+        {ordersList.length !== 0 && (
+          <OrdersList>
+            {ordersList.map((order) => (
+              <OrdersItem key={order._id}>
+                <button
+                  onClick={async () => {
+                    const response = await axios.put(
+                      `${process.env.REACT_APP_SERVER_URL}/admin/order/${order._id}`
+                    );
+                    setToastShowing(true);
+                    setTimeout(() => {
+                      window.location.reload();
+                    }, 1000);
+                  }}
+                >
+                  ACCEPT
+                </button>
+                <ProductList>
+                  {order.products.map((product) => (
+                    <ProductItem key={product.productId._id}>
+                      <img src={`${product.productId.images[0]}`} alt="" />
+                      <ProductInfo>
+                        <span>{product.productId.name}</span>
+                        <span>Quantity: {product.quantity}</span>
+                      </ProductInfo>
+                      <ProductPrice>
+                        $
+                        {(
+                          (product.productId.price -
+                            (product.productId.sale / 100) *
+                              product.productId.price) *
+                          product.quantity
+                        ).toFixed(2)}
+                      </ProductPrice>
+                    </ProductItem>
+                  ))}
+                </ProductList>
+                <OrderInfo>
+                  <ReceiverInfo>
+                    <span>{order.shipping.name}</span>
+                    <span>Address: {order.shipping.address}</span>
+                    <span>Phone: {order.shipping.phoneNumber}</span>
+                  </ReceiverInfo>
+                  <OrderPrice>Amount: ${order.amount.toFixed(2)}</OrderPrice>
+                </OrderInfo>
+              </OrdersItem>
+            ))}
+          </OrdersList>
+        )}
+      </Container>
+    </>
   );
 };
 

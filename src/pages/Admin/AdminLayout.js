@@ -3,12 +3,18 @@ import { Outlet, redirect } from 'react-router-dom';
 import SideBar from './components/SideBar';
 import { styled } from 'styled-components';
 import getAuthToken from '../../services/getToken';
+import { Helmet } from 'react-helmet';
 const AdminLayout = () => {
   return (
-    <Container>
-      <SideBar />
-      <Outlet />
-    </Container>
+    <>
+      <Helmet>
+        <title>Admin</title>
+      </Helmet>
+      <Container>
+        <SideBar />
+        <Outlet />
+      </Container>
+    </>
   );
 };
 

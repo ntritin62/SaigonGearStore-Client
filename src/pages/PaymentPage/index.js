@@ -4,6 +4,7 @@ import * as ROUTES from '../../constants/routes';
 import { Link } from 'react-router-dom';
 import PaymentCard from '../../components/PaymentCard';
 import { useSelector } from 'react-redux';
+import { Helmet } from 'react-helmet';
 
 const PaymentPage = () => {
   const cart = useSelector((state) => state.cart);
@@ -16,6 +17,9 @@ const PaymentPage = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Checkout | Payment</title>
+      </Helmet>
       <div className="container pt-[10px]">
         <div className="flex text-checkout-text text-2xl font-medium gap-[20px] mt-[30px] rounded-[10px] bg-white p-[20px] dark:bg-dark-sidebar">
           <Link to={ROUTES.HOME}>Home</Link>

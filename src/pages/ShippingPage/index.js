@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setAddress } from '../../redux/cartSlice';
 import AddressFormModal from '../../components/AddressFormModal';
 import * as ROUTES from '../../constants/routes';
+import { Helmet } from 'react-helmet';
 
 const ShippingPage = () => {
   const [addressModelIsShowed, setAddressModelIsShowed] = useState({
@@ -37,6 +38,9 @@ const ShippingPage = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Checkout | Shipping</title>
+      </Helmet>
       {addressModelIsShowed.status && (
         <AddressFormModal
           closeForm={closeAddressModal}

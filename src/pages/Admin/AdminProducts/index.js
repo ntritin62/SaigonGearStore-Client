@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import { styled } from 'styled-components';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 
 const AdminProducts = () => {
   const navigate = useNavigate();
@@ -99,246 +100,255 @@ const AdminProducts = () => {
   };
 
   return (
-    <Container>
-      {toastShowing && (
-        <Toast>
-          <div className="toast active">
-            <div className="toast-content">
-              <div className="message">
-                <span className="text text-1">Success</span>
-                <span className="text text-2">{message} successfully</span>
-              </div>
-            </div>
-            <div className="progress active"></div>
-          </div>
-        </Toast>
-      )}
-      {formIsShow && (
-        <Backdrop>
-          <AddForm onSubmit={submitHandler} encType="multipart/form-data">
-            <InputBlock>
-              <Label htmlFor="name">Name</Label>
-              <Input
-                type="text"
-                placeholder="Enter name..."
-                id="name"
-                name="name"
-                value={title || ''}
-                onChange={(e) => {
-                  setTitle(e.target.value);
-                }}
-                autoComplete="off"
-                required
-              />
-            </InputBlock>
-            <InputBlock>
-              <Label htmlFor="name">Category</Label>
-              <select
-                id="category"
-                name="category"
-                onChange={(e) => setCategory(e.target.value)}
-                defaultValue={category || 'keyboard'}
-              >
-                <option value="keyboard">Keyboard</option>
-                <option value="mouse">Mouse</option>
-                <option value="headphone">Headphone</option>
-              </select>
-            </InputBlock>
-            <InputBlock>
-              <Label htmlFor="brand">Brand</Label>
-              <select
-                id="brand"
-                name="brand"
-                onChange={(e) => {
-                  setBrand(e.target.value);
-                }}
-                value={brand || isEdited.brand._id}
-              >
-                {brands.map((brand) => (
-                  <option key={brand._id} value={brand._id}>
-                    {brand.brandName}
-                  </option>
-                ))}
-              </select>
-            </InputBlock>
-            <InputBlock>
-              <Label htmlFor="price">Price</Label>
-              <Input
-                type="number"
-                placeholder="Enter price..."
-                id="price"
-                name="price"
-                value={oldprice || ''}
-                onChange={(e) => {
-                  setOldprice(e.target.value);
-                }}
-                autoComplete="off"
-                required
-              />
-            </InputBlock>
-            <InputBlock>
-              <Label htmlFor="saleoff">Discount</Label>
-              <Input
-                type="number"
-                placeholder="Enter discount..."
-                id="saleoff"
-                name="saleoff"
-                value={saleoff || ''}
-                onChange={(e) => {
-                  setSaleoff(e.target.value);
-                }}
-                autoComplete="off"
-              />
-            </InputBlock>
-            <InputBlock>
-              <Label htmlFor="newprice">Sale price</Label>
-              <Input
-                type="number"
-                id="newprice"
-                name="newprice"
-                value={oldprice - oldprice * (saleoff / 100)}
-                autoComplete="off"
-                required
-                disabled
-              />
-            </InputBlock>
-            <InputBlock>
-              <Label htmlFor="description">Description</Label>
-              <TextArea
-                type="text"
-                id="description"
-                name="description"
-                placeholder="Enter description..."
-                value={description || ''}
-                onChange={(e) => {
-                  setDescription(e.target.value);
-                }}
-                autoComplete="off"
-              />
-            </InputBlock>
-            <InputBlock>
-              <Label htmlFor="image">Images</Label>
-              <input
-                type="file"
-                multiple
-                id="images"
-                name="images"
-                accept="image/png, image/jpeg"
-                onChange={(event) => {
-                  console.log(event.target.files);
-                  setImages(event.target.files);
-                }}
-                className="w-[200px]"
-              />
-              <div className="grid grid-cols-5">
-                {images &&
-                  Array.from(images).map((image) => (
-                    <img
-                      id="frame"
-                      src={URL.createObjectURL(image)}
-                      width="50px"
-                      height="50px"
-                    />
-                  ))}
-              </div>
-            </InputBlock>
-            <FormActions>
-              <CancelButton
-                onClick={() => {
-                  setFormIsShow(false);
-                  setTitle('');
-                  setNewprice('');
-                  setOldprice('');
-                  setSaleoff('');
-                  setCategory('keyboard');
-                  setDescription('');
-                  setIsEdited(null);
-                  setImages('');
-                  setBrand('65f59122fcf40c7182070655');
-                }}
-                type="button"
-              >
-                Cancel
-              </CancelButton>
-              <SubmitButton>Submit</SubmitButton>
-            </FormActions>
-          </AddForm>
-        </Backdrop>
-      )}
-
-      <NewProductBtn onClick={() => setFormIsShow(true)}>
-        <div className="flex justify-center gap-[10px]">
-          <img src="/icon/add.svg" alt="" className="icon w-[24px] h-[24px]" />
-          <span>Add new product</span>
-        </div>
-      </NewProductBtn>
-      {products.length === 0 && (
-        <NoProducts>
-          <img src="/images/no-products.svg" alt="" />
-          <span>No products</span>
-        </NoProducts>
-      )}
-      {products.length !== 0 && (
-        <ProductsList>
-          {products.map((product) => (
-            <ProductItem key={product._id}>
-              <img src={`${product.images[0]}`} alt="" />
-              <div>
-                <ProductTitle>{product.name}</ProductTitle>
-                <div className="flex justify-between w-[300px] mt-[20px]">
-                  <div>
-                    <p className="text-2xl font-medium">
-                      Category:{' '}
-                      <span className="font-normal capitalize">
-                        {product.category.categoryName}
-                      </span>
-                    </p>
-                    <p className="text-2xl font-medium mt-[10px] flex gap-[10px]">
-                      Brand:{' '}
-                      <img
-                        src={product.brand.logoImage}
-                        alt=""
-                        className="w-[45px] h-[45px] object-contain"
-                      />
-                    </p>
-                  </div>
-                  <div className="flex flex-col">
-                    <p className="text-2xl font-medium">
-                      Price:{' '}
-                      <span className="font-normal">${product.price}</span>
-                    </p>
-                    <p className="text-2xl font-medium mt-[10px]">
-                      Discount:{' '}
-                      <span className="font-normal">{product.sale}%</span>
-                    </p>
-                  </div>
+    <>
+      <Helmet>
+        <title>Admin | Products</title>
+      </Helmet>
+      <Container>
+        {toastShowing && (
+          <Toast>
+            <div className="toast active">
+              <div className="toast-content">
+                <div className="message">
+                  <span className="text text-1">Success</span>
+                  <span className="text text-2">{message} successfully</span>
                 </div>
               </div>
-              <Actions>
-                <button
-                  onClick={() => {
-                    setTitle(product.name);
-                    setOldprice(product.price);
-                    setBrand(product.brand._id);
-                    setSaleoff(product.sale);
-                    setCategory(product.category.categoryName);
-                    setDescription(product.description);
-                    setFormIsShow(true);
-                    setIsEdited(product);
+              <div className="progress active"></div>
+            </div>
+          </Toast>
+        )}
+        {formIsShow && (
+          <Backdrop>
+            <AddForm onSubmit={submitHandler} encType="multipart/form-data">
+              <InputBlock>
+                <Label htmlFor="name">Name</Label>
+                <Input
+                  type="text"
+                  placeholder="Enter name..."
+                  id="name"
+                  name="name"
+                  value={title || ''}
+                  onChange={(e) => {
+                    setTitle(e.target.value);
                   }}
+                  autoComplete="off"
+                  required
+                />
+              </InputBlock>
+              <InputBlock>
+                <Label htmlFor="name">Category</Label>
+                <select
+                  id="category"
+                  name="category"
+                  onChange={(e) => setCategory(e.target.value)}
+                  defaultValue={category || 'keyboard'}
                 >
-                  <img
-                    src="/icon/edit.svg"
-                    alt=""
-                    className="icon w-[24px] h-[24px]"
-                  />
-                </button>
-              </Actions>
-            </ProductItem>
-          ))}
-        </ProductsList>
-      )}
-    </Container>
+                  <option value="keyboard">Keyboard</option>
+                  <option value="mouse">Mouse</option>
+                  <option value="headphone">Headphone</option>
+                </select>
+              </InputBlock>
+              <InputBlock>
+                <Label htmlFor="brand">Brand</Label>
+                <select
+                  id="brand"
+                  name="brand"
+                  onChange={(e) => {
+                    setBrand(e.target.value);
+                  }}
+                  value={brand || isEdited.brand._id}
+                >
+                  {brands.map((brand) => (
+                    <option key={brand._id} value={brand._id}>
+                      {brand.brandName}
+                    </option>
+                  ))}
+                </select>
+              </InputBlock>
+              <InputBlock>
+                <Label htmlFor="price">Price</Label>
+                <Input
+                  type="number"
+                  placeholder="Enter price..."
+                  id="price"
+                  name="price"
+                  value={oldprice || ''}
+                  onChange={(e) => {
+                    setOldprice(e.target.value);
+                  }}
+                  autoComplete="off"
+                  required
+                />
+              </InputBlock>
+              <InputBlock>
+                <Label htmlFor="saleoff">Discount</Label>
+                <Input
+                  type="number"
+                  placeholder="Enter discount..."
+                  id="saleoff"
+                  name="saleoff"
+                  value={saleoff || ''}
+                  onChange={(e) => {
+                    setSaleoff(e.target.value);
+                  }}
+                  autoComplete="off"
+                />
+              </InputBlock>
+              <InputBlock>
+                <Label htmlFor="newprice">Sale price</Label>
+                <Input
+                  type="number"
+                  id="newprice"
+                  name="newprice"
+                  value={oldprice - oldprice * (saleoff / 100)}
+                  autoComplete="off"
+                  required
+                  disabled
+                />
+              </InputBlock>
+              <InputBlock>
+                <Label htmlFor="description">Description</Label>
+                <TextArea
+                  type="text"
+                  id="description"
+                  name="description"
+                  placeholder="Enter description..."
+                  value={description || ''}
+                  onChange={(e) => {
+                    setDescription(e.target.value);
+                  }}
+                  autoComplete="off"
+                />
+              </InputBlock>
+              <InputBlock>
+                <Label htmlFor="image">Images</Label>
+                <input
+                  type="file"
+                  multiple
+                  id="images"
+                  name="images"
+                  accept="image/png, image/jpeg"
+                  onChange={(event) => {
+                    console.log(event.target.files);
+                    setImages(event.target.files);
+                  }}
+                  className="w-[200px]"
+                />
+                <div className="grid grid-cols-5">
+                  {images &&
+                    Array.from(images).map((image) => (
+                      <img
+                        id="frame"
+                        src={URL.createObjectURL(image)}
+                        width="50px"
+                        height="50px"
+                      />
+                    ))}
+                </div>
+              </InputBlock>
+              <FormActions>
+                <CancelButton
+                  onClick={() => {
+                    setFormIsShow(false);
+                    setTitle('');
+                    setNewprice('');
+                    setOldprice('');
+                    setSaleoff('');
+                    setCategory('keyboard');
+                    setDescription('');
+                    setIsEdited(null);
+                    setImages('');
+                    setBrand('65f59122fcf40c7182070655');
+                  }}
+                  type="button"
+                >
+                  Cancel
+                </CancelButton>
+                <SubmitButton>Submit</SubmitButton>
+              </FormActions>
+            </AddForm>
+          </Backdrop>
+        )}
+
+        <NewProductBtn onClick={() => setFormIsShow(true)}>
+          <div className="flex justify-center gap-[10px]">
+            <img
+              src="/icon/add.svg"
+              alt=""
+              className="icon w-[24px] h-[24px]"
+            />
+            <span>Add new product</span>
+          </div>
+        </NewProductBtn>
+        {products.length === 0 && (
+          <NoProducts>
+            <img src="/images/no-products.svg" alt="" />
+            <span>No products</span>
+          </NoProducts>
+        )}
+        {products.length !== 0 && (
+          <ProductsList>
+            {products.map((product) => (
+              <ProductItem key={product._id}>
+                <img src={`${product.images[0]}`} alt="" />
+                <div>
+                  <ProductTitle>{product.name}</ProductTitle>
+                  <div className="flex justify-between w-[300px] mt-[20px]">
+                    <div>
+                      <p className="text-2xl font-medium">
+                        Category:{' '}
+                        <span className="font-normal capitalize">
+                          {product.category.categoryName}
+                        </span>
+                      </p>
+                      <p className="text-2xl font-medium mt-[10px] flex gap-[10px]">
+                        Brand:{' '}
+                        <img
+                          src={product.brand.logoImage}
+                          alt=""
+                          className="w-[45px] h-[45px] object-contain"
+                        />
+                      </p>
+                    </div>
+                    <div className="flex flex-col">
+                      <p className="text-2xl font-medium">
+                        Price:{' '}
+                        <span className="font-normal">${product.price}</span>
+                      </p>
+                      <p className="text-2xl font-medium mt-[10px]">
+                        Discount:{' '}
+                        <span className="font-normal">{product.sale}%</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <Actions>
+                  <button
+                    onClick={() => {
+                      setTitle(product.name);
+                      setOldprice(product.price);
+                      setBrand(product.brand._id);
+                      setSaleoff(product.sale);
+                      setCategory(product.category.categoryName);
+                      setDescription(product.description);
+                      setFormIsShow(true);
+                      setIsEdited(product);
+                    }}
+                  >
+                    <img
+                      src="/icon/edit.svg"
+                      alt=""
+                      className="icon w-[24px] h-[24px]"
+                    />
+                  </button>
+                </Actions>
+              </ProductItem>
+            ))}
+          </ProductsList>
+        )}
+      </Container>
+    </>
   );
 };
 
