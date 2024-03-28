@@ -19,7 +19,7 @@ const ImageSlider = ({ imagesArray }) => {
   return (
     <>
       <div className="w-full h-[472px] lg:h-full">
-        <div className="border-[3px] border-solid border-[rgb(235,235,240)] rounded-xl overflow-hidden">
+        <div className="border-[3px] w-[full] h-[full] border-solid border-[rgb(235,235,240)] rounded-xl overflow-hidden">
           <img
             src={imageIsShowed}
             alt=""

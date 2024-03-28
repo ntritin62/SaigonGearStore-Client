@@ -52,6 +52,7 @@ const AdminProducts = () => {
   }, [toastShowing]);
 
   const submitHandler = async (e) => {
+    setFormIsShow(false);
     e.preventDefault();
 
     const formData = new FormData();
@@ -87,7 +88,7 @@ const AdminProducts = () => {
         window.location.reload();
       }, 1000);
     }
-    setFormIsShow(false);
+
     setTitle('');
     setNewprice(0);
     setBrand('65f59122fcf40c7182070655');
