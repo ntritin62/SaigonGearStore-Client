@@ -28,7 +28,7 @@ const OrdersPage = () => {
         </>
       )}
       {orders.length > 0 && (
-        <div className="mt-[30px] h-[500px] overflow-scroll">
+        <div className="mt-[30px] h-[500px] overflow-auto">
           <ul>
             {orders.map((order) => (
               <li
