@@ -135,7 +135,7 @@ const EditInfo = () => {
           </Link>
           <button
             type="submit"
-            className="text-2xl font-medium py-[10px] px-[20px] rounded-[30px] bg-[#FFB700] text-[#1A162E]"
+            className="text-2xl font-medium py-[10px] px-[20px] rounded-[30px] bg-active-sidebar text-[#1A162E]"
           >
             {text}
           </button>
